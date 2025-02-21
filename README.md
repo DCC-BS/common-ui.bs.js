@@ -2,7 +2,7 @@
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/DCC-BS/common-ui.bs.js)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/DCC-BS/common-ui.bs.js/publish.yml)
-[![codecov](https://codecov.io/gh/DCC-BS/common-ui.bs.js/graph/badge.svg?token=3PBNL8OR24)](https://codecov.io/gh/DCC-BS/common-ui.bs.js)
+[![codecov](https://codecov.io/gh/DCC-BS/common-ui.bs.js/graph/badge.svg)](https://codecov.io/gh/DCC-BS/common-ui.bs.js)
 
 Common Nuxt components and UI utilts.
 

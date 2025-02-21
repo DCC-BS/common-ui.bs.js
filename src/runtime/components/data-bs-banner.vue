@@ -5,7 +5,7 @@ import image from '../assets/databs_log.png';
 const animations = ['animate-heath-beat', 'animate-rotate'];
 const animation = ref('animate-heath-beat');
 
-function onHover(e: MouseEvent) {
+function onHover() {
     const randomIndex = Math.floor(Math.random() * animations.length);
     animation.value = animations[randomIndex];
 }
@@ -13,9 +13,8 @@ function onHover(e: MouseEvent) {
 
 <template>
     <div class="flex flex-col items-center">
-        <a :class="animation" @mouseenter="onHover"
-            href="https://www.bs.ch/schwerpunkte/daten-und-statistiken/databs/schwerpunkte/datenwissenschaften-und-ki"
-            target="_blank" rel="noopener noreferrer">
+        <a href="https://www.bs.ch/schwerpunkte/daten-und-statistiken/databs/schwerpunkte/datenwissenschaften-und-ki"
+            target="_blank" :class="animation" @mouseenter="onHover" rel="noopener noreferrer">
             <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" width="100">
         </a>
         <p class="mt-2">Datenwissenschaften und KI</p>

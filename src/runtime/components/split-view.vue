@@ -102,13 +102,13 @@ onUnmounted(() => {
 <template>
     <div class="split-view" :class="splitViewStyle">
         <div :class="aPaneStyle" :style="aPaneCssStyle">
-            <slot name="a"></slot>
+            <slot name="a" />
         </div>
         <div :class="resizerStyle" @mousedown="startResize">
-            <div :class="resizerInnerStyle"></div>
+            <div :class="resizerInnerStyle" />
         </div>
         <div :class="bPaneStyle" :style="bPaneCssStyle">
-            <slot name="b"></slot>
+            <slot name="b" />
         </div>
     </div>
 </template>

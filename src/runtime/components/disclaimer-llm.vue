@@ -11,7 +11,7 @@ function toggleDisclaimer() {
 
 <template>
     <div class="w-full flex flex-col space-y-4">
-        <a @click="toggleDisclaimer" id="disclaimer-llm-toggle"
+        <a @click="toggleDisclaimer"
             class="flex items-center space-x-2 cursor-pointer text-yellow-500 hover:text-yellow-300">
             <UIcon name="i-heroicons-shield-exclamation-16-solid" color="yellow"></UIcon> Disclaimer
         </a>
