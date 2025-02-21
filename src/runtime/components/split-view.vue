@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { twMerge } from 'tailwind-merge'
-import type { StyleValue } from 'vue';
+import { computed, onUnmounted, ref, watch, type StyleValue } from 'vue';
 
 interface SplitViewProps {
     aPaneStyle?: string;
     bPaneStyle?: string;
-    spltiViewStyle?: string;
+    splitViewStyle?: string;
     resizerStyle?: string;
     resizerInnerStyle?: string;
     isHorizontal?: boolean;
@@ -14,7 +14,7 @@ interface SplitViewProps {
 const props = withDefaults(defineProps<SplitViewProps>(), {
     aPaneStyle: '',
     bPaneStyle: '',
-    spltiViewStyle: '',
+    splitViewStyle: '',
     resizerStyle: '',
     resizerInnerStyle: '',
     isHorizontal: false,
@@ -36,7 +36,7 @@ const horizontalResizerInnerStyle = 'bg-gray-100 h-[2px] w-full';
 
 const aPaneCssStyle = ref<StyleValue>();
 const bPaneCssStyle = ref<StyleValue>();
-const reziserIsSelected = ref(false);
+const resizerIsSelected = ref(false);
 
 watch(() => props.isHorizontal, () => {
     if (props.isHorizontal) {
@@ -50,11 +50,11 @@ watch(() => props.isHorizontal, () => {
 
 const aPaneStyle = computed(() => twMerge(props.isHorizontal ? horizontalAPaneStyle : verticalAPaneStyle, props.aPaneStyle));
 const bPaneStyle = computed(() => twMerge(props.isHorizontal ? horizontalBPaneStyle : verticalBPaneStyle, props.bPaneStyle));
-const splitViewStyle = computed(() => twMerge(props.isHorizontal ? horizontalSplitViewStyle : verticalSplitViewStyle, props.spltiViewStyle));
+const splitViewStyle = computed(() => twMerge(props.isHorizontal ? horizontalSplitViewStyle : verticalSplitViewStyle, props.splitViewStyle));
 const resizerStyle = computed(() => twMerge(props.isHorizontal ? horizontalResizerStyle : verticalResizerStyle, props.resizerStyle));
 const resizerInnerStyle = computed(() => {
     let styles = props.isHorizontal ? horizontalResizerInnerStyle : verticalResizerInnerStyle;
-    if (reziserIsSelected.value) {
+    if (resizerIsSelected.value) {
         styles = twMerge(styles, defaultClickedResizerInnerStyle);
     }
 
@@ -65,7 +65,7 @@ const startResize = (e: MouseEvent) => {
     e.preventDefault();
     window.addEventListener('mousemove', resize);
     window.addEventListener('mouseup', stopResize);
-    reziserIsSelected.value = true;
+    resizerIsSelected.value = true;
 }
 
 const resize = (e: MouseEvent) => {
@@ -90,7 +90,7 @@ const resize = (e: MouseEvent) => {
 const stopResize = () => {
     window.removeEventListener('mousemove', resize);
     window.removeEventListener('mouseup', stopResize);
-    reziserIsSelected.value = false;
+    resizerIsSelected.value = false;
 }
 
 onUnmounted(() => {

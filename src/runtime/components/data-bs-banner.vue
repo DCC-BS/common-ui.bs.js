@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import image from '../assets/databs_log.png';
 
 const animations = ['animate-heath-beat', 'animate-rotate'];
