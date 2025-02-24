@@ -10,14 +10,13 @@ function toggleDisclaimer() {
 </script>
 
 <template>
-    <div class="w-full flex flex-col space-y-4">
-        <a @click="toggleDisclaimer"
-            class="flex items-center space-x-2 cursor-pointer text-yellow-500 hover:text-yellow-300">
-            <UIcon name="i-heroicons-shield-exclamation-16-solid" color="yellow"></UIcon> Disclaimer
-        </a>
+    <a @click="toggleDisclaimer" class="flex items-center cursor-pointer text-yellow-500 hover:text-yellow-300">
+        <UIcon name="i-heroicons-shield-exclamation-16-solid" color="yellow"></UIcon> Disclaimer
+    </a>
 
-        <UAlert v-if="isDisclaimerVisible" icon="i-heroicons-shield-exclamation-16-solid"
-            title="Disclaimer / Haftungsausschluss" class="w-full" color="yellow">
+    <UModal v-model="isDisclaimerVisible">
+        <UAlert icon="i-heroicons-shield-exclamation-16-solid" title="Disclaimer / Haftungsausschluss" class="w-full"
+            color="yellow">
             <template #description>
                 <p>
                     Diese Webanwendung verwendet interne Large Language Models (LLMs) zur Verarbeitung Ihrer
@@ -38,11 +37,11 @@ function toggleDisclaimer() {
 
                 <p>
                     Bei Fehlern oder Problemen wenden Sie sich bitte an <a href="mailto:yanick.schraner@bs.ch"
-                        target="_blank" rel="noopener noreferrer">Yanick Schraner</a>.
+                        target="_blank" rel="noopener noreferrer" class="text-blue-500">Yanick Schraner</a>.
                 </p>
             </template>
         </UAlert>
-    </div>
+    </UModal>
 </template>
 
 <style scoped>

@@ -3,7 +3,9 @@
 
 <template>
     <UContainer>
-        <DisclaimerLlm />
+        <div class="flex justify-center">
+            <DisclaimerLlm />
+        </div>
 
         <DataBsBanner />
     </UContainer>
