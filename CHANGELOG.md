@@ -1,4 +1,20 @@
 # Changelog
+## v0.1.2
+
+[compare changes](https://github.com/DCC-BS/common-ui.bs.js/compare/v0.1.1...v0.1.2)
+
+### 💅 Refactors
+
+- Improve layout and structure of disclaimer component and related styles ([ef593a8](https://github.com/DCC-BS/common-ui.bs.js/commit/ef593a8))
+
+### ✅ Tests
+
+- Remove outdated disclaimer component tests ([de5424a](https://github.com/DCC-BS/common-ui.bs.js/commit/de5424a))
+
+### ❤️ Contributors
+
+- Tobias Bollinger <tobias.bollinger@gmail.com>
+
 ## v0.1.1
 
 [compare changes](https://github.com/DCC-BS/common-ui.bs.js/compare/v0.1.0...v0.1.1)
