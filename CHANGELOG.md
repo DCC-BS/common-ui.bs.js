@@ -1,4 +1,20 @@
 # Changelog
+## v0.1.5
+
+[compare changes](https://github.com/DCC-BS/common-ui.bs.js/compare/v0.1.4...v0.1.5)
+
+### 💅 Refactors
+
+- Simplify module setup by removing Tailwind CSS installation logic ([9bb96a0](https://github.com/DCC-BS/common-ui.bs.js/commit/9bb96a0))
+
+### 📖 Documentation
+
+- Update installation instructions for common-ui.bs.js and Tailwind CSS module ([fd3fdd2](https://github.com/DCC-BS/common-ui.bs.js/commit/fd3fdd2))
+
+### ❤️ Contributors
+
+- Tobias Bollinger <tobias.bollinger@gmail.com>
+
 ## v0.1.4
 
 [compare changes](https://github.com/DCC-BS/common-ui.bs.js/compare/v0.1.3...v0.1.4)
