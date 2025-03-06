@@ -11,8 +11,11 @@ export default defineNuxtModule({
         const resolver = createResolver(import.meta.url);
 
         await installModule('@nuxt/ui');
-    
+
         // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
         addComponentsDir({ path: resolver.resolve('./runtime/components'), global: true, pathPrefix: false });
+
+        _nuxt.options.css = _nuxt.options.css || [];
+        _nuxt.options.css.push(resolver.resolve('./runtime/assets/common-ui-bs.css'));
     },
 })

@@ -12,7 +12,7 @@ function onHover() {
 </script>
 
 <template>
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center text-center">
         <a href="https://www.bs.ch/schwerpunkte/daten-und-statistiken/databs/schwerpunkte/datenwissenschaften-und-ki"
             target="_blank" :class="animation" @mouseenter="onHover" rel="noopener noreferrer">
             <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" width="100">

@@ -7,6 +7,8 @@
             <DisclaimerLlm />
         </div>
 
-        <DataBsBanner />
+        <div class="w-[200px]">
+            <DataBsBanner />
+        </div>
     </UContainer>
 </template>
