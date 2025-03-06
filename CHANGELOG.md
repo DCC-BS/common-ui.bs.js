@@ -1,4 +1,16 @@
 # Changelog
+## v0.1.3
+
+[compare changes](https://github.com/DCC-BS/common-ui.bs.js/compare/v0.1.2...v0.1.3)
+
+### 💅 Refactors
+
+- Adjust layout of DataBsBanner and add common UI styles ([a0689c8](https://github.com/DCC-BS/common-ui.bs.js/commit/a0689c8))
+
+### ❤️ Contributors
+
+- Tobias Bollinger <tobias.bollinger@gmail.com>
+
 ## v0.1.2
 
 [compare changes](https://github.com/DCC-BS/common-ui.bs.js/compare/v0.1.1...v0.1.2)
