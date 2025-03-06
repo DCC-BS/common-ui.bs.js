@@ -24,7 +24,22 @@ GITHUB_TOKEN='YOUR_TOKEN'
 Install the module to your Nuxt application with:
 
 ```bash
-bun x nuxi module add @dcc-bs/common-ui.bs.js
+bun add @dcc-bs/common-ui.bs.js
+```
+
+Change the `nuxt.config.ts`:
+```ts
+    ...
+    modules: [
+        ...
+        '@dcc-bs/common-ui.bs.js',
+    ],
+    ...
+```
+
+add the following line to you css file:
+```css
+@source "../../node_modules/@dcc-bs/common-ui.bs.js/dist/runtime";
 ```
 
 That's it! You can now use common-ui.bs.js in your Nuxt app ✨
