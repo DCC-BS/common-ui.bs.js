@@ -1,4 +1,20 @@
 # Changelog
+## v0.1.4
+
+[compare changes](https://github.com/DCC-BS/common-ui.bs.js/compare/v0.1.3...v0.1.4)
+
+### 🚀 Enhancements
+
+- Add Tailwind CSS module installation and remove unused common UI styles ([ac11653](https://github.com/DCC-BS/common-ui.bs.js/commit/ac11653))
+
+### 💅 Refactors
+
+- Remove unused common UI styles from module ([1199da5](https://github.com/DCC-BS/common-ui.bs.js/commit/1199da5))
+
+### ❤️ Contributors
+
+- Tobias Bollinger <tobias.bollinger@gmail.com>
+
 ## v0.1.3
 
 [compare changes](https://github.com/DCC-BS/common-ui.bs.js/compare/v0.1.2...v0.1.3)
