@@ -1,5 +1,4 @@
 import { defineNuxtModule, createResolver, addComponentsDir, installModule } from '@nuxt/kit'
-import 'assets/common-ui-bs.css'
 
 export default defineNuxtModule({
     meta: {
