@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addComponentsDir, addImportsDir } from '@nuxt/kit'
 
 export default defineNuxtModule({
     meta: {
@@ -12,5 +12,8 @@ export default defineNuxtModule({
 
         // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
         addComponentsDir({ path: resolver.resolve('./runtime/components'), global: true, pathPrefix: false });
+
+        // composables
+        addImportsDir(resolver.resolve('./runtime/composables'));
     },
 })
