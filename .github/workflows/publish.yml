@@ -39,3 +39,5 @@ jobs:
       # Execute release script
       - name: Run release script
         run: bash .github/workflows/release.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

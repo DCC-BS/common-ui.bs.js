@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 
-# prerequisites: npm version patch --no-git-tag-version  (or [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git])
+# prerequisites: 
+# - npm version patch --no-git-tag-version  (or [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git])
+# - bun install
+# - bun generate
+# - bun prepack
 
 set -e
-
-# Install dependencies
-bun install
-
-# Generate and build the package
-bun generate
-bun prepack
-
 
 NEXT_VERSION=$(node -p "require('./package.json').version")
 echo "Next version: $NEXT_VERSION"
@@ -38,6 +34,9 @@ cp -r "$TEMP_DIR"/* .
 rm -rf "$TEMP_DIR"
 
 # Commit and push the changes
+git config --global user.name "github-actions[bot]"
+git config --global user.email "github-actions[bot]@user.noreply.github.com"
+s
 git add .
 git commit -m "Release v$NEXT_VERSION"
 git tag -a "v$NEXT_VERSION" -m "Release v$NEXT_VERSION"
