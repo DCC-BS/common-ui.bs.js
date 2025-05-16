@@ -46,6 +46,3 @@ git push origin $BRANCH --follow-tags
 git checkout -
 
 echo "Released version $NEXT_VERSION on branch $BRANCH"
-
-
-
