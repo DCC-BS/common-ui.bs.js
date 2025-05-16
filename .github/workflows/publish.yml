@@ -30,6 +30,7 @@ jobs:
         run: npm install -g bun
       - run: bun install
       - run: bun generate
+      - run: bun run prepack
       - run: bun run test
       
       # Dynamic version increment based on input or default to patch
