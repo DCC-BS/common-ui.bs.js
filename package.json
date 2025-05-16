@@ -1,6 +1,6 @@
 {
     "name": "@dcc-bs/common-ui.bs.js",
-    "version": "0.1.11",
+    "version": "0.2.0",
     "description": "Common Nuxt components and UI utilts",
     "license": "MIT",
     "type": "module",
