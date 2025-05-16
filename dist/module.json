@@ -1,0 +1,9 @@
+{
+  "name": "common-ui.bs.js",
+  "configKey": "common-ui.bs.js",
+  "version": "0.1.10",
+  "builder": {
+    "@nuxt/module-builder": "0.8.4",
+    "unbuild": "2.0.0"
+  }
+}

@@ -24,50 +24,5 @@ function onHover() {
 
 
 <style scoped>
-.animate-heath-beat {
-    transform: scale(1);
-}
-
-.animate-heath-beat:hover {
-    animation: heartbeat 1.5s ease-out;
-}
-
-@keyframes heartbeat {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.animate-rotate {
-    transform: rotate(0deg);
-}
-
-.animate-rotate:hover {
-    animation: rotate 1.5s;
-}
-
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(30deg);
-    }
-
-    75% {
-        transform: rotate(-30deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }}
+.animate-heath-beat{transform:scale(1)}.animate-heath-beat:hover{animation:heartbeat 1.5s ease-out}@keyframes heartbeat{0%{transform:scale(1)}50%{transform:scale(1.1)}to{transform:scale(1)}}.animate-rotate{transform:rotate(0deg)}.animate-rotate:hover{animation:rotate 1.5s}@keyframes rotate{0%{transform:rotate(0deg)}25%{transform:rotate(30deg)}75%{transform:rotate(-30deg)}to{transform:rotate(0deg)}}
 </style>
