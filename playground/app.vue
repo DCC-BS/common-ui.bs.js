@@ -10,5 +10,9 @@
         <div class="w-[200px]">
             <DataBsBanner />
         </div>
+
+        <div>
+            <DataBsFooter />
+        </div>
     </UContainer>
 </template>
