@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <UContainer>
+    <div>
         <div class="flex justify-center">
             <DisclaimerLlm />
         </div>
@@ -14,5 +14,5 @@
         <div>
             <DataBsFooter />
         </div>
-    </UContainer>
+    </div>
 </template>

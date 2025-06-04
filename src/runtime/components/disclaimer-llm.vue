@@ -177,7 +177,7 @@ onUnmounted(() => {
 
 /* Modal overlay and container */
 .modal-overlay {
-    @apply fixed inset-0 z-50 flex items-end justify-center p-2 bg-black bg-opacity-50;
+    @apply fixed inset-0 z-50 flex items-end justify-center p-2 bg-black/50;
     backdrop-filter: blur(4px);
 }
 
@@ -210,7 +210,7 @@ onUnmounted(() => {
 }
 
 .header-icon {
-    @apply w-6 h-6 mr-2 p-1 bg-white bg-opacity-20 rounded-full;
+    @apply w-6 h-6 mr-2 p-1 bg-white/20 rounded-full;
 }
 
 .header-icon svg {
@@ -222,8 +222,8 @@ onUnmounted(() => {
 }
 
 .close-btn {
-    @apply p-2 rounded-full hover:bg-white hover:bg-opacity-20 transition-colors duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50;
+    @apply p-2 rounded-full hover:bg-white/20 transition-colors duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-white/50;
 }
 
 .close-btn svg {
