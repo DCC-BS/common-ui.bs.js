@@ -1,42 +1,29 @@
-<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-
-// State for controlling modal visibility
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
 const isDisclaimerVisible = ref(false);
-
-// Toggle function to show/hide the disclaimer modal
 function toggleDisclaimer() {
-    isDisclaimerVisible.value = !isDisclaimerVisible.value;
-    // Prevent body scroll when modal is open
-    if (isDisclaimerVisible.value) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = '';
-    }
+  isDisclaimerVisible.value = !isDisclaimerVisible.value;
+  if (isDisclaimerVisible.value) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
 }
-
-// Close modal when escape key is pressed
-function handleEscKey(event: KeyboardEvent) {
-    if (event.key === 'Escape' && isDisclaimerVisible.value) {
-        closeModal();
-    }
+function handleEscKey(event) {
+  if (event.key === "Escape" && isDisclaimerVisible.value) {
+    closeModal();
+  }
 }
-
-// Close modal function
 function closeModal() {
-    isDisclaimerVisible.value = false;
-    document.body.style.overflow = '';
+  isDisclaimerVisible.value = false;
+  document.body.style.overflow = "";
 }
-
-// Add event listener for escape key when component is mounted
 onMounted(() => {
-    document.addEventListener('keydown', handleEscKey);
+  document.addEventListener("keydown", handleEscKey);
 });
-
-// Remove event listener when component is unmounted
 onUnmounted(() => {
-    document.removeEventListener('keydown', handleEscKey);
-    document.body.style.overflow = '';
+  document.removeEventListener("keydown", handleEscKey);
+  document.body.style.overflow = "";
 });
 </script>
 
@@ -151,274 +138,5 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-/* Disclaimer trigger button */
-.disclaimer-trigger {
-    @apply inline-flex items-center px-3 py-2 rounded-lg transition-all duration-300 ease-in-out;
-    @apply bg-gradient-to-r from-amber-50 to-yellow-50 hover:from-amber-100 hover:to-yellow-100;
-    @apply border border-amber-200 hover:border-amber-300;
-    @apply text-amber-700 hover:text-amber-800;
-    @apply shadow-sm hover:shadow-md;
-    @apply transform hover:scale-105 active:scale-95;
-    @apply focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2;
-}
-
-.icon-wrapper {
-    @apply relative mr-2;
-}
-
-.shield-icon {
-    @apply w-5 h-5 transition-transform duration-300 group-hover:rotate-12;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-}
-
-.disclaimer-text {
-    @apply font-medium text-sm;
-}
-
-/* Modal overlay and container */
-.modal-overlay {
-    @apply fixed inset-0 z-50 flex items-end justify-center p-2 bg-black bg-opacity-50;
-    backdrop-filter: blur(4px);
-}
-
-@media (min-width: 640px) {
-    .modal-overlay {
-        @apply items-center p-4;
-    }
-}
-
-.modal-container {
-    @apply w-full max-w-md;
-}
-
-.modal-card {
-    @apply bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden;
-    @apply transform transition-all duration-300;
-    max-height: 95vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Modal header */
-.modal-header {
-    @apply bg-gradient-to-r from-amber-500 to-yellow-500 text-white p-4 relative;
-    @apply flex items-center justify-between;
-}
-
-.header-content {
-    @apply flex items-center flex-1;
-}
-
-.header-icon {
-    @apply w-6 h-6 mr-2 p-1 bg-white bg-opacity-20 rounded-full;
-}
-
-.header-icon svg {
-    @apply w-full h-full;
-}
-
-.modal-title {
-    @apply text-lg font-bold leading-tight;
-}
-
-.close-btn {
-    @apply p-2 rounded-full hover:bg-white hover:bg-opacity-20 transition-colors duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50;
-}
-
-.close-btn svg {
-    @apply w-6 h-6;
-}
-
-/* Modal body */
-.modal-body {
-    @apply flex-1 overflow-y-auto p-4 space-y-4;
-}
-
-.content-section {
-    @apply space-y-3;
-}
-
-/* Info card */
-.info-card {
-    @apply flex items-start p-3 bg-blue-50 border border-blue-200 rounded-lg;
-}
-
-.info-icon {
-    @apply w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0;
-}
-
-.info-text {
-    @apply text-gray-700 leading-snug text-sm;
-}
-
-/* Warning card */
-.warning-card {
-    @apply flex items-start p-3 bg-amber-50 border border-amber-200 rounded-lg;
-}
-
-.warning-icon {
-    @apply w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0;
-}
-
-.warning-content {
-    @apply flex-1;
-}
-
-.warning-title {
-    @apply font-semibold text-amber-800 mb-1 text-sm;
-}
-
-.warning-text {
-    @apply text-gray-700 leading-snug text-sm;
-}
-
-/* Contact card */
-.contact-card {
-    @apply flex items-start p-3 bg-green-50 border border-green-200 rounded-lg;
-}
-
-.contact-icon {
-    @apply w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0;
-}
-
-.contact-text {
-    @apply text-gray-700 leading-snug text-sm;
-}
-
-.contact-link {
-    @apply text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-300 hover:decoration-blue-500;
-    @apply transition-colors duration-200;
-}
-
-/* Modal footer */
-.modal-footer {
-    @apply px-4 py-3 bg-gray-50 border-t border-gray-200;
-}
-
-.understand-btn {
-    @apply w-full flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-green-500 to-emerald-500;
-    @apply text-white font-medium rounded-lg shadow-lg hover:shadow-xl text-sm;
-    @apply transform transition-all duration-200 hover:scale-105 active:scale-95;
-    @apply focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2;
-}
-
-.understand-btn span {
-    @apply mr-2;
-}
-
-.understand-btn svg {
-    @apply w-5 h-5;
-}
-
-/* Modal transitions */
-.modal-enter-active,
-.modal-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.modal-enter-active .modal-card,
-.modal-leave-active .modal-card {
-    transition: transform 0.3s ease;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-    opacity: 0;
-}
-
-.modal-enter-from .modal-card {
-    transform: translateY(100%) scale(0.9);
-}
-
-.modal-leave-to .modal-card {
-    transform: translateY(100%) scale(0.9);
-}
-
-@media (min-width: 640px) {
-    .modal-enter-from .modal-card,
-    .modal-leave-to .modal-card {
-        transform: translateY(-20px) scale(0.95);
-    }
-}
-
-/* Mobile specific improvements */
-@media (max-width: 639px) {
-    .modal-card {
-        @apply rounded-t-3xl;
-    }
-    
-    .modal-header {
-        @apply px-3 py-3;
-    }
-    
-    .modal-title {
-        @apply text-base;
-    }
-    
-    .modal-body {
-        @apply px-3 py-3 space-y-3;
-    }
-    
-    .modal-footer {
-        @apply px-3 py-3;
-    }
-    
-    .info-card,
-    .warning-card,
-    .contact-card {
-        @apply p-2.5;
-    }
-    
-    .info-text,
-    .warning-text,
-    .contact-text {
-        @apply text-xs leading-tight;
-    }
-    
-    .warning-title {
-        @apply text-xs;
-    }
-}
-
-/* Typography improvements */
-p {
-    @apply mb-0;
-}
-
-/* Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-    .disclaimer-trigger,
-    .modal-card,
-    .understand-btn {
-        transition: none;
-    }
-    
-    .shield-icon {
-        transform: none !important;
-    }
-}
-
-/* Dark mode support (if needed) */
-@media (prefers-color-scheme: dark) {
-    .modal-card {
-        @apply bg-gray-800 text-white;
-    }
-    
-    .modal-footer {
-        @apply bg-gray-700 border-gray-600;
-    }
-    
-    .info-card {
-        @apply bg-blue-900 border-blue-700 text-blue-100;
-    }
-    
-    .warning-card {
-        @apply bg-amber-900 border-amber-700 text-amber-100;
-    }
-    
-    .contact-card {
-        @apply bg-green-900 border-green-700 text-green-100;
-    }
-}
+.disclaimer-trigger{@apply inline-flex items-center px-3 py-2 rounded-lg transition-all duration-300 ease-in-out;@apply bg-gradient-to-r from-amber-50 to-yellow-50 hover:from-amber-100 hover:to-yellow-100;@apply border border-amber-200 hover:border-amber-300;@apply text-amber-700 hover:text-amber-800;@apply shadow-sm hover:shadow-md;@apply transform hover:scale-105 active:scale-95;@apply focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2}.icon-wrapper{@apply relative mr-2}.shield-icon{@apply w-5 h-5 transition-transform duration-300 group-hover:rotate-12;filter:drop-shadow(0 1px 2px rgba(0,0,0,.1))}.disclaimer-text{@apply font-medium text-sm}.modal-overlay{@apply fixed inset-0 z-50 flex items-end justify-center p-2 bg-black bg-opacity-50;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}@media (min-width:640px){.modal-overlay{@apply items-center p-4}}.modal-container{@apply w-full max-w-md}.modal-card{@apply bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden;@apply transform transition-all duration-300;display:flex;flex-direction:column;max-height:95vh}.modal-header{@apply bg-gradient-to-r from-amber-500 to-yellow-500 text-white p-4 relative;@apply flex items-center justify-between}.header-content{@apply flex items-center flex-1}.header-icon{@apply w-6 h-6 mr-2 p-1 bg-white bg-opacity-20 rounded-full}.header-icon svg{@apply w-full h-full}.modal-title{@apply text-lg font-bold leading-tight}.close-btn{@apply p-2 rounded-full hover:bg-white hover:bg-opacity-20 transition-colors duration-200;@apply focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50}.close-btn svg{@apply w-6 h-6}.modal-body{@apply flex-1 overflow-y-auto p-4 space-y-4}.content-section{@apply space-y-3}.info-card{@apply flex items-start p-3 bg-blue-50 border border-blue-200 rounded-lg}.info-icon{@apply w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0}.info-text{@apply text-gray-700 leading-snug text-sm}.warning-card{@apply flex items-start p-3 bg-amber-50 border border-amber-200 rounded-lg}.warning-icon{@apply w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0}.warning-content{@apply flex-1}.warning-title{@apply font-semibold text-amber-800 mb-1 text-sm}.warning-text{@apply text-gray-700 leading-snug text-sm}.contact-card{@apply flex items-start p-3 bg-green-50 border border-green-200 rounded-lg}.contact-icon{@apply w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0}.contact-text{@apply text-gray-700 leading-snug text-sm}.contact-link{@apply text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-300 hover:decoration-blue-500;@apply transition-colors duration-200}.modal-footer{@apply px-4 py-3 bg-gray-50 border-t border-gray-200}.understand-btn{@apply w-full flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-green-500 to-emerald-500;@apply text-white font-medium rounded-lg shadow-lg hover:shadow-xl text-sm;@apply transform transition-all duration-200 hover:scale-105 active:scale-95;@apply focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2}.understand-btn span{@apply mr-2}.understand-btn svg{@apply w-5 h-5}.modal-enter-active,.modal-leave-active{transition:opacity .3s ease}.modal-enter-active .modal-card,.modal-leave-active .modal-card{transition:transform .3s ease}.modal-enter-from,.modal-leave-to{opacity:0}.modal-enter-from .modal-card,.modal-leave-to .modal-card{transform:translateY(100%) scale(.9)}@media (min-width:640px){.modal-enter-from .modal-card,.modal-leave-to .modal-card{transform:translateY(-20px) scale(.95)}}@media (max-width:639px){.modal-card{@apply rounded-t-3xl}.modal-header{@apply px-3 py-3}.modal-title{@apply text-base}.modal-body{@apply px-3 py-3 space-y-3}.modal-footer{@apply px-3 py-3}.contact-card,.info-card,.warning-card{@apply p-2.5}.contact-text,.info-text,.warning-text{@apply text-xs leading-tight}.warning-title{@apply text-xs}}p{@apply mb-0}@media (prefers-reduced-motion:reduce){.disclaimer-trigger,.modal-card,.understand-btn{transition:none}.shield-icon{transform:none!important}}@media (prefers-color-scheme:dark){.modal-card{@apply bg-gray-800 text-white}.modal-footer{@apply bg-gray-700 border-gray-600}.info-card{@apply bg-blue-900 border-blue-700 text-blue-100}.warning-card{@apply bg-amber-900 border-amber-700 text-amber-100}.contact-card{@apply bg-green-900 border-green-700 text-green-100}}
 </style>
