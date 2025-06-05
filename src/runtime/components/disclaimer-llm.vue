@@ -153,162 +153,325 @@ onUnmounted(() => {
 <style scoped>
 /* Disclaimer trigger button */
 .disclaimer-trigger {
-    @apply inline-flex items-center px-3 py-2 rounded-lg transition-all duration-300 ease-in-out;
-    @apply bg-gradient-to-r from-amber-50 to-yellow-50 hover:from-amber-100 hover:to-yellow-100;
-    @apply border border-amber-200 hover:border-amber-300;
-    @apply text-amber-700 hover:text-amber-800;
-    @apply shadow-sm hover:shadow-md;
-    @apply transform hover:scale-105 active:scale-95;
-    @apply focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(to right, #fefdf8, #fffbeb);
+    border: 1px solid #fde68a;
+    color: #b45309;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transform: scale(1);
+    cursor: pointer;
+}
+
+.disclaimer-trigger:hover {
+    background: linear-gradient(to right, #fef3c7, #fef3c7);
+    border-color: #fcd34d;
+    color: #92400e;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: scale(1.05);
+}
+
+.disclaimer-trigger:active {
+    transform: scale(0.95);
+}
+
+.disclaimer-trigger:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fcd34d, 0 0 0 4px rgba(252, 211, 77, 0.5);
 }
 
 .icon-wrapper {
-    @apply relative mr-2;
+    position: relative;
+    margin-right: 0.5rem;
 }
 
 .shield-icon {
-    @apply w-5 h-5 transition-transform duration-300 group-hover:rotate-12;
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
+.disclaimer-trigger:hover .shield-icon {
+    transform: rotate(12deg);
+}
+
 .disclaimer-text {
-    @apply font-medium text-sm;
+    font-weight: 500;
+    font-size: 0.875rem;
 }
 
 /* Modal overlay and container */
 .modal-overlay {
-    @apply fixed inset-0 z-50 flex items-end justify-center p-2 bg-black/50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
 }
 
 @media (min-width: 640px) {
     .modal-overlay {
-        @apply items-center p-4;
+        align-items: center;
+        padding: 1rem;
     }
 }
 
 .modal-container {
-    @apply w-full max-w-md;
+    width: 100%;
+    max-width: 28rem;
 }
 
 .modal-card {
-    @apply bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden;
-    @apply transform transition-all duration-300;
+    background-color: white;
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transform: translateY(0);
+    transition: all 0.3s ease;
     max-height: 95vh;
     display: flex;
     flex-direction: column;
 }
 
+@media (min-width: 640px) {
+    .modal-card {
+        border-radius: 1rem;
+    }
+}
+
 /* Modal header */
 .modal-header {
-    @apply bg-gradient-to-r from-amber-500 to-yellow-500 text-white p-4 relative;
-    @apply flex items-center justify-between;
+    background: linear-gradient(to right, #f59e0b, #eab308);
+    color: white;
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header-content {
-    @apply flex items-center flex-1;
+    display: flex;
+    align-items: center;
+    flex: 1;
 }
 
 .header-icon {
-    @apply w-6 h-6 mr-2 p-1 bg-white/20 rounded-full;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    padding: 0.25rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
 }
 
 .header-icon svg {
-    @apply w-full h-full;
+    width: 100%;
+    height: 100%;
 }
 
 .modal-title {
-    @apply text-lg font-bold leading-tight;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.25;
 }
 
 .close-btn {
-    @apply p-2 rounded-full hover:bg-white/20 transition-colors duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-white/50;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.close-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .close-btn svg {
-    @apply w-6 h-6;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 /* Modal body */
 .modal-body {
-    @apply flex-1 overflow-y-auto p-4 space-y-4;
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .content-section {
-    @apply space-y-3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 /* Info card */
 .info-card {
-    @apply flex items-start p-3 bg-blue-50 border border-blue-200 rounded-lg;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 0.5rem;
 }
 
 .info-icon {
-    @apply w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #3b82f6;
+    margin-right: 0.5rem;
+    margin-top: 0.125rem;
+    flex-shrink: 0;
 }
 
 .info-text {
-    @apply text-gray-700 leading-snug text-sm;
+    color: #374151;
+    line-height: 1.375;
+    font-size: 0.875rem;
 }
 
 /* Warning card */
 .warning-card {
-    @apply flex items-start p-3 bg-amber-50 border border-amber-200 rounded-lg;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem;
+    background-color: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 0.5rem;
 }
 
 .warning-icon {
-    @apply w-5 h-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #f59e0b;
+    margin-right: 0.5rem;
+    margin-top: 0.125rem;
+    flex-shrink: 0;
 }
 
 .warning-content {
-    @apply flex-1;
+    flex: 1;
 }
 
 .warning-title {
-    @apply font-semibold text-amber-800 mb-1 text-sm;
+    font-weight: 600;
+    color: #92400e;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
 }
 
 .warning-text {
-    @apply text-gray-700 leading-snug text-sm;
+    color: #374151;
+    line-height: 1.375;
+    font-size: 0.875rem;
 }
 
 /* Contact card */
 .contact-card {
-    @apply flex items-start p-3 bg-green-50 border border-green-200 rounded-lg;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 0.5rem;
 }
 
 .contact-icon {
-    @apply w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #10b981;
+    margin-right: 0.5rem;
+    margin-top: 0.125rem;
+    flex-shrink: 0;
 }
 
 .contact-text {
-    @apply text-gray-700 leading-snug text-sm;
+    color: #374151;
+    line-height: 1.375;
+    font-size: 0.875rem;
 }
 
 .contact-link {
-    @apply text-blue-600 hover:text-blue-800 font-medium underline decoration-blue-300 hover:decoration-blue-500;
-    @apply transition-colors duration-200;
+    color: #2563eb;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: #93c5fd;
+    transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+    color: #1e40af;
+    text-decoration-color: #3b82f6;
 }
 
 /* Modal footer */
 .modal-footer {
-    @apply px-4 py-3 bg-gray-50 border-t border-gray-200;
+    padding: 0.75rem 1rem;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
 }
 
 .understand-btn {
-    @apply w-full flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-green-500 to-emerald-500;
-    @apply text-white font-medium rounded-lg shadow-lg hover:shadow-xl text-sm;
-    @apply transform transition-all duration-200 hover:scale-105 active:scale-95;
-    @apply focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1rem;
+    background: linear-gradient(to right, #10b981, #059669);
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    transform: scale(1);
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.understand-btn:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: scale(1.05);
+}
+
+.understand-btn:active {
+    transform: scale(0.95);
+}
+
+.understand-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #bbf7d0, 0 0 0 4px rgba(187, 247, 208, 0.5);
 }
 
 .understand-btn span {
-    @apply mr-2;
+    margin-right: 0.5rem;
 }
 
 .understand-btn svg {
-    @apply w-5 h-5;
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 /* Modal transitions */
@@ -345,45 +508,47 @@ onUnmounted(() => {
 /* Mobile specific improvements */
 @media (max-width: 639px) {
     .modal-card {
-        @apply rounded-t-3xl;
+        border-radius: 1.5rem 1.5rem 0 0;
     }
     
     .modal-header {
-        @apply px-3 py-3;
+        padding: 0.75rem;
     }
     
     .modal-title {
-        @apply text-base;
+        font-size: 1rem;
     }
     
     .modal-body {
-        @apply px-3 py-3 space-y-3;
+        padding: 0.75rem;
+        gap: 0.75rem;
     }
     
     .modal-footer {
-        @apply px-3 py-3;
+        padding: 0.75rem;
     }
     
     .info-card,
     .warning-card,
     .contact-card {
-        @apply p-2.5;
+        padding: 0.625rem;
     }
     
     .info-text,
     .warning-text,
     .contact-text {
-        @apply text-xs leading-tight;
+        font-size: 0.75rem;
+        line-height: 1.25;
     }
     
     .warning-title {
-        @apply text-xs;
+        font-size: 0.75rem;
     }
 }
 
 /* Typography improvements */
 p {
-    @apply mb-0;
+    margin-bottom: 0;
 }
 
 /* Accessibility improvements */
@@ -402,23 +567,31 @@ p {
 /* Dark mode support (if needed) */
 @media (prefers-color-scheme: dark) {
     .modal-card {
-        @apply bg-gray-800 text-white;
+        background-color: #1f2937;
+        color: white;
     }
     
     .modal-footer {
-        @apply bg-gray-700 border-gray-600;
+        background-color: #374151;
+        border-color: #4b5563;
     }
     
     .info-card {
-        @apply bg-blue-900 border-blue-700 text-blue-100;
+        background-color: #1e3a8a;
+        border-color: #1d4ed8;
+        color: #dbeafe;
     }
     
     .warning-card {
-        @apply bg-amber-900 border-amber-700 text-amber-100;
+        background-color: #92400e;
+        border-color: #d97706;
+        color: #fef3c7;
     }
     
     .contact-card {
-        @apply bg-green-900 border-green-700 text-green-100;
+        background-color: #064e3b;
+        border-color: #059669;
+        color: #d1fae5;
     }
 }
 </style>
