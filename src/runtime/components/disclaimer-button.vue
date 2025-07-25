@@ -27,7 +27,6 @@ function openDisclaimer() {
 .disclaimer-trigger {
     display: inline-flex;
     align-items: center;
-    padding: 0.75rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
     background: linear-gradient(to right, #fefdf8, #fffbeb);
