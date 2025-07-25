@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { defineProps, defineModel } from 'vue';
-
 interface InputProps {
     appName: string;
     postfixHTML: string;
