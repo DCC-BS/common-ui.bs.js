@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, withDefaults, ref, onMounted, onUnmounted } from 'vue';
+import { useCookie } from '#app';
 
 import DisclaimerView from './disclaimer-view.vue';
 
