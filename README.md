@@ -117,6 +117,18 @@ The `DataBsBanner` component displays a banner with a link to a data science and
 </template>
 ```
 
+### DataBsFooter
+
+The `DataBsFooter` component displays a footer with a link to a data science and AI page.
+
+#### Example Usage
+
+```vue
+<template>
+  <DataBsFooter />
+</template>
+```
+
 ## Release a new Version
 Commit your changes and then:
 ```sh
