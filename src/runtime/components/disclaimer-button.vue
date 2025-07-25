@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useCookie } from '#app';
+
 const disclaimerAccepted = useCookie<boolean>("disclaimerAccepted", { default: () => false });
 
 function openDisclaimer() {

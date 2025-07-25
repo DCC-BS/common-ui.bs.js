@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { defineProps, withDefaults, ref, onMounted, onUnmounted } from 'vue';
+
 import DisclaimerView from './disclaimer-view.vue';
 
 interface InputProps {
