@@ -61,7 +61,7 @@ function handleScroll() {
     <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
         <div ref="modalContainer" class="modal-container">
             <DisclaimerView v-model="disclaimerAccepted" :appName="props.appName" :postfixHTML="props.postfixHTML"
-                :confirmationText="confirmationText" />
+                :confirmationText="confirmationText!" />
         </div>
 
         <!-- Scroll Down Button -->
@@ -76,9 +76,9 @@ function handleScroll() {
 
 <style scoped>
 .disclaimer-modal {
-    z-index: 1000;
+    z-index: 99999;
     padding: 1rem;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
