@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   build:
-    name: ${{ github.event.inputs.version_type }} Version
+    name: Update to next ${{ github.event.inputs.version_type }} Version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -1,8 +1,5 @@
 export default defineNuxtConfig({
     modules: ['../src/module', '@nuxtjs/tailwindcss'],
-    colorMode: {
-        preference: 'light'
-    },
     tailwindcss: {
         config: {
             content: [
