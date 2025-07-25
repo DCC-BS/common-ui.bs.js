@@ -30,14 +30,14 @@
         "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
     },
     "dependencies": {
-        "@nuxt/kit": "^3.15.4",
+        "@nuxt/kit": "^4.0.0",
         "tailwind-merge": "^3.0.1"
     },
     "devDependencies": {
         "@nuxt/devtools": "^2.0.0",
         "@nuxt/eslint-config": "^1.0.1",
         "@nuxt/module-builder": "^1.0.0",
-        "@nuxt/schema": "^3.15.4",
+        "@nuxt/schema": "^4.0.0",
         "@nuxtjs/tailwindcss": "^6.0.14",
         "@nuxt/test-utils": "^3.17.0",
         "@types/node": "latest",
@@ -46,7 +46,7 @@
         "changelogen": "^0.6.0",
         "eslint": "^9.20.1",
         "happy-dom": "^18.0.0",
-        "nuxt": "^3.15.4",
+        "nuxt": "^4.0.0",
         "playwright-core": "^1.50.1",
         "publish-to-git": "^1.2.0",
         "typescript": "~5.8.0",
