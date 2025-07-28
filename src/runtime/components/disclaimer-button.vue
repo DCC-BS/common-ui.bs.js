@@ -65,7 +65,7 @@ function openDisclaimer() {
 }
 
 .disclaimer-trigger-ghost {
-    @apply text-yellow-500;
+    color: #eab308;
     display: inline-flex;
     align-items: center;
     background-color: transparent;
@@ -73,7 +73,7 @@ function openDisclaimer() {
 }
 
 .disclaimer-trigger-ghost:hover {
-    @apply text-yellow-300;
+    color: #fde047;
 }
 
 .disclaimer-trigger-ghost:active {
