@@ -33,11 +33,6 @@ function openDisclaimer() {
 </template>
 
 <style scoped>
-* {
-    --color-yellow-500: lab(76.3898% 14.5258 98.4589);
-    --color-yellow-300: lab(89.7033% -.480294 84.4917);
-}
-
 .disclaimer-trigger-outline {
     display: inline-flex;
     align-items: center;
@@ -70,15 +65,15 @@ function openDisclaimer() {
 }
 
 .disclaimer-trigger-ghost {
+    @apply text-yellow-500;
     display: inline-flex;
     align-items: center;
     background-color: transparent;
-    color: var(--color-yellow-500);
     cursor: pointer;
 }
 
 .disclaimer-trigger-ghost:hover {
-    color: var(--color-yellow-300);
+    @apply text-yellow-300;
 }
 
 .disclaimer-trigger-ghost:active {
