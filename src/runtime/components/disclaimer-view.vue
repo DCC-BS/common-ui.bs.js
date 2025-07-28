@@ -70,39 +70,39 @@ const disclaimerAccepted = defineModel<boolean>();
     </div>
 </template>
 
-<style scoped>
+<style>
 .disclaimer-content {
     max-width: 800px;
     margin: auto;
     padding: 1rem;
 }
 
-h2 {
+.disclaimer-content h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
 
-h3 {
+.disclaimer-content h3 {
     font-size: 1.25rem;
     margin-top: 1.5rem;
 }
 
-.postfix {
+.disclaimer-content .postfix {
     padding-top: 1rem;
 }
 
-.confirmation {
+.disclaimer-content .confirmation {
     padding: 2rem;
 }
 
-.confirmation-checkbox {
+.disclaimer-content .confirmation-checkbox {
     display: flex;
     align-items: center;
     justify-items: stretch;
     gap: 1rem;
 }
 
-.confirmation input {
+.disclaimer-content .confirmation input {
     width: 25px;
     height: 25px;
 }
