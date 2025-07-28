@@ -7,9 +7,9 @@ import Disclaimer from '../src/runtime/components/disclaimer.vue';
 <template>
     <div class="bg-red">
 
-        <Disclaimer />
+        <Disclaimer app-name="Test App" />
         <div class="flex justify-center">
-            <DisclaimerButton />
+            <DisclaimerButton variant="ghost" />
         </div>
 
         <div class="w-[200px]">

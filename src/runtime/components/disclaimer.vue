@@ -4,6 +4,8 @@ import { useCookie } from '#app';
 
 import DisclaimerView from './disclaimer-view.vue';
 
+const DISCLAIMER_VERSION = '1.0.0';
+
 interface InputProps {
     appName: string;
     postfixHTML?: string;
@@ -16,15 +18,15 @@ const props = withDefaults(defineProps<InputProps>(), {
 
 const isReady = ref(false);
 const confirmationText = ref(props.confirmationText);
-const disclaimerAccepted = useCookie<boolean>("disclaimerAccepted", { default: () => false });
+const disclaimerAcceptedVersion = useCookie<string>("disclaimerAccepted", { default: () => "" });
+const disclaimerAccepted = computed(() => {
+    return disclaimerAcceptedVersion.value === DISCLAIMER_VERSION;
+});
+const disclaimerAcceptedChecked = ref(false);
 
 onMounted(() => {
     if (!confirmationText.value) {
         confirmationText.value = `Ich habe die Hinweise gelesen und verstanden und bestätige, dass ich ${props.appName} ausschliesslich unter Einhaltung der Voraussetzungen verwende.`;
-    }
-
-    if (modalContainer.value) {
-        modalContainer.value.addEventListener('scroll', handleScroll);
     }
 
     isReady.value = true;
@@ -38,6 +40,24 @@ onUnmounted(() => {
 
 const modalContainer = ref<HTMLElement>();
 const showScrollButton = ref(true);
+
+watch(modalContainer, () => {
+    if (modalContainer.value) {
+        modalContainer.value.addEventListener('scroll', handleScroll);
+    }
+}, { immediate: true });
+
+watch(disclaimerAccepted, (newValue) => {
+    if (newValue !== disclaimerAcceptedChecked.value) {
+        disclaimerAcceptedChecked.value = newValue;
+    }
+});
+
+watch(disclaimerAcceptedChecked, (newValue) => {
+    if (newValue) {
+        disclaimerAcceptedVersion.value = DISCLAIMER_VERSION;
+    }
+});
 
 function scrollDown() {
     if (modalContainer.value) {
@@ -60,7 +80,7 @@ function handleScroll() {
 <template>
     <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
         <div ref="modalContainer" class="modal-container">
-            <DisclaimerView v-model="disclaimerAccepted" :appName="props.appName" :postfixHTML="props.postfixHTML"
+            <DisclaimerView v-model="disclaimerAcceptedChecked" :appName="props.appName" :postfixHTML="props.postfixHTML"
                 :confirmationText="confirmationText!" />
         </div>
 

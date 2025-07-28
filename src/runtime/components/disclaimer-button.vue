@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import { useCookie } from '#app';
 
-const disclaimerAccepted = useCookie<boolean>("disclaimerAccepted", { default: () => false });
+interface InputProps {
+    variant?: 'outline' | 'ghost';
+}
+
+const props = withDefaults(defineProps<InputProps>(), {
+    variant: 'outline',
+});
+
+const disclaimerAccepted = useCookie<string>("disclaimerAccepted", { default: () => "" });
 
 function openDisclaimer() {
-    disclaimerAccepted.value = false;
+    disclaimerAccepted.value = "";
 }
 </script>
 
 <template>
-    <!-- Disclaimer trigger button with enhanced styling -->
-    <button @click="openDisclaimer" class="disclaimer-trigger group" aria-label="View disclaimer information">
-        <!-- Enhanced shield icon with gradient -->
+    <button @click="openDisclaimer" :class="`disclaimer-trigger-${props.variant} group`"
+        aria-label="View disclaimer information">
         <div class="icon-wrapper">
             <svg class="shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path fill-rule="evenodd"
@@ -24,9 +31,15 @@ function openDisclaimer() {
 </template>
 
 <style scoped>
-.disclaimer-trigger {
+* {
+    --color-yellow-500: lab(76.3898% 14.5258 98.4589);
+    --color-yellow-300: lab(89.7033% -.480294 84.4917);
+}
+
+.disclaimer-trigger-outline {
     display: inline-flex;
     align-items: center;
+    padding: 0.75rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
     background: linear-gradient(to right, #fefdf8, #fffbeb);
@@ -37,7 +50,7 @@ function openDisclaimer() {
     cursor: pointer;
 }
 
-.disclaimer-trigger:hover {
+.disclaimer-trigger-outline:hover {
     background: linear-gradient(to right, #fef3c7, #fef3c7);
     border-color: #fcd34d;
     color: #92400e;
@@ -45,13 +58,29 @@ function openDisclaimer() {
     transform: scale(1.05);
 }
 
-.disclaimer-trigger:active {
+.disclaimer-trigger-outline:active {
     transform: scale(0.95);
 }
 
-.disclaimer-trigger:focus {
+.disclaimer-trigger-outline:focus {
     outline: none;
     box-shadow: 0 0 0 2px #fcd34d, 0 0 0 4px rgba(252, 211, 77, 0.5);
+}
+
+.disclaimer-trigger-ghost {
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+    color: var(--color-yellow-500);
+    cursor: pointer;
+}
+
+.disclaimer-trigger-ghost:hover {
+    color: var(--color-yellow-300);
+}
+
+.disclaimer-trigger-ghost:active {
+    transform: scale(0.95);
 }
 
 .icon-wrapper {
