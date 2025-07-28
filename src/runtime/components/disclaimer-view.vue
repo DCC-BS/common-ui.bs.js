@@ -77,6 +77,10 @@ const disclaimerAccepted = defineModel<boolean>();
     padding: 1rem;
 }
 
+.disclaimer-content p {
+    margin-bottom: 1rem;
+}
+
 .disclaimer-content h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -85,6 +89,17 @@ const disclaimerAccepted = defineModel<boolean>();
 .disclaimer-content h3 {
     font-size: 1.25rem;
     margin-top: 1.5rem;
+}
+
+.disclaimer-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.disclaimer-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
 }
 
 .disclaimer-content .postfix {
