@@ -5,9 +5,7 @@ export default defineNuxtConfig({
     css: ["~/assets/css/main.css"],
     tailwindcss: {
         config: {
-           content: [
-                "../src/runtime/**/*.vue",
-           ]
-        }
-    }
+            content: ["../src/runtime/**/*.vue"],
+        },
+    },
 });

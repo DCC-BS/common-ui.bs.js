@@ -1,3 +1,5 @@
+import { ref, onMounted, onUnmounted, type Ref } from "vue";
+
 export const useResizeObserver = (
     container: Ref<HTMLDivElement | undefined>,
 ) => {

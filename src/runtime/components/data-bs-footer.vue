@@ -7,7 +7,7 @@ const animation = ref("animate-heath-beat");
 
 function onHover() {
     const randomIndex = Math.floor(Math.random() * animations.length);
-    animation.value = animations[randomIndex];
+    animation.value = animations[randomIndex] ?? 'animate-heath-beat';
 }
 </script>
 
@@ -83,5 +83,6 @@ function onHover() {
 
     100% {
         transform: rotate(0deg);
-    }}
+    }
+}
 </style>
