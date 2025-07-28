@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { useCookie } from '#app';
+import { useCookie } from "#app";
 
 interface InputProps {
-    variant?: 'outline' | 'ghost';
+    variant?: "outline" | "ghost";
 }
 
 const props = withDefaults(defineProps<InputProps>(), {
-    variant: 'outline',
+    variant: "outline",
 });
 
-const disclaimerAccepted = useCookie<string>("disclaimerAccepted", { default: () => "" });
+const disclaimerAccepted = useCookie<string>("disclaimerAccepted", {
+    default: () => "",
+});
 
 function openDisclaimer() {
     disclaimerAccepted.value = "";

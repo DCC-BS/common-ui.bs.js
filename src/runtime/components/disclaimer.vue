@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useCookie } from '#app';
+import { onMounted, onUnmounted, ref } from "vue";
+import { useCookie } from "#app";
 
-import DisclaimerView from './disclaimer-view.vue';
+import DisclaimerView from "./disclaimer-view.vue";
 
-const DISCLAIMER_VERSION = '1.0.0';
+const DISCLAIMER_VERSION = "1.0.0";
 
 interface InputProps {
     appName: string;
@@ -13,12 +13,14 @@ interface InputProps {
 }
 
 const props = withDefaults(defineProps<InputProps>(), {
-    postfixHTML: '',
+    postfixHTML: "",
 });
 
 const isReady = ref(false);
 const confirmationText = ref(props.confirmationText);
-const disclaimerAcceptedVersion = useCookie<string>("disclaimerAccepted", { default: () => "" });
+const disclaimerAcceptedVersion = useCookie<string>("disclaimerAccepted", {
+    default: () => "",
+});
 const disclaimerAccepted = computed(() => {
     return disclaimerAcceptedVersion.value === DISCLAIMER_VERSION;
 });
@@ -34,18 +36,22 @@ onMounted(() => {
 
 onUnmounted(() => {
     if (modalContainer.value) {
-        modalContainer.value.removeEventListener('scroll', handleScroll);
+        modalContainer.value.removeEventListener("scroll", handleScroll);
     }
 });
 
 const modalContainer = ref<HTMLElement>();
 const showScrollButton = ref(true);
 
-watch(modalContainer, () => {
-    if (modalContainer.value) {
-        modalContainer.value.addEventListener('scroll', handleScroll);
-    }
-}, { immediate: true });
+watch(
+    modalContainer,
+    () => {
+        if (modalContainer.value) {
+            modalContainer.value.addEventListener("scroll", handleScroll);
+        }
+    },
+    { immediate: true },
+);
 
 watch(disclaimerAccepted, (newValue) => {
     if (newValue !== disclaimerAcceptedChecked.value) {
@@ -63,7 +69,7 @@ function scrollDown() {
     if (modalContainer.value) {
         modalContainer.value.scrollBy({
             top: 200,
-            behavior: 'smooth'
+            behavior: "smooth",
         });
     }
 }

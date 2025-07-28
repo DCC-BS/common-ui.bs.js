@@ -1,28 +1,26 @@
 {
-  "forkProcessing": "enabled",
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  },
-  "packageRules": [
-    {
-      "matchDepTypes": ["devDependencies"],
-      "matchPackageNames": ["lint", "prettier"],
-      "automerge": true
+    "forkProcessing": "enabled",
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:recommended"],
+    "lockFileMaintenance": {
+        "enabled": true,
+        "automerge": true
     },
-    {
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchCurrentVersion": "!/^0/",
-      "automerge": true
-    }
-  ],
-  "timezone": "Europe/Zurich",
-  "platformAutomerge": true,
-  "dependencyDashboard": true,
-  "ignoreTests": true,
-  "prCreation": "immediate"
+    "packageRules": [
+        {
+            "matchDepTypes": ["devDependencies"],
+            "matchPackageNames": ["lint", "prettier"],
+            "automerge": true
+        },
+        {
+            "matchUpdateTypes": ["minor", "patch"],
+            "matchCurrentVersion": "!/^0/",
+            "automerge": true
+        }
+    ],
+    "timezone": "Europe/Zurich",
+    "platformAutomerge": true,
+    "dependencyDashboard": true,
+    "ignoreTests": true,
+    "prCreation": "immediate"
 }
