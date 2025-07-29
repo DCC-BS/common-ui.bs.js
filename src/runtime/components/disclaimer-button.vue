@@ -19,7 +19,7 @@ function openDisclaimer() {
 </script>
 
 <template>
-    <button @click="openDisclaimer" :class="`disclaimer-trigger-${props.variant} group`"
+    <button @click="openDisclaimer" :class="[`disclaimer-trigger-${props.variant}` , 'group']"
         aria-label="View disclaimer information">
         <div class="icon-wrapper">
             <svg class="shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -92,7 +92,7 @@ function openDisclaimer() {
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
-.disclaimer-trigger:hover .shield-icon {
+.disclaimer-trigger-outline:hover .shield-icon {
     transform: rotate(12deg);
 }
 
