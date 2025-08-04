@@ -28,7 +28,7 @@ const disclaimerAcceptedChecked = ref(false);
 
 onMounted(() => {
     if (!confirmationText.value) {
-        confirmationText.value = `Ich habe die Hinweise gelesen und verstanden und bestätige, dass ich ${props.appName} ausschliesslich unter Einhaltung der Voraussetzungen verwende.`;
+        confirmationText.value = `Ich habe die Hinweise gelesen und verstanden und bestätige, dass ich ${props.appName} ausschliesslich unter Einhaltung der genannten Richtlinien verwende.`;
     }
 
     isReady.value = true;

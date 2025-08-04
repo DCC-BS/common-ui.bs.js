@@ -12,14 +12,14 @@ const disclaimerAccepted = defineModel<boolean>();
 
 <template>
     <div class="disclaimer-content">
-        <h2>Disclaimer und Wichtige Nutzungshinweise für die KI-Prototypen</h2>
+        <h2>Disclaimer und wichtige Nutzungshinweise für die KI-Prototypen</h2>
 
         <p>Bevor Sie diese Anwendung nutzen, lesen Sie bitte die folgenden Hinweise sorgfältig durch.</p>
 
         <h3>1. Zweck und Status der Anwendung (Proof of Concept)</h3>
         <ul>
             <li>Diese Anwendung ist ein Proof of Concept (PoC). Sie befindet sich in der Entwicklung und ist noch nicht
-                komplett ausgereift. Geben Sie uns jederzeit mittels der Feedback-funktion Rückmeldung und Anregungen.
+                komplett ausgereift. Geben Sie uns jederzeit mittels der Feedback-Funktion Rückmeldung und Anregungen.
             </li>
             <li>Es wird keine Garantie für die Verfügbarkeit, die technische Fehlerfreiheit oder die inhaltliche
                 Korrektheit und Vollständigkeit der generierten Ergebnisse übernommen. Die Resultate können
@@ -30,10 +30,9 @@ const disclaimerAccepted = defineModel<boolean>();
         <ul>
             <li>Die Verarbeitung Ihrer Eingaben erfolgt ausschliesslich auf der IT-Infrastruktur des Kantons
                 Basel-Stadt.</li>
-            <li>Der vorliegende KI-Prototyp speichert Ihre Eingaben nicht permanent. Als Nutzer:in dieser Anwendung sind
-                Sie dafür verantwortlich, die korrekte Aufbewahrung der generierten Resultate sowie die Einhaltung der
-                damit verbundenen Pflichten zur Löschung, Archivierung und Gewährleistung des Öffentlichkeitsprinzips
-                sicherzustellen.</li>
+            <li>Der vorliegende KI-Prototyp speichert Ihre Eingaben nicht permanent. Als Nutzerin oder Nutzer dieser Anwendung sind
+                Sie dafür verantwortlich, die korrekte Aufbewahrung der generierten Resultate, die Gewährleistung des Öffentlichkeitsprinzips sowie die Einhaltung der
+                damit verbundenen Pflichten zur Löschung, Archivierung sicherzustellen.</li>
             <li>Transkripte und andere temporäre Daten werden im Cache Ihres lokalen Geräts zwischengespeichert. Diese
                 Zwischenspeicherung allein erfüllt die genannten Anforderungen nicht.</li>
         </ul>
@@ -50,9 +49,8 @@ const disclaimerAccepted = defineModel<boolean>();
                 verstehen. Sie müssen diese vor der weiteren Verwendung sorgfältig auf inhaltliche Richtigkeit,
                 Vollständigkeit und Angemessenheit überprüfen.</li>
             <li><strong>Umgang mit Resultaten:</strong> Sie sind für die weitere Verarbeitung der erzeugten Ergebnisse
-                verantwortlich. Dies umfasst die korrekte Speicherung in den dafür vorgesehenen Fachanwendungen sowie
-                die Einhaltung der kantonalen Vorschriften zur Aufbewahrung, Archivierung, Löschung und zur Einhaltung
-                des Öffentlichkeitsprinzips.</li>
+                verantwortlich. Dies umfasst die korrekte Speicherung in den dafür vorgesehenen Fachanwendungen, die Gewährleistung des Öffentlichkeitsprinzips sowie
+                die Einhaltung der kantonalen Vorschriften zur Aufbewahrung, Archivierung, Löschung.</li>
         </ul>
 
         <div v-if="props.postfixHTML" class="postfix">
