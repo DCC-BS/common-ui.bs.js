@@ -13,12 +13,12 @@ function onHover() {
 
 <template>
     <div class="flex flex-col items-center text-center">
-        <a href="https://www.bs.ch/schwerpunkte/daten-und-statistiken/databs/schwerpunkte/datenwissenschaften-und-ki"
+        <a href="https://www.bs.ch/ki"
             target="_blank" :class="animation" @mouseenter="onHover" rel="noopener noreferrer">
             <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" class="w-[100px]">
         </a>
         <p class="mt-2">Datenwissenschaften und KI</p>
-        <p>Developed with ❤️ by Data Alchemy Team</p>
+        <p>Developed with ❤️ by by DCC - Data Competence Center</p>
     </div>
 </template>
 

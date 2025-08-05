@@ -18,7 +18,7 @@ function onHover() {
             <div class="flex items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                 <!-- Brand Section -->
                 <div class="flex items-center gap-2">
-                    <a href="https://www.bs.ch/schwerpunkte/daten-und-statistiken/databs/schwerpunkte/datenwissenschaften-und-ki"
+                    <a href="https://www.bs.ch/ki"
                         target="_blank" :class="animation" @mouseenter="onHover" rel="noopener noreferrer">
                         <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" width="48">
                     </a>
@@ -30,7 +30,7 @@ function onHover() {
 
                 <!-- Team Credit -->
                 <div class="hidden md:block">
-                    Developed with ❤️ by Data Alchemy Team
+                    Developed with ❤️ by DCC - Data Competence Center
                 </div>
             </div>
         </div>
