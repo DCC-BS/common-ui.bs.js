@@ -1,11 +1,10 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    modules: ["../src/module", "@nuxtjs/tailwindcss"],
+    compatibilityDate: "2025-07-15",
     devtools: { enabled: true },
-    compatibilityDate: "2025-02-17",
+    modules: ["@nuxt/ui"],
     css: ["~/assets/css/main.css"],
-    tailwindcss: {
-        config: {
-            content: ["../src/runtime/**/*.vue"],
-        },
+    ui: {
+        colorMode: false,
     },
 });

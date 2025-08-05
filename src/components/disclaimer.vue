@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import { useCookie } from "nuxt/app";
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
-import { useCookie } from "#app";
 
 import DisclaimerView from "./disclaimer-view.vue";
 
@@ -86,8 +86,8 @@ function handleScroll() {
 <template>
     <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
         <div ref="modalContainer" class="modal-container">
-            <DisclaimerView v-model="disclaimerAcceptedChecked" :appName="props.appName" :postfixHTML="props.postfixHTML"
-                :confirmationText="confirmationText!" />
+            <DisclaimerView v-model="disclaimerAcceptedChecked" :appName="props.appName"
+                :postfixHTML="props.postfixHTML" :confirmationText="confirmationText!" :showConfirmation="true" />
         </div>
 
         <!-- Scroll Down Button -->

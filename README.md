@@ -13,19 +13,11 @@ bun add git+https://github.com/DCC-BS/common-ui.bs.js.git#v1.1.0
 ```
 replace `v1.1.0` with the latest version tag: ![GitHub package.json version](https://img.shields.io/github/package-json/v/DCC-BS/common-ui.bs.js)
 
-Change the `nuxt.config.ts`:
-```ts
-    ...
-    modules: [
-        ...
-        '@dcc-bs/common-ui.bs.js',
-    ],
-    ...
-```
-
-add the following line to you css file:
+Add to your main css file:
 ```css
-@source "../../node_modules/@dcc-bs/common-ui.bs.js/dist/runtime";
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "@dcc-bs/common-ui.bs.js";
 ```
 
 That's it! You can now use common-ui.bs.js in your Nuxt app ✨
@@ -53,6 +45,10 @@ The `SplitView` component allows you to create a resizable split view layout. It
 #### Example Usage
 
 ```vue
+<script setup lang="ts">
+import { SplitView } from "@dcc-bs/common-ui.bs.js";
+</script>
+
 <template>
   <SplitView :isHorizontal="true">
     <template #a>
@@ -72,6 +68,10 @@ The `DisclaimerLlm` component displays a disclamer modal which the user must acc
 #### Example Usage
 
 ```vue
+<script setup lang="ts">
+import { Disclaimer } from "@dcc-bs/common-ui.bs.js";
+</script>
+
 <template>
   <Disclaimer
     appName="My App"
@@ -86,6 +86,10 @@ The `confirmationText` is also optional, if not set it will default to the defau
 You can also use the `DisclaimerButton` component to trigger the disclaimer modal again after it has been accepted:
 
 ```vue
+<script setup lang="ts">
+import { DisclaimerButton } from "@dcc-bs/common-ui.bs.js";
+</script>
+
 <template>
   <DisclaimerButton />
 </template>
@@ -98,6 +102,10 @@ The `DataBsBanner` component displays a banner with a link to a data science and
 #### Example Usage
 
 ```vue
+<script setup lang="ts">
+import { DataBsBanner } from "@dcc-bs/common-ui.bs.js";
+</script>
+
 <template>
   <DataBsBanner />
 </template>
@@ -110,13 +118,11 @@ The `DataBsFooter` component displays a footer with a link to a data science and
 #### Example Usage
 
 ```vue
+<script setup lang="ts">
+import { DataBsFooter } from "@dcc-bs/common-ui.bs.js";
+</script>
+
 <template>
   <DataBsFooter />
 </template>
-```
-
-## Release a new Version
-Commit your changes and then:
-```sh
-bun release
 ```

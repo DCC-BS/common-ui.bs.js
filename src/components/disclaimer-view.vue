@@ -3,6 +3,7 @@ interface InputProps {
     appName: string;
     postfixHTML: string;
     confirmationText: string;
+    showConfirmation: boolean;
 }
 
 const props = defineProps<InputProps>();
@@ -49,7 +50,8 @@ const disclaimerAccepted = defineModel<boolean>();
                 verstehen. Sie müssen diese vor der weiteren Verwendung sorgfältig auf inhaltliche Richtigkeit,
                 Vollständigkeit und Angemessenheit überprüfen.</li>
             <li><strong>Umgang mit Resultaten:</strong> Sie sind für die weitere Verarbeitung der erzeugten Ergebnisse
-                verantwortlich. Dies umfasst die korrekte Speicherung in den dafür vorgesehenen Fachanwendungen, die Gewährleistung des Öffentlichkeitsprinzips sowie
+                verantwortlich. Dies umfasst die korrekte Speicherung in den dafür vorgesehenen Fachanwendungen, die
+                Gewährleistung des Öffentlichkeitsprinzips sowie
                 die Einhaltung der kantonalen Vorschriften zur Aufbewahrung, Archivierung, Löschung.</li>
         </ul>
 
@@ -57,7 +59,7 @@ const disclaimerAccepted = defineModel<boolean>();
             <span v-html="props.postfixHTML"></span>
         </div>
 
-        <div class="confirmation">
+        <div class="confirmation" v-if="props.showConfirmation">
             <div class="confirmation-checkbox">
                 <input type="checkbox" id="confirmation-checkbox" required v-model="disclaimerAccepted" />
                 <label for="confirmation-checkbox">

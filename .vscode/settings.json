@@ -1,5 +1,4 @@
 {
-    "eslint.experimental.useFlatConfig": true,
     "editor.tabSize": 4,
     "[vue]": {
         "editor.tabSize": 4

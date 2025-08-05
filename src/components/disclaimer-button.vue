@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCookie } from "#app";
+import { useCookie } from "nuxt/app";
 
 interface InputProps {
     variant?: "outline" | "ghost";
@@ -19,7 +19,7 @@ function openDisclaimer() {
 </script>
 
 <template>
-    <button @click="openDisclaimer" :class="[`disclaimer-trigger-${props.variant}` , 'group']"
+    <button @click="openDisclaimer" :class="[`disclaimer-trigger-${props.variant}`, 'group']"
         aria-label="View disclaimer information">
         <div class="icon-wrapper">
             <svg class="shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">

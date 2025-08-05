@@ -12,13 +12,28 @@ function onHover() {
 </script>
 
 <template>
-    <div class="flex flex-col items-center text-center">
-        <a href="https://www.bs.ch/ki"
-            target="_blank" :class="animation" @mouseenter="onHover" rel="noopener noreferrer">
-            <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" class="w-[100px]">
-        </a>
-        <p class="mt-2">Datenwissenschaften und KI</p>
-        <p>Developed with ❤️ by by DCC - Data Competence Center</p>
+    <!-- Application Footer -->
+    <div class="flex-shrink-0 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-center gap-4 text-xs text-gray-500">
+                <!-- Brand Section -->
+                <div class="flex items-center gap-2">
+                    <a href="https://www.bs.ch/ki" target="_blank" :class="animation" @mouseenter="onHover"
+                        rel="noopener noreferrer">
+                        <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" width="48">
+                    </a>
+                    <span>Datenwissenschaften und KI</span>
+                </div>
+
+                <!-- Separator -->
+                <div class="hidden md:block">•</div>
+
+                <!-- Team Credit -->
+                <div class="hidden md:block">
+                    Developed with ❤️ by DCC - Data Competence Center
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -68,5 +83,6 @@ function onHover() {
 
     100% {
         transform: rotate(0deg);
-    }}
+    }
+}
 </style>
