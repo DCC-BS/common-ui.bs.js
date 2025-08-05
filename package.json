@@ -3,11 +3,11 @@
     "name": "@dcc-bs/common-ui.bs.js",
     "module": "dist/common-ui.bs.js.js",
     "main": "dist/common-ui.bs.js.umd.cjs",
-    "types": "src/index.ts",
+    "types": "dist/index.d.ts",
     "type": "module",
     "exports": {
         ".": {
-            "types": "./src/index.ts",
+            "types": "./dist/index.d.ts",
             "style": "./dist/common-ui.bs.js.css",
             "import": "./dist/common-ui.bs.js.js",
             "require": "./dist/common-ui.bs.js.umd.cjs"
@@ -15,11 +15,14 @@
     },
     "scripts": {
         "dev": "cd playground && bun run dev",
-        "build": "vite build",
+        "build": "vite build && vue-tsc --emitDeclarationOnly",
         "check": "biome check --write",
         "build:playground": "cd playground && bun run build",
         "install:playground": "cd playground && bun install"
     },
+    "files": [
+        "dist"
+    ],
     "workspaces": [
         "playground"
     ],
@@ -29,7 +32,10 @@
         "@types/bun": "latest",
         "@vitejs/plugin-vue": "^6.0.1",
         "tailwindcss": "^4.1.11",
-        "vite": "^7.0.6"
+        "typescript": "^5.7.2",
+        "vite": "^7.0.6",
+        "vue": "^3.5.13",
+        "vue-tsc": "^2.1.10"
     },
     "peerDependencies": {
         "@nuxt/ui": "^3.3.0",

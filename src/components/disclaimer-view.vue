@@ -31,8 +31,10 @@ const disclaimerAccepted = defineModel<boolean>();
         <ul>
             <li>Die Verarbeitung Ihrer Eingaben erfolgt ausschliesslich auf der IT-Infrastruktur des Kantons
                 Basel-Stadt.</li>
-            <li>Der vorliegende KI-Prototyp speichert Ihre Eingaben nicht permanent. Als Nutzerin oder Nutzer dieser Anwendung sind
-                Sie dafür verantwortlich, die korrekte Aufbewahrung der generierten Resultate, die Gewährleistung des Öffentlichkeitsprinzips sowie die Einhaltung der
+            <li>Der vorliegende KI-Prototyp speichert Ihre Eingaben nicht permanent. Als Nutzerin oder Nutzer dieser
+                Anwendung sind
+                Sie dafür verantwortlich, die korrekte Aufbewahrung der generierten Resultate, die Gewährleistung des
+                Öffentlichkeitsprinzips sowie die Einhaltung der
                 damit verbundenen Pflichten zur Löschung, Archivierung sicherzustellen.</li>
             <li>Transkripte und andere temporäre Daten werden im Cache Ihres lokalen Geräts zwischengespeichert. Diese
                 Zwischenspeicherung allein erfüllt die genannten Anforderungen nicht.</li>
