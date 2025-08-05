@@ -7,4 +7,8 @@ export default defineNuxtConfig({
     ui: {
         colorMode: false,
     },
+    typescript: {
+        typeCheck: true,
+        strict: true,
+    },
 });
