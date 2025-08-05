@@ -26,6 +26,6 @@ function onHover() {
             <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" class="w-[100px]">
         </motion.a>
         <p class="mt-2">Datenwissenschaften und KI</p>
-        <p>Developed with ❤️ by by DCC - Data Competence Center</p>
+        <p>Developed with ❤️ by DCC - Data Competence Center</p>
     </div>
 </template>
