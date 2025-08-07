@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { useCookie } from "nuxt/app";
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
-
+import { useLocalStorage } from "../composables/useLocalStorage";
 import DisclaimerView from "./disclaimer-view.vue";
 
 const DISCLAIMER_VERSION = "1.0.0";
@@ -18,9 +17,10 @@ const props = withDefaults(defineProps<InputProps>(), {
 
 const isReady = ref(false);
 const confirmationText = ref(props.confirmationText);
-const disclaimerAcceptedVersion = useCookie<string>("disclaimerAccepted", {
-    default: () => "",
-});
+const disclaimerAcceptedVersion = useLocalStorage<string>(
+    "disclaimerAccepted",
+    "",
+);
 const disclaimerAccepted = computed(() => {
     return disclaimerAcceptedVersion.value === DISCLAIMER_VERSION;
 });

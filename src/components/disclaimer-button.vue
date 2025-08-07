@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCookie } from "nuxt/app";
+import { useLocalStorage } from "../composables/useLocalStorage";
 
 interface InputProps {
     variant?: "outline" | "ghost";
@@ -9,9 +9,7 @@ const props = withDefaults(defineProps<InputProps>(), {
     variant: "outline",
 });
 
-const disclaimerAccepted = useCookie<string>("disclaimerAccepted", {
-    default: () => "",
-});
+const disclaimerAccepted = useLocalStorage<string>("disclaimerAccepted", "");
 
 function openDisclaimer() {
     disclaimerAccepted.value = "";

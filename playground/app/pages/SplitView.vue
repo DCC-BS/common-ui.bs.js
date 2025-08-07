@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { SplitView } from "@dcc-bs/common-ui.bs.js";
-
 </script>
 
 <template>

@@ -13,7 +13,7 @@
         "allowImportingTsExtensions": true,
         "verbatimModuleSyntax": true,
         "noEmit": false,
-        
+
         // Declaration files
         "declaration": true,
         "declarationMap": true,

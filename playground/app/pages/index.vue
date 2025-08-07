@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import { DataBsBanner, Disclaimer, DisclaimerButton, DataBsFooter } from "@dcc-bs/common-ui.bs.js";
+import {
+    DataBsBanner,
+    DataBsFooter,
+    Disclaimer,
+    DisclaimerButton,
+} from "@dcc-bs/common-ui.bs.js";
 </script>
 
 <template>
