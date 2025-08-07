@@ -1,5 +1,5 @@
 {
-    "version": "1.0.3",
+    "version": "1.0.4",
     "name": "@dcc-bs/common-ui.bs.js",
     "module": "dist/common-ui.bs.js.js",
     "main": "dist/common-ui.bs.js.umd.cjs",
