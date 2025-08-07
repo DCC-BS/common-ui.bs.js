@@ -9,13 +9,10 @@ const animations = [
 ];
 
 const currentHoverAnimation = ref(animations[0]);
-
 function onHover() {
     const randomIndex = Math.ceil(Math.random() * animations.length);
 
     currentHoverAnimation.value = animations[randomIndex] ?? animations[0];
-
-    console.log(JSON.stringify(currentHoverAnimation.value));
 }
 </script>
 
