@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { DisclaimerPage } from "@dcc-bs/common-ui.bs.js";
+import { DisclaimerPage } from "../../../src/index";
 </script>
 
 <template>

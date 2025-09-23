@@ -1,0 +1,21 @@
+@layer base {
+  :root {
+    --color-primary-50: rgba(theme(colors.green-50));
+    --color-primary-100: rgba(theme(colors.green-100));
+    --color-primary-200: rgba(theme(colors.green-200));
+    --color-primary-300: rgba(theme(colors.green-300));
+    --color-primary-400: rgba(theme(colors.green-400));
+    --color-primary-500: rgba(theme(colors.green-500));
+    --color-primary-600: rgba(theme(colors.green-600));
+    --color-primary-700: rgba(theme(colors.green-700));
+    --color-primary-800: rgba(theme(colors.green-800));
+    --color-primary-900: rgba(theme(colors.green-900));
+
+    --ui-primary: theme(colors.purple-600);
+    --ui-secondary: theme(colors.teal-600);
+    --ui-success: theme(colors.green-600);
+    --ui-info: theme(colors.blue-600);
+    --ui-warning: theme(colors.yellow-600);
+    --ui-error: theme(colors.red-700);
+  }
+}

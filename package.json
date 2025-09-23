@@ -40,7 +40,8 @@
     "peerDependencies": {
         "@nuxt/ui": "^3.3.0",
         "nuxt": "^4.0.0",
-        "typescript": "^5"
+        "typescript": "^5",
+        "@nuxtjs/i18n": "latest"
     },
     "dependencies": {
         "motion-v": "^1.7.0"
