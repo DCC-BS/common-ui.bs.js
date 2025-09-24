@@ -1,4 +1,4 @@
-import { copyFile } from "node:fs/promises";
+import { copyFile, cp } from "node:fs/promises";
 import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
@@ -7,6 +7,8 @@ export default defineBuildConfig({
         "build:done": async () => {
             console.log("Copying main.css to dist/main.css");
             await copyFile("src/assets/main.css", "dist/main.css");
+            console.log("Copying kantonbs directory to dist/kantonbs");
+            await cp("src/assets/kantonbs", "dist/kantonbs", { recursive: true });
         },
     },
 });
