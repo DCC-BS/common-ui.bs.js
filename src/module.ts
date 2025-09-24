@@ -1,8 +1,7 @@
+import { copyFile } from "node:fs/promises";
+import path from "node:path";
 import { addComponentsDir, createResolver, defineNuxtModule } from "@nuxt/kit";
 import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
-import { copyFile } from "node:fs/promises";
-import path from 'node:path';
-
 
 // import DataBsBanner from "./components/data-bs-banner.vue";
 // import DataBsFooter from "./components/data-bs-footer.vue";
@@ -38,9 +37,12 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
 
-        _nuxt.hook("nitro:build:public-assets", async nitro => {
-            const srcImage = path.resolve(__dirname, 'assets/databs_logo.png');
-            const targetImage = path.join(nitro.options.output.publicDir, 'databs_log.png');
+        _nuxt.hook("nitro:build:public-assets", async (nitro) => {
+            const srcImage = path.resolve(__dirname, "assets/databs_logo.png");
+            const targetImage = path.join(
+                nitro.options.output.publicDir,
+                "databs_log.png",
+            );
 
             await copyFile(srcImage, targetImage);
         });

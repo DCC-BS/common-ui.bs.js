@@ -58,13 +58,23 @@ const timelineItems = [
     { title: "Event 3", description: "Description 3", date: "2023-03-01" },
 ];
 
-const showToast = (color: "success" | "error" | "info" | "warning" | "primary" | "secondary" | "neutral" | undefined) => {
+const showToast = (
+    color:
+        | "success"
+        | "error"
+        | "info"
+        | "warning"
+        | "primary"
+        | "secondary"
+        | "neutral"
+        | undefined,
+) => {
     toast.add({
         title: "Notification",
         description: "This is a toast notification.",
         color: color,
         duration: 3000,
-    })
+    });
 };
 </script>
 

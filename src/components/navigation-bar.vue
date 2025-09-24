@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-import DisclaimerButton from "./disclaimer-button.vue";
 import type { DropdownMenuItem } from "@nuxt/ui";
-import { useI18n } from "vue-i18n";
-import { computed } from "vue";
-
 import UButton from "@nuxt/ui/components/Button.vue";
 import UDropdownMenu from "@nuxt/ui/components/DropdownMenu.vue";
+import { computed } from "vue";
+import { useI18n } from "vue-i18n";
+import DisclaimerButton from "./disclaimer-button.vue";
 
 const { t, locale, locales, setLocale } = useI18n();
 

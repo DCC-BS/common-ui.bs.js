@@ -3,7 +3,6 @@ import { motion } from "motion-v";
 import { ref } from "vue";
 import image from "../assets/databs_logo.png";
 
-
 const animations = [
     { scale: 1.1 }, // heartbeat effect
     { rotate: [0, 30, -30, 0] }, // rotation effect

@@ -1,9 +1,8 @@
 // Not used migration fro the tailwind v3 config of the desing system to v4.
 
-import type { Config } from "tailwindcss";
-
 import fs from "node:fs";
 import path from "node:path";
+import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin.js";
 
 const customContent: Record<string, string> = {

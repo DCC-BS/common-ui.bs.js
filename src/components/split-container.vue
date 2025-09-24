@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import UCard from "@nuxt/ui/components/Card.vue";
-
 </script>
 
 <template>
