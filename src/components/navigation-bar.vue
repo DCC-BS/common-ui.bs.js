@@ -7,11 +7,11 @@ import { computed } from "vue";
 import UButton from "@nuxt/ui/components/Button.vue";
 import UDropdownMenu from "@nuxt/ui/components/DropdownMenu.vue";
 
-const { t, locale, availableLocales } = useI18n();
+const { t, locale, locales, setLocale } = useI18n();
 
-// const availableLocales = computed(() => {
-//     return locales.value.filter((i) => i.code !== locale.value);
-// });
+const availableLocales = computed(() => {
+    return locales.value.filter((i) => i.code !== locale.value);
+});
 
 const currentLocale = computed(() => {
     return locale.value?.toUpperCase() ?? "EN";
@@ -19,15 +19,10 @@ const currentLocale = computed(() => {
 
 // Navigation menu items
 const items = computed<DropdownMenuItem[]>(() =>
-    availableLocales.map((l) => ({
-        label: l.toUpperCase(),
-        onSelect: async () => { locale.value = l; },
+    availableLocales.value.map((locale) => ({
+        label: locale.code.toUpperCase(),
+        onSelect: async () => setLocale(locale.code),
     })),
-
-    // availableLocales.value.map((locale) => ({
-    //     label: locale.code.toUpperCase(),
-    //     onSelect: async () => setLocale(locale.code),
-    // })),
 );
 </script>
 

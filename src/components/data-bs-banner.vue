@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { motion } from "motion-v";
 import { ref } from "vue";
-import image from "../assets/databs_log.png";
+import image from "../assets/databs_logo.png";
+
 
 const animations = [
     { scale: 1.1 }, // heartbeat effect

@@ -1,11 +1,4 @@
 <script lang="ts" setup>
-import {
-  DataBsFooter,
-  Disclaimer,
-  NavigationBar,
-  SplitContainer,
-  UndoRedoButtons,
-} from "../../../src/index";
 </script>
 
 <template>
@@ -29,7 +22,6 @@ import {
               <UndoRedoButtons :can-redo="true" :can-undo="true" />
               <span> 0 / 100000 Zeichen</span>
             </div>
-
           </div>
         </template>
 

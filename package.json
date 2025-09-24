@@ -1,24 +1,26 @@
 {
     "version": "1.0.5",
     "name": "@dcc-bs/common-ui.bs.js",
-    "module": "dist/common-ui.bs.js.js",
-    "main": "dist/common-ui.bs.js.umd.cjs",
-    "types": "dist/index.d.ts",
+    "main": "./dist/module.mjs",
+    "types": "./dist/types.d.mts",
     "type": "module",
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
-            "style": "./dist/common-ui.bs.js.css",
-            "import": "./dist/common-ui.bs.js.js",
-            "require": "./dist/common-ui.bs.js.umd.cjs"
+            "types": "./dist/types.d.mts",
+            "import": "./dist/module.mjs",
+            "require": "./dist/module.mjs",
+            "style": "./dist/main.css"
         }
     },
     "scripts": {
-        "dev": "cd playground && bun run dev",
-        "build": "vite build && vue-tsc --emitDeclarationOnly",
-        "check": "biome check --write",
-        "build:playground": "cd playground && bun run build",
-        "install:playground": "cd playground && bun install"
+        "prepack": "nuxt-module-build build",
+        "generate": "nuxi generate",
+        "dev": "nuxi dev playground",
+        "dev:build": "nuxi build playground",
+        "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+        "release": "bun lint && bun test && bun prepack && changelogen --release && git push --follow-tags",
+        "lint": "biome format --write",
+        "check": "biome check --fix"
     },
     "files": [
         "dist"
@@ -27,6 +29,7 @@
         "playground"
     ],
     "devDependencies": {
+        "@nuxt/module-builder": "1.0.2",
         "@biomejs/biome": "2.2.4",
         "@tailwindcss/vite": "^4.1.11",
         "@types/bun": "latest",
@@ -41,9 +44,10 @@
         "@nuxt/ui": "4.0.0",
         "nuxt": "^4.0.0",
         "typescript": "^5",
-        "@nuxtjs/i18n": "latest"
+        "motion-v": "^1.7.0"
     },
     "dependencies": {
-        "motion-v": "^1.7.0"
+        "@nuxt/kit": "4.1.2",
+        "@nuxtjs/i18n": "latest"
     }
 }

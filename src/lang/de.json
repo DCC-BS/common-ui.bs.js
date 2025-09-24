@@ -1,0 +1,8 @@
+{
+     "common-ui" : {
+            "undo": "Rückgängig",
+            "redo": "Wiederholen",
+            "undo_tooltip": "Rückgängig machen der letzten Aktion",
+            "redo_tooltip": "Wiederholen der letzten rückgängig gemachten Aktion"
+     }
+}

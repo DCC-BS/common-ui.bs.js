@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { DisclaimerPage } from "../../../src/index";
 </script>
 
 <template>

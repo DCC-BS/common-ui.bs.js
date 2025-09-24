@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { SplitView } from "../../../src/index";
 </script>
 
 <template>

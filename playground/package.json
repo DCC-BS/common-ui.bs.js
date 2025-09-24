@@ -1,7 +1,6 @@
 {
     "name": "nuxt-app",
     "dependencies": {
-        "@dcc-bs/common-ui.bs.js": "../",
         "@nuxt/ui": "4.0.0",
         "@nuxtjs/i18n": "^10.1.0",
         "nuxt": "^4.0.3",
