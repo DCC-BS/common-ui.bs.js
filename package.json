@@ -1,17 +1,21 @@
 {
     "version": "1.1.1",
     "name": "@dcc-bs/common-ui.bs.js",
-    "main": "./dist/module.mjs",
-    "types": "./dist/types.d.mts",
+    "license": "MIT",
     "type": "module",
     "exports": {
         ".": {
             "types": "./dist/types.d.mts",
             "import": "./dist/module.mjs",
             "require": "./dist/module.mjs",
-            "style": "./dist/main.css"
+            "style": "./dist/runtime/assets/main.css"
         }
     },
+    "main": "./dist/module.mjs",
+    "types": "./dist/types.d.mts",
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "prepack": "nuxt-module-build build",
         "generate": "nuxi generate",
@@ -22,9 +26,6 @@
         "lint": "biome format --write",
         "check": "biome check --fix"
     },
-    "files": [
-        "dist"
-    ],
     "workspaces": [
         "playground"
     ],
