@@ -6,5 +6,5 @@
 @import "./base/fonts.css";
 
 body {
-    @apply font-sans;
+    font-family: "Inter";
 }
