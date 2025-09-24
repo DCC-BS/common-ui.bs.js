@@ -6,13 +6,25 @@
 Common Nuxt components and UI utilities using the official [Kanton Basel-Stadt design system](https://github.com/kanton-basel-stadt/designsystem) colors and styling.
 
 ## Quick Setup
-Install the module to your Nuxt application with:
+
+**This package can only be used as a Nuxt module.**
+
+1. Install the module to your Nuxt application with:
 ```sh
 bun add git+https://github.com/DCC-BS/common-ui.bs.js.git#v1.1.0
 ```
 replace `v1.1.0` with the latest version tag: ![GitHub package.json version](https://img.shields.io/github/package-json/v/DCC-BS/common-ui.bs.js)
 
-Add to your main css file:
+2. Add the module to your `nuxt.config.ts`:
+```typescript
+export default defineNuxtConfig({
+  modules: [
+    '@dcc-bs/common-ui.bs.js'
+  ]
+})
+```
+
+3. Add the CSS imports to your main css file:
 ```css
 @import "tailwindcss";
 @import "@nuxt/ui";
@@ -20,6 +32,14 @@ Add to your main css file:
 ```
 
 That's it! You can now use common-ui.bs.js in your Nuxt app ✨
+
+## Module Features
+
+When using this Nuxt module:
+- All components are automatically available globally without imports
+- Internationalization (i18n) integration is automatically configured
+- Design system assets are automatically included
+- Kanton Basel-Stadt color palette is integrated with Tailwind CSS
 
 ## Components
 
@@ -44,10 +64,6 @@ The `SplitView` component allows you to create a resizable split view layout. It
 #### Example Usage
 
 ```vue
-<script setup lang="ts">
-import { SplitView } from "@dcc-bs/common-ui.bs.js";
-</script>
-
 <template>
   <SplitView :isHorizontal="true">
     <template #a>
@@ -67,10 +83,6 @@ The `DisclaimerLlm` component displays a disclamer modal which the user must acc
 #### Example Usage
 
 ```vue
-<script setup lang="ts">
-import { Disclaimer } from "@dcc-bs/common-ui.bs.js";
-</script>
-
 <template>
   <Disclaimer
     appName="My App"
@@ -85,10 +97,6 @@ The `confirmationText` is also optional, if not set it will default to the defau
 You can also use the `DisclaimerButton` component to trigger the disclaimer modal again after it has been accepted:
 
 ```vue
-<script setup lang="ts">
-import { DisclaimerButton } from "@dcc-bs/common-ui.bs.js";
-</script>
-
 <template>
   <DisclaimerButton />
 </template>
@@ -101,10 +109,6 @@ The `DataBsBanner` component displays a banner with a link to a data science and
 #### Example Usage
 
 ```vue
-<script setup lang="ts">
-import { DataBsBanner } from "@dcc-bs/common-ui.bs.js";
-</script>
-
 <template>
   <DataBsBanner />
 </template>
@@ -117,10 +121,6 @@ The `DataBsFooter` component displays a footer with a link to a data science and
 #### Example Usage
 
 ```vue
-<script setup lang="ts">
-import { DataBsFooter } from "@dcc-bs/common-ui.bs.js";
-</script>
-
 <template>
   <DataBsFooter>
     <!-- Optional slot for additional footer content -->
@@ -141,10 +141,6 @@ The `SplitContainer` component provides a card-like container with a header and 
 #### Example Usage
 
 ```vue
-<script setup lang="ts">
-import { SplitContainer } from "@dcc-bs/common-ui.bs.js";
-</script>
-
 <template>
   <SplitContainer>
     <template #header>
@@ -178,7 +174,6 @@ The `UndoRedoButtons` component provides undo and redo functionality with keyboa
 
 ```vue
 <script setup lang="ts">
-import { UndoRedoButtons } from "@dcc-bs/common-ui.bs.js";
 import { ref } from "vue";
 
 const canUndo = ref(false);
@@ -223,10 +218,6 @@ This component requires:
 #### Example Usage
 
 ```vue
-<script setup lang="ts">
-import { NavigationBar } from "@dcc-bs/common-ui.bs.js";
-</script>
-
 <template>
   <NavigationBar>
     <template #center>
