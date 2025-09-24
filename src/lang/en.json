@@ -1,8 +1,0 @@
-{
-    "common-ui": {
-        "undo": "Undo",
-        "redo": "Redo",
-        "undo_tooltip": "Undo the last action",
-        "redo_tooltip": "Redo the last undone action"
-    }
-}
