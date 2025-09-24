@@ -22,7 +22,7 @@ function onHover() {
                     <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" width="48">
                 </a>
 
-                <div class="hidden md:block">
+                <div class="hidden sm:block">
                     <div>Datenwissenschaften und KI</div>
                     <div>
                         Developed with ♥ by DCC - Data Competence Center

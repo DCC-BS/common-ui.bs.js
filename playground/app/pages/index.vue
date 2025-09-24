@@ -19,7 +19,7 @@ const variant = ref<"link" | "outline" | "soft" | "subtle" | "ghost" | "solid">(
 
   <NavigaionBar />
 
-  <div class="h-[calc(100vh-78px)] flex flex-col">
+  <div class="min-h-[200px] md:h-[calc(100vh-78px)] flex flex-col">
     <div class="p-4 w-full h-full">
       <SplitContainer class="h-full">
         <template #header>
@@ -27,12 +27,12 @@ const variant = ref<"link" | "outline" | "soft" | "subtle" | "ghost" | "solid">(
         </template>
 
         <template #left>
-          <div class="relative h-full w-full p-4">
+          <div class="relative h-full w-full p-4 min-h-[200px]">
             <h3 class="text-md font-semibold">Left Side</h3>
             <p>This is the left side content.</p>
 
             <div class="text-neutral-500 text-sm absolute bottom-0 left-2 right-2 flex justify-between items-center">
-              <UndoRedoButtons  :can-redo="true" :can-undo="true"/>
+              <UndoRedoButtons :can-redo="true" :can-undo="true" />
               <span> 0 / 100000 Zeichen</span>
             </div>
 
@@ -40,8 +40,10 @@ const variant = ref<"link" | "outline" | "soft" | "subtle" | "ghost" | "solid">(
         </template>
 
         <template #right>
-          <h3 class="text-md font-semibold">Right Side</h3>
-          <p>This is the right side content.</p>
+          <div class="relative h-full w-full p-4 min-h-[200px]">
+            <h3 class="text-md font-semibold">Right Side</h3>
+            <p>This is the right side content.</p>
+          </div>
         </template>
       </SplitContainer>
     </div>

@@ -9,12 +9,12 @@ import UCard from "@nuxt/ui/components/Card.vue";
             <slot name="header" />
         </div>
 
-        <div class="flex-grow flex justify-stretch items-stretch">
+        <div class="flex-grow flex flex-col md:flex-row justify-stretch items-stretch">
             <div class="flex-grow">
                 <slot name="left" />
             </div>
 
-            <div class="border-l-1 border-default"></div>
+            <div class="border-t-1 md:border-l-1 md:border-t-0 border-default"></div>
 
             <div class="flex-grow">
                 <slot name="right" />
