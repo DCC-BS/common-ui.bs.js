@@ -1,0 +1,10 @@
+@import "./colors.css";
+
+/* Base */
+@import "./base/brand-colors.css";
+@import "./base/html.css";
+@import "./base/fonts.css";
+
+body {
+    font-family: "Inter";
+}

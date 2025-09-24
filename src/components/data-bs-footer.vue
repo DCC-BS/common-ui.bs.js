@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import image from "../assets/databs_log.png";
+import image from "../assets/databs_logo.png";
 
 const animations = ["animate-heath-beat", "animate-rotate"];
 const animation = ref("animate-heath-beat");
@@ -13,26 +13,24 @@ function onHover() {
 
 <template>
     <!-- Application Footer -->
-    <div class="flex-shrink-0 bg-gray-50 border-t border-gray-200">
-        <div class="max-w-4xl mx-auto px-4 py-3">
-            <div class="flex items-center justify-center gap-4 text-xs text-gray-500">
-                <!-- Brand Section -->
-                <div class="flex items-center gap-2">
-                    <a href="https://www.bs.ch/ki" target="_blank" :class="animation" @mouseenter="onHover"
-                        rel="noopener noreferrer">
-                        <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" width="48">
-                    </a>
-                    <span>Datenwissenschaften und KI</span>
+    <div class="px-6 py-3">
+        <div class="flex items-center justify-between gap-4 text-xs text-gray-500">
+            <!-- Brand Section -->
+            <div class="flex items-center gap-2">
+                <a href="https://www.bs.ch/ki" target="_blank" :class="animation" @mouseenter="onHover"
+                    rel="noopener noreferrer">
+                    <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" width="48">
+                </a>
+
+                <div class="hidden sm:block">
+                    <div>Datenwissenschaften und KI</div>
+                    <div>
+                        Developed with ♥ by DCC - Data Competence Center
+                    </div>
                 </div>
 
-                <!-- Separator -->
-                <div class="hidden md:block">•</div>
-
-                <!-- Team Credit -->
-                <div class="hidden md:block">
-                    Developed with ❤️ by DCC - Data Competence Center
-                </div>
             </div>
+            <slot />
         </div>
     </div>
 </template>

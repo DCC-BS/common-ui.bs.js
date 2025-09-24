@@ -20,6 +20,11 @@ jobs:
       - name: Install Bun
         run: npm install -g bun
       - run: bun install
-      - run: bun run build
-      - run: bun install:playground
-      - run: bun run build:playground
+      - name: Biome Check
+        run: bunx biome check
+      - name: Prepare the application
+        run:  bun run generate
+      - name: Build the playground
+        run:  bun run dev:build
+      - name: Run tsc
+        run: bun run tsc
