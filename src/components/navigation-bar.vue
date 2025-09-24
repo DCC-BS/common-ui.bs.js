@@ -1,23 +1,17 @@
 <script lang="ts" setup>
 import DisclaimerButton from "./disclaimer-button.vue";
 import type { DropdownMenuItem } from "@nuxt/ui";
-import { useI18n } from '#imports';
+import { useI18n } from "vue-i18n";
 import { computed } from "vue";
 
 import UButton from "@nuxt/ui/components/Button.vue";
 import UDropdownMenu from "@nuxt/ui/components/DropdownMenu.vue";
 
+const { t, locale, availableLocales } = useI18n();
 
-const { t, locale, locales, setLocale } = useI18n() as unknown as {
-    t: (key: string) => string;
-    locale: { value: string };
-    locales: { value: { code: string; name: string }[] };
-    setLocale: (code: string) => Promise<void>;
-};
-
-const availableLocales = computed(() => {
-    return locales.value.filter((i) => i.code !== locale.value);
-});
+// const availableLocales = computed(() => {
+//     return locales.value.filter((i) => i.code !== locale.value);
+// });
 
 const currentLocale = computed(() => {
     return locale.value?.toUpperCase() ?? "EN";
@@ -25,10 +19,15 @@ const currentLocale = computed(() => {
 
 // Navigation menu items
 const items = computed<DropdownMenuItem[]>(() =>
-    availableLocales.value.map((locale) => ({
-        label: locale.code.toUpperCase(),
-        onSelect: async () => setLocale(locale.code),
+    availableLocales.map((l) => ({
+        label: l.toUpperCase(),
+        onSelect: async () => { locale.value = l; },
     })),
+
+    // availableLocales.value.map((locale) => ({
+    //     label: locale.code.toUpperCase(),
+    //     onSelect: async () => setLocale(locale.code),
+    // })),
 );
 </script>
 

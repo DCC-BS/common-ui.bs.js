@@ -271,12 +271,6 @@ const showToast = (color: "success" | "error" | "info" | "warning" | "primary" |
                         <UTimeline :items="timelineItems" />
                     </div>
 
-                    <!-- User Profile -->
-                    <div>
-                        <h3 class="text-lg font-medium mb-3">User Profile</h3>
-                        <UUser name="John Doe" description="Software Developer" avatar="https://via.placeholder.com/40" />
-                    </div>
-
                     <!-- Carousel -->
                     <div>
                         <h3 class="text-lg font-medium mb-3">Carousel</h3>

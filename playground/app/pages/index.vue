@@ -1,23 +1,17 @@
 <script lang="ts" setup>
 import {
-  DataBsBanner,
   DataBsFooter,
   Disclaimer,
-  DisclaimerButton,
-  NavigaionBar,
+  NavigationBar,
   SplitContainer,
   UndoRedoButtons,
 } from "../../../src/index";
-
-const variant = ref<"link" | "outline" | "soft" | "subtle" | "ghost" | "solid">(
-  "solid",
-);
 </script>
 
 <template>
   <Disclaimer app-name="Test App"></Disclaimer>
 
-  <NavigaionBar />
+  <NavigationBar />
 
   <div class="min-h-[200px] md:h-[calc(100vh-78px)] flex flex-col">
     <div class="p-4 w-full h-full">

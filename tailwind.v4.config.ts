@@ -1,3 +1,5 @@
+// Not used migration fro the tailwind v3 config of the desing system to v4.
+
 import type { Config } from "tailwindcss";
 
 import fs from "node:fs";
