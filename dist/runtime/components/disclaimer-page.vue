@@ -1,0 +1,19 @@
+<script setup>
+import { motion } from "motion-v";
+import DisclaimerView from "./disclaimer-view.vue";
+const props = defineProps({
+  appName: { type: String, required: true },
+  confirmationText: { type: String, required: false, default: "" },
+  postfixHTML: { type: String, required: false, default: "" }
+});
+</script>
+
+<template>
+    <div class="w-full h-full bg-gray-700 p-2">
+        <motion.div class="shadow-md m-auto bg-white max-w-[800px] rounded-md" :initial="{ opacity: 0, y: 200 }"
+            :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, ease: 'circInOut' }">
+            <DisclaimerView app-name="test-app" :confirmation-text="props.confirmationText"
+                :postfixHTML="props.postfixHTML" :showConfirmation="false" />
+        </motion.div>
+    </div>
+</template>
