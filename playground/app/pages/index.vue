@@ -16,7 +16,7 @@
         <template #left>
           <div class="relative h-full w-full p-4 min-h-[200px]">
             <h3 class="text-md font-semibold">Left Side</h3>
-            <p>This is the left side content.</p>
+            <p>This is the left side content. asd asdasdas dasd asd asd asd asd as dasd asd asdasd asdasd asdasdasdasdasd </p>
 
             <div class="text-neutral-500 text-sm absolute bottom-0 left-2 right-2 flex justify-between items-center">
               <UndoRedoButtons :can-redo="true" :can-undo="true" />
@@ -28,7 +28,7 @@
         <template #right>
           <div class="relative h-full w-full p-4 min-h-[200px]">
             <h3 class="text-md font-semibold">Right Side</h3>
-            <p>This is the right side content.</p>
+            <p>This is the right side content. adasd asdas dadas das dasd asd asdasd as dasd asd </p>
           </div>
         </template>
       </SplitContainer>
