@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from "tailwind-merge";
 
 type Ui = {
-    header?: string
-    left?: string
-    right?: string
-    separator?: string
-}
+    header?: string;
+    left?: string;
+    right?: string;
+    separator?: string;
+};
 
 const props = defineProps<{
-    ui?: Ui
+    ui?: Ui;
 }>();
 
-const headerTw = twMerge('border-b-1 border-default p-4', props.ui?.header ?? '');
-const leftTw = twMerge('flex-1', props.ui?.left ?? '');
-const rightTw = twMerge('flex-1', props.ui?.right ?? '');
-const separatorTw = twMerge('border-t-1 md:border-l-1 md:border-t-0 border-default', props.ui?.separator ?? '');
-
+const headerTw = twMerge(
+    "border-b-1 border-default p-4",
+    props.ui?.header ?? "",
+);
+const leftTw = twMerge("flex-1", props.ui?.left ?? "");
+const rightTw = twMerge("flex-1", props.ui?.right ?? "");
+const separatorTw = twMerge(
+    "border-t-1 md:border-l-1 md:border-t-0 border-default",
+    props.ui?.separator ?? "",
+);
 </script>
 
 <template>
