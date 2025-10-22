@@ -31,7 +31,7 @@
     ],
     "devDependencies": {
         "@nuxt/module-builder": "1.0.2",
-        "@biomejs/biome": "2.2.6",
+        "@biomejs/biome": "2.2.7",
         "@tailwindcss/vite": "^4.1.11",
         "@types/bun": "latest",
         "@vitejs/plugin-vue": "^6.0.1",
