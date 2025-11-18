@@ -6,7 +6,9 @@ export default defineNuxtConfig({
     "common-ui.bs.js": {
         repo: "feedback-control.bs.js",
         owner: "DCC-BS",
-        githubToken: process.env.GITHUB_TOKEN || "",
+    },
+    runtimeConfig: {
+        githubToken: process.env.GITHUB_TOKEN,
     },
     css: ["~/assets/css/main.css"],
     ui: {

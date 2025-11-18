@@ -1,5 +1,5 @@
 {
     "extends": "./.nuxt/tsconfig.json",
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "src/server/tsconfig.json"],
     "exclude": ["dist", "node_modules", "playground"]
 }

@@ -9,7 +9,7 @@ const { data, error, pending } = await useFetch<Changelog[]>('/api/changelogs');
 const versions = computed<ChangelogVersionProps[]>(() => data.value?.map((release) => ({
     version: release.tag_name,
     date: release.published_at,
-    changes: release.body.split('\n').filter((line: string) => line.trim() !== ''),
+    changes: release,
 } as ChangelogVersionProps)) ?? []);
 </script>
 

@@ -4,7 +4,6 @@ import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
 export interface ModuleOptions {
     repo: string;
     owner: string;
-    githubToken: string;
 }
 
 export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
@@ -35,7 +34,7 @@ export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
             });
         });
 
-        _nuxt.options.runtimeConfig["feedback-control.bs.js"] = {
+        _nuxt.options.runtimeConfig["common-ui.bs.js"] = {
             repo: _options.repo,
             owner: _options.owner,
             githubToken: _options.githubToken,

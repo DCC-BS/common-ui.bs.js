@@ -10,11 +10,9 @@ export default defineEventHandler(async () => {
     const moduleConfig = config["common-ui.bs.js"] as {
         repo: string;
         owner: string;
-        project: string;
-        githubToken: string;
     };
 
-    const githubToken = config.githubToken || moduleConfig.githubToken;
+    const githubToken = config.githubToken;
 
     const repo = moduleConfig.repo;
     const owner = moduleConfig.owner;
@@ -30,6 +28,7 @@ export default defineEventHandler(async () => {
         dispatcher: agent,
     });
 
+    console.log(response);
     const changelogs = ChangelogSchema.array().parse(response);
     return changelogs;
 });

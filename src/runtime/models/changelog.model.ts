@@ -5,7 +5,7 @@ export const ChangelogSchema = z.object({
     name: z.string(),
     body: z.string(),
     draft: z.boolean(),
-    prerelase: z.boolean(),
+    prerelease: z.boolean(),
     created_at: z.coerce.date(),
     published_at: z.coerce.date(),
     tag_name: z.string(),
