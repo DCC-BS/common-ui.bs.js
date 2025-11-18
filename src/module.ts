@@ -1,13 +1,21 @@
-import { addComponentsDir, createResolver, defineNuxtModule } from "@nuxt/kit";
+import { addComponentsDir, addServerHandler, createResolver, defineNuxtModule } from "@nuxt/kit";
 import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
 
-export default defineNuxtModule<ModuleRuntimeHooks>({
+export interface ModuleOptions {
+    repo: string;
+    owner: string;
+    githubToken: string;
+}
+
+export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
     meta: {
         name: "common-ui.bs.js",
         configKey: "common-ui.bs.js",
     },
     // Default configuration options of the Nuxt module
-    defaults: {},
+    defaults: {
+        owner: "DCC-BS",
+    },
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
 
@@ -27,10 +35,22 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
             });
         });
 
+        _nuxt.options.runtimeConfig["feedback-control.bs.js"] = {
+            repo: _options.repo,
+            owner: _options.owner,
+            githubToken: _options.githubToken,
+        };
+
         addComponentsDir({
             path: resolver.resolve("./runtime/components"),
             global: true,
             pathPrefix: false,
+        });
+
+        addServerHandler({
+            route: "/api/changelogs",
+            method: "get",
+            handler: resolver.resolve("./runtime/server/api/changelogs.get"),
         });
     },
 });

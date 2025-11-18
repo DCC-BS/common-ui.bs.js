@@ -43,12 +43,15 @@
     },
     "peerDependencies": {
         "@nuxt/ui": "4.1.0",
+        "motion-v": "^1.7.0",
         "nuxt": "^4.0.0",
         "typescript": "^5",
-        "motion-v": "^1.7.0"
+        "zod": "^4.1.12"
     },
     "dependencies": {
         "@nuxt/kit": "4.2.1",
-        "@nuxtjs/i18n": "latest"
+        "@nuxtjs/i18n": "latest",
+        "tailwind-merge": "^3.4.0",
+        "undici": "^7.16.0"
     }
 }
