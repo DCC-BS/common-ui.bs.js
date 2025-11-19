@@ -9,17 +9,18 @@ const QuerySchema = z.object({
     lastRead: z.string().optional(),
 });
 
+const moduleConfigSchema = z.object({
+    repo: z.string(),
+    owner: z.string(),
+});
+
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig();
 
     const query = getQuery(event);
     const options = QuerySchema.parse(query);
 
-    const moduleConfig = config["common-ui.bs.js"] as {
-        repo: string;
-        owner: string;
-    };
-
+    const moduleConfig = moduleConfigSchema.parse(config["common-ui.bs.js"]);
     const githubToken = config.githubToken;
 
     const repo = moduleConfig.repo;
@@ -36,6 +37,7 @@ export default defineEventHandler(async (event) => {
                 "X-GitHub-Api-Version": "2022-11-28",
             },
             dispatcher: agent,
+            timeout: 10000,
         },
     );
 

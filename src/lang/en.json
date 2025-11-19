@@ -5,7 +5,7 @@
         "undo_tooltip": "Undo the last action",
         "redo_tooltip": "Redo the last undone action",
         "changelogs": {
-            "title": "Whats New",
+            "title": "What's New",
             "close": "Close"
         }
     }

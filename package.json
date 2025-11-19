@@ -52,6 +52,7 @@
     "dependencies": {
         "@nuxt/kit": "4.2.1",
         "@nuxtjs/i18n": "latest",
+        "@nuxtjs/mdc": "^0.18.4",
         "tailwind-merge": "^3.4.0",
         "undici": "^7.16.0"
     }

@@ -12,8 +12,7 @@
             "!.nuxt",
             "!.output",
             "!logs",
-            "!**/*.css",
-            "!**/*.vue"
+            "!**/*.css"
         ]
     },
     "formatter": {
