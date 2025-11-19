@@ -2,8 +2,9 @@
 </script>
 
 <template>
+  <Changelogs />
   <Disclaimer app-name="Test App"></Disclaimer>
-
+  
   <NavigationBar />
 
   <div class="min-h-[200px] md:h-[calc(100vh-140px)] flex flex-col">

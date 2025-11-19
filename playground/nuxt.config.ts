@@ -3,6 +3,13 @@ export default defineNuxtConfig({
     compatibilityDate: "2025-07-15",
     devtools: { enabled: true },
     modules: ["../src/module", "@nuxt/ui", "@nuxtjs/i18n"],
+    "common-ui.bs.js": {
+        repo: "feedback-control.bs.js",
+        owner: "DCC-BS",
+    },
+    runtimeConfig: {
+        githubToken: process.env.GITHUB_TOKEN,
+    },
     css: ["~/assets/css/main.css"],
     ui: {
         colorMode: false,

@@ -13,5 +13,7 @@ declare module "@vue/runtime-core" {
         UBadge: typeof import("@nuxt/ui/components/Badge.vue")["default"];
         UProgress: typeof import("@nuxt/ui/components/Progress.vue")["default"];
         UDropdownMenu: typeof import("@nuxt/ui/components/DropdownMenu.vue")["default"];
+        UChangelogVersions: typeof import("@nuxt/ui/components/ChangelogVersions.vue")["default"];
+        UChangelogVersion: typeof import("@nuxt/ui/components/ChangelogVersion.vue")["default"];
     }
 }
