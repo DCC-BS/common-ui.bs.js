@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-
 function clearChangelogCache() {
-    localStorage.removeItem('changelogs-last-read');
+    localStorage.removeItem("changelogs-last-read");
     location.reload();
 }
-
 </script>
 
 <template>

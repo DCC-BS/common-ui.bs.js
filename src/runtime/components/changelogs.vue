@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { ChangelogVersionProps } from '@nuxt/ui';
-import { computed, onMounted, ref } from 'vue';
-import { ChangelogSchema, type Changelog } from '../models/changelog.model';
+import type { ChangelogVersionProps } from "@nuxt/ui";
+import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { type Changelog, ChangelogSchema } from "../models/changelog.model";
 
 const data = ref<Changelog[]>();
 const error = ref<Error>();
@@ -11,31 +11,43 @@ const isOpen = ref<boolean>(false);
 const { t } = useI18n();
 
 onMounted(async () => {
-    const lastRead = localStorage.getItem('changelogs-last-read') || '';
+    const lastRead = localStorage.getItem("changelogs-last-read") || "";
 
-    try{
-        const fetchData = await $fetch<Changelog[]>(`/api/changelogs?lastRead=${lastRead}`, {
-            method: 'GET',
-        });
+    try {
+        const fetchData = await $fetch<Changelog[]>(
+            `/api/changelogs?lastRead=${lastRead}`,
+            {
+                method: "GET",
+            },
+        );
 
         data.value = ChangelogSchema.array().parse(fetchData);
     } catch (e) {
         error.value = e as Error;
     } finally {
-         isOpen.value = !!lastRead && (data.value?.length ?? 0) > 0;
+        isOpen.value = !!lastRead && (data.value?.length ?? 0) > 0;
     }
 
-    if(data.value && data.value.length > 0 && data.value[0]) {
-        localStorage.setItem('changelogs-last-read', String(data.value[0].tag_name));
+    if (data.value && data.value.length > 0 && data.value[0]) {
+        localStorage.setItem(
+            "changelogs-last-read",
+            String(data.value[0].tag_name),
+        );
     }
 });
 
-const versions = computed<ChangelogVersionProps[]>(() => data.value?.map((release) => ({
-    title: release.name,
-    version: release.tag_name,
-    date: release.published_at,
-    description: release.body,
-} as ChangelogVersionProps)) ?? []);
+const versions = computed<ChangelogVersionProps[]>(
+    () =>
+        data.value?.map(
+            (release) =>
+                ({
+                    title: release.name,
+                    version: release.tag_name,
+                    date: release.published_at,
+                    description: release.body,
+                }) as ChangelogVersionProps,
+        ) ?? [],
+);
 </script>
 
 <template>
