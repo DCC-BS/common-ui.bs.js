@@ -19,12 +19,10 @@ onMounted(async () => {
         });
 
         data.value = ChangelogSchema.array().parse(fetchData);
-
-        console.log('Changelogs fetched:', data.value);
     } catch (e) {
         error.value = e as Error;
     } finally {
-        isOpen.value = (data.value?.length ?? 0) > 0;
+         isOpen.value = !!lastRead && (data.value?.length ?? 0) > 0;
     }
 
     if(data.value && data.value.length > 0 && data.value[0]) {
