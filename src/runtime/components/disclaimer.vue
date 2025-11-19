@@ -102,7 +102,7 @@ function handleScroll() {
 
 <style scoped>
 .disclaimer-modal {
-    z-index: 99999;
+    z-index: 99999999;
     padding: 1rem;
     position: fixed;
     top: 0;

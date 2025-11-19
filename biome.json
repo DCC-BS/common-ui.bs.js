@@ -7,7 +7,14 @@
     },
     "files": {
         "ignoreUnknown": false,
-        "includes": ["**", "!.nuxt", "!.output", "!logs", "!**/*.css", "!**/*.vue"]
+        "includes": [
+            "**",
+            "!.nuxt",
+            "!.output",
+            "!logs",
+            "!**/*.css",
+            "!**/*.vue"
+        ]
     },
     "formatter": {
         "enabled": true,

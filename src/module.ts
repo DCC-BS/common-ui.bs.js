@@ -1,4 +1,9 @@
-import { addComponentsDir, addServerHandler, createResolver, defineNuxtModule } from "@nuxt/kit";
+import {
+    addComponentsDir,
+    addServerHandler,
+    createResolver,
+    defineNuxtModule,
+} from "@nuxt/kit";
 import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
 
 export interface ModuleOptions {
@@ -14,6 +19,11 @@ export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
     // Default configuration options of the Nuxt module
     defaults: {
         owner: "DCC-BS",
+    },
+    moduleDependencies: {
+        "@nuxtjs/mdc": {
+            version: "^0.18.4",
+        },
     },
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
@@ -37,7 +47,6 @@ export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
         _nuxt.options.runtimeConfig["common-ui.bs.js"] = {
             repo: _options.repo,
             owner: _options.owner,
-            githubToken: _options.githubToken,
         };
 
         addComponentsDir({

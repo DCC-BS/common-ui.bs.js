@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-
 export const ChangelogSchema = z.object({
     name: z.string(),
     body: z.string(),
