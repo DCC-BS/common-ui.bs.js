@@ -5,6 +5,7 @@ import { z } from "zod";
 import { useRuntimeConfig } from "#imports";
 import type { Changelog } from "../../models/changelog.model";
 import { compare } from "semver";
+import matter from "gray-matter";
 
 const QuerySchema = z.object({
     lastRead: z.string().optional(),
@@ -40,11 +41,9 @@ export default defineEventHandler(async (event) => {
         const filePath = path.join(dirPath, fileName);
         const fileContent = await fs.promises.readFile(filePath, "utf-8");
 
-        const splits = fileContent.split("---");
-        const metaJson = splits[0] as string;
-        const markdown = splits.slice(1).join("---").trim();
+        const { content, data } = matter(fileContent);
 
-        const meta = MetaSchema.parse(JSON.parse(metaJson));
+        const meta = MetaSchema.parse(data);
 
         if (meta.version === options.lastRead) {
             break;
@@ -53,7 +52,7 @@ export default defineEventHandler(async (event) => {
         changelogs.push({
             title: meta.title,
             version: meta.version,
-            body: markdown,
+            body: content,
             published_at: meta.published_at,
         });
     }

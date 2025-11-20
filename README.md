@@ -58,7 +58,7 @@ export default defineNuxtConfig({
 
 ### Configuration Properties
 
-- **path** (string, optional): Path to the directory containing changelog files. This path is resolved relative to your project root. The changelog files should be markdown files with JSON frontmatter containing `title`, `version`, and `published_at` fields.
+- **path** (string, optional): Path to the directory containing changelog files. This path is resolved relative to your project root. The changelog files should be markdown files with YAML frontmatter containing `title`, `version`, and `published_at` fields.
 
 #### Example Changelog Directory Structure
 
@@ -72,11 +72,10 @@ server/changelogs/
 Each changelog file should follow this format:
 
 ```markdown
-{
-  "title": "Version 1.2.0",
-  "version": "1.2.0", 
-  "published_at": "2024-01-20T10:00:00Z"
-}
+---
+title: "Version 1.2.0"
+version: "1.2.0"
+published_at: "2024-01-20T10:00:00Z"
 ---
 
 ## New Features
@@ -267,11 +266,10 @@ The `Changelogs` component displays a modal with application changelog informati
 Changelog files should be stored in the directory configured in your Nuxt config and follow this format:
 
 ```markdown
-{
-  "title": "Version 1.1.0",
-  "version": "1.1.0",
-  "published_at": "2024-01-15T10:00:00Z"
-}
+---
+title: "Version 1.1.0"
+version: "1.1.0"
+published_at: "2024-01-15T10:00:00Z"
 ---
 
 ## New Features
