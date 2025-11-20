@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
+import matter from "gray-matter";
 import { defineEventHandler, getQuery } from "h3";
+import { compare } from "semver";
 import { z } from "zod";
 import { useRuntimeConfig } from "#imports";
 import type { Changelog } from "../../models/changelog.model";
-import { compare } from "semver";
-import matter from "gray-matter";
 
 const QuerySchema = z.object({
     lastRead: z.string().optional(),
@@ -33,7 +33,9 @@ export default defineEventHandler(async (event) => {
     const dirPath = path.resolve(process.cwd(), changelogPath);
     const allFiles = await fs.promises.readdir(dirPath);
 
-    allFiles.sort((a, b) => compare(b.replace(".md", ""), a.replace(".md", "")));
+    allFiles.sort((a, b) =>
+        compare(b.replace(".md", ""), a.replace(".md", "")),
+    );
 
     const changelogs = [] as Changelog[];
 
