@@ -24,7 +24,7 @@
         "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
         "release": "bun lint && bun test && bun prepack && changelogen --release && git push --follow-tags",
         "lint": "biome format --write",
-        "check": "biome check --fix"
+        "check": "biome check --write"
     },
     "workspaces": [
         "playground"
@@ -34,6 +34,7 @@
         "@nuxt/module-builder": "1.0.2",
         "@tailwindcss/vite": "^4.1.11",
         "@types/bun": "latest",
+        "@types/semver": "^7.7.1",
         "@vitejs/plugin-vue": "^6.0.1",
         "tailwindcss": "^4.1.11",
         "typescript": "^5.7.2",
@@ -53,6 +54,8 @@
         "@nuxt/kit": "4.2.1",
         "@nuxtjs/i18n": "latest",
         "@nuxtjs/mdc": "^0.18.4",
+        "gray-matter": "^4.0.3",
+        "semver": "^7.7.3",
         "tailwind-merge": "^3.4.0",
         "undici": "^7.16.0"
     }

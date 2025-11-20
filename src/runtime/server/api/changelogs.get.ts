@@ -1,17 +1,24 @@
+import fs from "node:fs";
+import path from "node:path";
+import matter from "gray-matter";
 import { defineEventHandler, getQuery } from "h3";
-import { $fetch } from "ofetch";
-import { EnvHttpProxyAgent } from "undici";
+import { compare } from "semver";
 import { z } from "zod";
 import { useRuntimeConfig } from "#imports";
-import { ChangelogSchema } from "../../models/changelog.model";
+import type { Changelog } from "../../models/changelog.model";
 
 const QuerySchema = z.object({
     lastRead: z.string().optional(),
 });
 
 const moduleConfigSchema = z.object({
-    repo: z.string(),
-    owner: z.string(),
+    path: z.string(),
+});
+
+const MetaSchema = z.object({
+    title: z.string(),
+    version: z.string(),
+    published_at: z.coerce.date(),
 });
 
 export default defineEventHandler(async (event) => {
@@ -21,38 +28,36 @@ export default defineEventHandler(async (event) => {
     const options = QuerySchema.parse(query);
 
     const moduleConfig = moduleConfigSchema.parse(config["common-ui.bs.js"]);
-    const githubToken = config.githubToken;
 
-    const repo = moduleConfig.repo;
-    const owner = moduleConfig.owner;
+    const changelogPath = moduleConfig.path;
+    const dirPath = path.resolve(process.cwd(), changelogPath);
+    const allFiles = await fs.promises.readdir(dirPath);
 
-    const agent = new EnvHttpProxyAgent();
-
-    const response = await $fetch(
-        `https://api.github.com/repos/${owner}/${repo}/releases`,
-        {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${githubToken}`,
-                "X-GitHub-Api-Version": "2022-11-28",
-            },
-            dispatcher: agent,
-            timeout: 10000,
-        },
+    allFiles.sort((a, b) =>
+        compare(b.replace(".md", ""), a.replace(".md", "")),
     );
 
-    let changelogs = ChangelogSchema.array().parse(response);
+    const changelogs = [] as Changelog[];
 
-    const newChangelogs = [];
-    for (const changelog of changelogs) {
-        if (changelog.tag_name === options.lastRead) {
+    for (const fileName of allFiles) {
+        const filePath = path.join(dirPath, fileName);
+        const fileContent = await fs.promises.readFile(filePath, "utf-8");
+
+        const { content, data } = matter(fileContent);
+
+        const meta = MetaSchema.parse(data);
+
+        if (meta.version === options.lastRead) {
             break;
         }
-        newChangelogs.push(changelog);
-    }
-    changelogs = newChangelogs;
 
-    return changelogs.filter(
-        (changelog) => !changelog.draft && !changelog.prerelease,
-    );
+        changelogs.push({
+            title: meta.title,
+            version: meta.version,
+            body: content,
+            published_at: meta.published_at,
+        });
+    }
+
+    return changelogs;
 });

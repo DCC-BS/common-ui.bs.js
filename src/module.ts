@@ -7,8 +7,7 @@ import {
 import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
 
 export interface ModuleOptions {
-    repo: string;
-    owner: string;
+    path: string;
 }
 
 export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
@@ -18,7 +17,7 @@ export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
     },
     // Default configuration options of the Nuxt module
     defaults: {
-        owner: "DCC-BS",
+        path: "server/changelogs",
     },
     moduleDependencies: {
         "@nuxtjs/mdc": {
@@ -45,8 +44,7 @@ export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
         });
 
         _nuxt.options.runtimeConfig["common-ui.bs.js"] = {
-            repo: _options.repo,
-            owner: _options.owner,
+            path: _options.path,
         };
 
         addComponentsDir({

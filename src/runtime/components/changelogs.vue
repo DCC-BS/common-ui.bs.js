@@ -31,7 +31,7 @@ onMounted(async () => {
     if (data.value && data.value.length > 0 && data.value[0]) {
         localStorage.setItem(
             "changelogs-last-read",
-            String(data.value[0].tag_name),
+            String(data.value[0].version),
         );
     }
 });
@@ -41,8 +41,8 @@ const versions = computed<ChangelogVersionProps[]>(
         data.value?.map(
             (release) =>
                 ({
-                    title: release.name,
-                    version: release.tag_name,
+                    title: release.title,
+                    version: release.version,
                     date: release.published_at,
                     description: release.body,
                 }) as ChangelogVersionProps,
