@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
 
     const changelogPath = moduleConfig.path;
     const dirPath = path.resolve(process.cwd(), changelogPath);
-    const allFiles = fs.readdirSync(dirPath);
+    const allFiles = await fs.promises.readdir(dirPath);
 
     allFiles.sort((a, b) => b.localeCompare(a));
 
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
 
     for (const fileName of allFiles) {
         const filePath = path.join(dirPath, fileName);
-        const fileContent = fs.readFileSync(filePath, "utf-8");
+        const fileContent = await fs.promises.readFile(filePath, "utf-8");
 
         const splits = fileContent.split("---");
         const metaJson = splits[0] as string;

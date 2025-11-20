@@ -72,7 +72,6 @@ server/changelogs/
 Each changelog file should follow this format:
 
 ```markdown
----
 {
   "title": "Version 1.2.0",
   "version": "1.2.0", 
@@ -268,7 +267,6 @@ The `Changelogs` component displays a modal with application changelog informati
 Changelog files should be stored in the directory configured in your Nuxt config and follow this format:
 
 ```markdown
----
 {
   "title": "Version 1.1.0",
   "version": "1.1.0",
