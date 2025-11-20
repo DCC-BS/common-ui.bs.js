@@ -1,17 +1,22 @@
+import fs from "node:fs";
+import path from "node:path";
 import { defineEventHandler, getQuery } from "h3";
-import { $fetch } from "ofetch";
-import { EnvHttpProxyAgent } from "undici";
 import { z } from "zod";
 import { useRuntimeConfig } from "#imports";
-import { ChangelogSchema } from "../../models/changelog.model";
+import type { Changelog } from "../../models/changelog.model";
 
 const QuerySchema = z.object({
     lastRead: z.string().optional(),
 });
 
 const moduleConfigSchema = z.object({
-    repo: z.string(),
-    owner: z.string(),
+    path: z.string(),
+});
+
+const MetaSchema = z.object({
+    title: z.string(),
+    version: z.string(),
+    published_at: z.coerce.date(),
 });
 
 export default defineEventHandler(async (event) => {
@@ -21,38 +26,36 @@ export default defineEventHandler(async (event) => {
     const options = QuerySchema.parse(query);
 
     const moduleConfig = moduleConfigSchema.parse(config["common-ui.bs.js"]);
-    const githubToken = config.githubToken;
 
-    const repo = moduleConfig.repo;
-    const owner = moduleConfig.owner;
+    const changelogPath = moduleConfig.path;
+    const dirPath = path.resolve(process.cwd(), changelogPath);
+    const allFiles = fs.readdirSync(dirPath);
 
-    const agent = new EnvHttpProxyAgent();
+    allFiles.sort((a, b) => b.localeCompare(a));
 
-    const response = await $fetch(
-        `https://api.github.com/repos/${owner}/${repo}/releases`,
-        {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${githubToken}`,
-                "X-GitHub-Api-Version": "2022-11-28",
-            },
-            dispatcher: agent,
-            timeout: 10000,
-        },
-    );
+    const changelogs = [] as Changelog[];
 
-    let changelogs = ChangelogSchema.array().parse(response);
+    for (const fileName of allFiles) {
+        const filePath = path.join(dirPath, fileName);
+        const fileContent = fs.readFileSync(filePath, "utf-8");
 
-    const newChangelogs = [];
-    for (const changelog of changelogs) {
-        if (changelog.tag_name === options.lastRead) {
+        const splits = fileContent.split("---");
+        const metaJson = splits[0] as string;
+        const markdown = splits.slice(1).join("---").trim();
+
+        const meta = MetaSchema.parse(JSON.parse(metaJson));
+
+        if (meta.version === options.lastRead) {
             break;
         }
-        newChangelogs.push(changelog);
-    }
-    changelogs = newChangelogs;
 
-    return changelogs.filter(
-        (changelog) => !changelog.draft && !changelog.prerelease,
-    );
+        changelogs.push({
+            title: meta.title,
+            version: meta.version,
+            body: markdown,
+            published_at: meta.published_at,
+        });
+    }
+
+    return changelogs;
 });

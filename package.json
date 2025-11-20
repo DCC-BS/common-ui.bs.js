@@ -24,7 +24,7 @@
         "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
         "release": "bun lint && bun test && bun prepack && changelogen --release && git push --follow-tags",
         "lint": "biome format --write",
-        "check": "biome check --fix"
+        "check": "biome check --write"
     },
     "workspaces": [
         "playground"

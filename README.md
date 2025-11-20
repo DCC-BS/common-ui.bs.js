@@ -41,6 +41,56 @@ When using this Nuxt module:
 - Design system assets are automatically included
 - Kanton Basel-Stadt color palette is integrated with Tailwind CSS
 
+## Configuration Options
+
+The module supports configuration options in your `nuxt.config.ts` file:
+
+```typescript
+export default defineNuxtConfig({
+  modules: [
+    '@dcc-bs/common-ui.bs.js'
+  ],
+  "common-ui.bs.js": {
+    path: "server/changelogs", // Path to changelog files directory
+  },
+})
+```
+
+### Configuration Properties
+
+- **path** (string, optional): Path to the directory containing changelog files. This path is resolved relative to your project root. The changelog files should be markdown files with JSON frontmatter containing `title`, `version`, and `published_at` fields.
+
+#### Example Changelog Directory Structure
+
+```
+server/changelogs/
+├── v1.2.0.md
+├── v1.1.0.md
+└── v1.0.0.md
+```
+
+Each changelog file should follow this format:
+
+```markdown
+---
+{
+  "title": "Version 1.2.0",
+  "version": "1.2.0", 
+  "published_at": "2024-01-20T10:00:00Z"
+}
+---
+
+## New Features
+
+- Added amazing new feature
+- Improved user experience
+
+## Bug Fixes
+
+- Fixed critical bug
+- Performance improvements
+```
+
 ## Components
 
 ### SplitView
@@ -197,6 +247,69 @@ function handleRedo() {
     @undo="handleUndo"
     @redo="handleRedo"
   />
+</template>
+```
+
+### Changelogs
+
+The `Changelogs` component displays a modal with application changelog information. It automatically fetches changelog data from the server and shows unread entries to users. The component tracks the last read version in localStorage and only shows new changelogs.
+
+#### Features
+
+- Automatically fetches changelog data from `/api/changelogs`
+- Shows only unread changelogs based on stored version
+- Supports Markdown content rendering
+- Responsive modal design with fullscreen option
+- Automatic version tracking in localStorage
+- Sorts changelogs by version (newest first)
+
+#### Changelog File Format
+
+Changelog files should be stored in the directory configured in your Nuxt config and follow this format:
+
+```markdown
+---
+{
+  "title": "Version 1.1.0",
+  "version": "1.1.0",
+  "published_at": "2024-01-15T10:00:00Z"
+}
+---
+
+## New Features
+
+- Added new changelog component
+- Improved performance
+
+## Bug Fixes
+
+- Fixed memory leak issue
+```
+
+#### Example Usage
+
+```vue
+<template>
+  <!-- Simple usage - automatically handles everything -->
+  <Changelogs />
+</template>
+```
+
+For testing purposes, you can clear the changelog cache:
+
+```vue
+<script setup>
+function clearChangelogCache() {
+  localStorage.removeItem("changelogs-last-read");
+  location.reload();
+}
+</script>
+
+<template>
+  <button @click="clearChangelogCache">
+    Clear Changelog Cache
+  </button>
+  <Changelogs />
 </template>
 ```
 
