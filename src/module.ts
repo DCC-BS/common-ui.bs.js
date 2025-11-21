@@ -19,11 +19,6 @@ export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
     defaults: {
         path: "server/changelogs",
     },
-    moduleDependencies: {
-        "@nuxtjs/mdc": {
-            version: "^0.18.4",
-        },
-    },
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
 

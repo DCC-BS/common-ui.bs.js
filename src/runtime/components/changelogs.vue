@@ -3,6 +3,9 @@ import type { ChangelogVersionProps } from "@nuxt/ui";
 import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { type Changelog, ChangelogSchema } from "../models/changelog.model";
+import MarkdownIt from "markdown-it";
+
+const md = new MarkdownIt();
 
 const data = ref<Changelog[]>();
 const error = ref<Error>();
@@ -51,28 +54,29 @@ const versions = computed<ChangelogVersionProps[]>(
 </script>
 
 <template>
-<UModal v-model:open="isOpen" :title="t('common-ui.changelogs.title')" size="lg" :closeable="true" fullscreen>
-    <template #body>
-        <div class="p-2 overflow-y-auto">
-            <div v-if="error">
-                <p class="text-red-500">Error loading changelogs: {{ error.message }}</p>
+    <UModal v-model:open="isOpen" :title="t('common-ui.changelogs.title')" size="lg" :closeable="true" fullscreen>
+        <template #body>
+            <div class="p-2 overflow-y-auto">
+                <div v-if="error">
+                    <p class="text-red-500">Error loading changelogs: {{ error.message }}</p>
+                </div>
+
+                <UChangelogVersions :versions="versions" :indicator="false">
+                    <template #date="{ version }">
+                        <span v-if="version.date">{{ new Date(version.date).toLocaleDateString('de-CH') }}</span>
+                    </template>
+                    <template #description="{ version }">
+                        <div v-if="version.description" class="prose-changelog"
+                            v-html="md.render(version.description)" />
+                    </template>
+                </UChangelogVersions>
             </div>
 
-            <UChangelogVersions :versions="versions" :indicator="false">
-                <template #date="{ version }">
-                    <span v-if="version.date">{{ new Date(version.date).toLocaleDateString('de-CH') }}</span>
-                </template>
-                <template #description="{ version }">
-                    <MDC v-if="version.description" :value="version.description" class="prose-changelog" />
-                </template>
-            </UChangelogVersions>
-        </div>
-
-        <div class="flex justify-center">
-            <UButton color="primary" class="mt-4" @click="isOpen = false">
-                {{ t('common-ui.changelogs.close') }}
-            </UButton>
-        </div>
-    </template>
-</UModal>
+            <div class="flex justify-center">
+                <UButton color="primary" class="mt-4" @click="isOpen = false">
+                    {{ t('common-ui.changelogs.close') }}
+                </UButton>
+            </div>
+        </template>
+    </UModal>
 </template>
