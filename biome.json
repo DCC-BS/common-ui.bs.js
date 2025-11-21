@@ -13,13 +13,7 @@
     },
     "files": {
         "ignoreUnknown": false,
-        "includes": [
-            "**",
-            "!.nuxt",
-            "!.output",
-            "!logs",
-            "!**/*.css"
-        ]
+        "includes": ["**", "!.nuxt", "!.output", "!logs", "!**/*.css"]
     },
     "formatter": {
         "enabled": true,
@@ -59,9 +53,7 @@
     },
     "overrides": [
         {
-            "includes": [
-                "**/*.vue"
-            ],
+            "includes": ["**/*.vue"],
             "linter": {
                 "rules": {
                     "correctness": {
