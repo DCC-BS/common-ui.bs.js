@@ -1,5 +1,11 @@
 {
     "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+    "html": {
+        "experimentalFullSupportEnabled": true,
+        "formatter": {
+            "indentScriptAndStyle": true
+        }
+    },
     "vcs": {
         "enabled": true,
         "clientKind": "git",
@@ -7,7 +13,13 @@
     },
     "files": {
         "ignoreUnknown": false,
-        "includes": ["**", "!.nuxt", "!.output", "!logs", "!**/*.css"]
+        "includes": [
+            "**",
+            "!.nuxt",
+            "!.output",
+            "!logs",
+            "!**/*.css"
+        ]
     },
     "formatter": {
         "enabled": true,
@@ -47,7 +59,9 @@
     },
     "overrides": [
         {
-            "includes": ["**/*.vue"],
+            "includes": [
+                "**/*.vue"
+            ],
             "linter": {
                 "rules": {
                     "correctness": {
