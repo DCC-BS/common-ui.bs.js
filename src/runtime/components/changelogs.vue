@@ -54,7 +54,7 @@ const versions = computed<ChangelogVersionProps[]>(
 </script>
 
 <template>
-    <UModal v-model:open="isOpen" :title="t('common-ui.changelogs.title')" size="lg" :closeable="true" fullscreen>
+    <UModal v-model:open="isOpen" :title="t('common-ui.changelogs.title')" size="lg" :closeable="true">
         <template #body>
             <div class="p-2 overflow-y-auto">
                 <div v-if="error">
