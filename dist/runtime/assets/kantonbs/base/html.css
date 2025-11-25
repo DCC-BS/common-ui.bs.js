@@ -1,0 +1,1 @@
+@layer base{html{@apply text-gray-900 scroll-pt-[58px] md:scroll-pt-[var(--page-header-height)]}html:not(.e2e):not(.pb-html-preview){@apply scroll-smooth}html{@apply motion-reduce:scroll-auto;--base-sticky-top:var(--page-header-bottom-height)}.page{min-height:calc(100vh - var(--page-header-height) - 250px)}}html.has-header-visible{--base-sticky-top:var(--page-header-height)}
