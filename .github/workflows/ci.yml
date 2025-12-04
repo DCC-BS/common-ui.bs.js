@@ -1,30 +1,21 @@
 name: Build & Test
-
 on:
   push:
-    branches:
-        - main
+    branches: [ main ]
   pull_request:
-    branches:
-        - main
+    branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: "24.x"
-          registry-url: "https://npm.pkg.github.com"
-      - name: Install Bun
-        run: npm install -g bun
-      - run: bun install
-      - name: Biome Check
-        run: bunx biome check
-      - name: Prepare the application
-        run:  bun run generate
-      - name: Build the playground
-        run:  bun run dev:build
-      - name: Run tsc
-        run: bun run tsc
+  ci:
+    uses: DCC-BS/ci-workflows/.github/workflows/frontend-ci.yml@v1
+    with:
+      node_version: '24.x'
+      working_directory: '.'
+      run_biome: true
+      run_playwright: false
+      install_method: 'bun'           # 'bun' | 'npm' | 'pnpm' | 'yarn'
+      install_command: ''             # optional override; default per install_method
+      build_command: 'bun run dev:build'
+      test_command: 'bunx playwright test'
+      artifact_name: 'playwright-report'
+      artifact_retention_days: 30
