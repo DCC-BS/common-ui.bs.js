@@ -254,7 +254,7 @@ The `Changelogs` component displays a modal with application changelog informati
 
 #### Features
 
-- Automatically fetches changelog data from `/api/changelogs`
+- Automatically fetches changelog data from `/changelogs`
 - Shows only unread changelogs based on stored version
 - Supports Markdown content rendering
 - Responsive modal design with fullscreen option
