@@ -12,7 +12,7 @@ const QuerySchema = z.object({
 });
 
 const moduleConfigSchema = z.object({
-    path: z.string(),
+    changelogsPath: z.string(),
 });
 
 const MetaSchema = z.object({
@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
 
     const moduleConfig = moduleConfigSchema.parse(config["common-ui.bs.js"]);
 
-    const changelogPath = moduleConfig.path;
+    const changelogPath = moduleConfig.changelogsPath;
     const dirPath = path.resolve(process.cwd(), changelogPath);
     const allFiles = await fs.promises.readdir(dirPath);
 

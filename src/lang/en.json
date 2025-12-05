@@ -7,6 +7,8 @@
         "changelogs": {
             "title": "What's New",
             "close": "Close"
-        }
+        },
+        "online": "Everything is up and running",
+        "offline": "Some services are unavailable, features may be limited"
     }
 }
