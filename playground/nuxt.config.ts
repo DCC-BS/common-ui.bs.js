@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: ["../src/module", "@nuxt/ui", "@nuxtjs/i18n"],
     "common-ui.bs.js": {
-        path: "playground/server/changelogs",
+        changelogsPath: "playground/server/changelogs",
     },
     css: ["~/assets/css/main.css"],
     ui: {

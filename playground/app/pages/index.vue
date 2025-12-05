@@ -7,6 +7,10 @@
   
   <NavigationBar />
 
+  <div class="p-2">
+    <OnlineStatus />
+  </div>
+
   <div class="min-h-[200px] md:h-[calc(100vh-140px)] flex flex-col">
     <div class="p-4 h-full">
       <SplitContainer>
