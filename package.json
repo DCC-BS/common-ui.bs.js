@@ -30,7 +30,7 @@
         "playground"
     ],
     "devDependencies": {
-        "@biomejs/biome": "2.3.7",
+        "@biomejs/biome": "^2.3.8",
         "@nuxt/module-builder": "1.0.2",
         "@tailwindcss/vite": "^4.1.11",
         "@types/bun": "latest",
@@ -42,7 +42,7 @@
         "unbuild": "^3.6.1",
         "vite": "^7.0.6",
         "vue": "^3.5.13",
-        "vue-tsc": "3.1.5"
+        "vue-tsc": "^3.1.7"
     },
     "peerDependencies": {
         "@nuxt/ui": "4.2.1",
@@ -53,7 +53,7 @@
     },
     "dependencies": {
         "@nuxt/kit": "4.2.1",
-        "@nuxtjs/i18n": "latest",
+        "@nuxtjs/i18n": "^10.2.1",
         "gray-matter": "^4.0.3",
         "markdown-it": "^14.1.0",
         "semver": "^7.7.3",
