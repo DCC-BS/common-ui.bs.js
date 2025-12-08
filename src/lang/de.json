@@ -11,7 +11,7 @@
         "health_status": {
             "online_title": "Online",
             "offline_title": "Offline",
-            "online_description": "Alles Dienste sind verfügbar",
+            "online_description": "Alle Dienste sind verfügbar",
             "offline_description": "Einige Dienste sind nicht verfügbar, Funktionen können eingeschränkt sein"
         }
     }
