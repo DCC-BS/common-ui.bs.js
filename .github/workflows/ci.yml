@@ -14,7 +14,7 @@ jobs:
             run_biome: true
             run_playwright: false
             install_method: "bun" # 'bun' | 'npm' | 'pnpm' | 'yarn'
-            install_command: "bun run prepack" # optional override; default per install_method
+            install_command: "bun i && bun run prepack" # optional override; default per install_method
             build_command: "bun run dev:build"
             test_command: ""
             artifact_name: "playwright-report"
