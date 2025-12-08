@@ -18,9 +18,19 @@ function onHover() {
 
 <template>
     <div class="flex flex-col items-center text-center" @pointerover="onHover">
-        <motion.a href="https://www.bs.ch/ki" target="_blank" rel="noopener noreferrer"
-            :initial="{ scale: 1, rotate: 0 }" :while-hover="currentHoverAnimation" :transition="{ duration: 0.5 }">
-            <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" class="w-[100px]">
+        <motion.a
+            href="https://www.bs.ch/ki"
+            target="_blank"
+            rel="noopener noreferrer"
+            :initial="{ scale: 1, rotate: 0 }"
+            :while-hover="currentHoverAnimation"
+            :transition="{ duration: 0.5 }"
+        >
+            <img
+                alt="Datenwissenschaften und Künstliche Intelligenz"
+                :src="image"
+                class="w-[100px]"
+            />
         </motion.a>
         <p class="mt-2">Datenwissenschaften und KI</p>
         <p>Developed with ❤️ by DCC - Data Competence Center</p>

@@ -7,6 +7,12 @@
         "changelogs": {
             "title": "What's New",
             "close": "Close"
+        },
+        "health_status": {
+            "online_title": "Online",
+            "offline_title": "Offline",
+            "online_description": "All services are available",
+            "offline_description": "Some services are unavailable, features may be limited"
         }
     }
 }

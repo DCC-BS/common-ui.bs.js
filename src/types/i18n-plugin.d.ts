@@ -41,12 +41,10 @@ declare module "vue-router" {
         RouteNamedMapI18n: RouteNamedMapI18n;
     }
 
-    export type RouteMapI18n = TypesConfig extends Record<
-        "RouteNamedMapI18n",
-        infer RouteNamedMap
-    >
-        ? RouteNamedMap
-        : RouteMapGeneric;
+    export type RouteMapI18n =
+        TypesConfig extends Record<"RouteNamedMapI18n", infer RouteNamedMap>
+            ? RouteNamedMap
+            : RouteMapGeneric;
 
     // Prefer named resolution for i18n
     export type RouteLocationNamedI18n<

@@ -2,7 +2,7 @@
 import type { DropdownMenuItem } from "@nuxt/ui";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import DisclaimerButton from "./disclaimer-button.vue";
+import DisclaimerButton from "./DisclaimerButton.vue";
 
 const { t, locale, locales, setLocale } = useI18n();
 
