@@ -374,7 +374,7 @@ This component requires:
   <OnlineStatus />
   
   <!-- With text label -->
-  <OnlineStatus :showText="true" />
+  <OnlineStatus showText />
   
   <!-- Custom poll interval (check every 60 seconds) -->
   <OnlineStatus :pollInterval="60000" />

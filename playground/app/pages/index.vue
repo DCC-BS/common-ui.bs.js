@@ -7,7 +7,7 @@
 
     <NavigationBar>
         <template #right>
-            <OnlineStatus :show-text="false"/>
+            <OnlineStatus show-text/>
         </template>
     </NavigationBar>
 
