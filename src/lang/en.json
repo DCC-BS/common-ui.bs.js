@@ -8,7 +8,11 @@
             "title": "What's New",
             "close": "Close"
         },
-        "online": "Everything is up and running",
-        "offline": "Some services are unavailable, features may be limited"
+        "health_status": {
+            "online_title": "Online",
+            "offline_title": "Offline",
+            "online_description": "All services are available",
+            "offline_description": "Some services are unavailable, features may be limited"
+        }
     }
 }

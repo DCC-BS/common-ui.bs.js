@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useLocalStorage } from "../composables/useLocalStorage";
-import DisclaimerView from "./disclaimer-view.vue";
+import DisclaimerView from "./DisclaimerView.vue";
 
 const DISCLAIMER_VERSION = "1.0.0";
 
@@ -86,14 +86,32 @@ function handleScroll() {
 <template>
     <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
         <div ref="modalContainer" class="modal-container">
-            <DisclaimerView v-model="disclaimerAcceptedChecked" :appName="props.appName"
-                :postfixHTML="props.postfixHTML" :confirmationText="confirmationText!" :showConfirmation="true" />
+            <DisclaimerView
+                v-model="disclaimerAcceptedChecked"
+                :appName="props.appName"
+                :postfixHTML="props.postfixHTML"
+                :confirmationText="confirmationText!"
+                :showConfirmation="true"
+            />
         </div>
 
         <!-- Scroll Down Button -->
-        <button v-if="showScrollButton" @click="scrollDown" class="scroll-down-button" aria-label="Scroll down">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+        <button
+            v-if="showScrollButton"
+            @click="scrollDown"
+            class="scroll-down-button"
+            aria-label="Scroll down"
+        >
+            <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
                 <polyline points="6,9 12,15 18,9"></polyline>
             </svg>
         </button>
@@ -164,7 +182,6 @@ function handleScroll() {
 }
 
 @keyframes bounce {
-
     0%,
     20%,
     50%,

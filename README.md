@@ -339,6 +339,63 @@ This component requires:
 </template>
 ```
 
+### OnlineStatus
+
+The `OnlineStatus` component displays a real-time health status indicator that checks whether the application is online. It automatically polls the server every 30 seconds to verify connectivity and displays a visual indicator with tooltip information.
+
+#### Props
+
+- `showText` (boolean, optional): Whether to display text along with the status indicator. Default is `false`.
+- `pollInterval` (number, optional): The interval in milliseconds for checking online status. Default is `30000` (30 seconds).
+
+#### Features
+
+- Configurable automatic health status checking (default: every 30 seconds)
+- Visual indicator with color-coded status (green for online, red for offline)
+- Tooltip with detailed status information
+- Internationalization support via i18n
+- Smooth color transitions
+
+#### Requirements
+
+This component requires:
+- Nuxt i18n module configured
+- Translation keys:
+  - `common-ui.health_status.online_title`
+  - `common-ui.health_status.online_description`
+  - `common-ui.health_status.offline_title`
+  - `common-ui.health_status.offline_description`
+
+#### Example Usage
+
+```vue
+<template>
+  <!-- Simple usage with just the indicator -->
+  <OnlineStatus />
+  
+  <!-- With text label -->
+  <OnlineStatus :showText="true" />
+  
+  <!-- Custom poll interval (check every 60 seconds) -->
+  <OnlineStatus :pollInterval="60000" />
+  
+  <!-- Combined: text and custom interval -->
+  <OnlineStatus :showText="true" :pollInterval="60000" />
+</template>
+```
+
+The component can be easily integrated into navigation bars or status displays:
+
+```vue
+<template>
+  <NavigationBar>
+    <template #right>
+      <OnlineStatus :showText="true" />
+    </template>
+  </NavigationBar>
+</template>
+```
+
 ## Design System
 
 This library uses the official [Kanton Basel-Stadt design system](https://github.com/kanton-basel-stadt/designsystem) colors, providing a consistent visual identity across all Basel-Stadt applications.
