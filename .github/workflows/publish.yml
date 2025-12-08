@@ -1,21 +1,21 @@
 name: Publish Package
 on:
-  workflow_dispatch:
-    inputs:
-      version_type:
-        description: Version increment type
-        type: choice
-        options: [ patch, minor, major ]
-        default: patch
+    workflow_dispatch:
+        inputs:
+            version_type:
+                description: Version increment type
+                type: choice
+                options: [patch, minor, major]
+                default: patch
 
 jobs:
-  publish:
-    uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@v3
-    secrets: inherit
-    with:
-      version_type: ${{ inputs.version_type }}
-      registry_url: https://npm.pkg.github.com
-      install_command: bun install
-      build_command: bun generate
-      prepack_command: bun run prepack
-      publish_command: bun publish --access public
+    publish:
+        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@v3
+        secrets: inherit
+        with:
+            version_type: ${{ inputs.version_type }}
+            registry_url: https://npm.pkg.github.com
+            install_command: bun install
+            build_command: bun generate
+            prepack_command: bun run prepack
+            publish_command: bun publish --access public
