@@ -10,6 +10,11 @@ export default defineNuxtConfig({
     ui: {
         colorMode: false,
     },
+    fonts: {
+        providers: {
+            bunny: false,
+        },
+    },
     typescript: {
         typeCheck: true,
         strict: true,
