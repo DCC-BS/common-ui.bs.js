@@ -2,7 +2,7 @@
 
 A comprehensive Nuxt module providing reusable UI components, composables, and utilities built with the official [Kanton Basel-Stadt design system](https://github.com/kanton-basel-stadt/designsystem). This package streamlines development of Basel-Stadt applications by offering a consistent, accessible, and well-documented component library.
 
-[![NPM Version](https://img.shields.io/npm/v/%40dcc-bs%2Fcommon-ui.bs.js)](https://www.npmjs.com/package/@dcc-bs/common-ui.bs.js)
+![GitHub License](https://img.shields.io/github/license/DCC-BS/common-ui.bs.js)
 [![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
 [![NPM Version](https://img.shields.io/npm/v/%40dcc-bs%2Fcommon-ui.bs.js)](https://www.npmjs.com/package/@dcc-bs/common-ui.bs.js)
 
