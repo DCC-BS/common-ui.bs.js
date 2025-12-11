@@ -3,7 +3,7 @@ import type { ChangelogVersionProps } from "@nuxt/ui";
 import MarkdownIt from "markdown-it";
 import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { type Changelog, ChangelogSchema } from "../models/changelog.model";
+import { type Changelog, ChangelogSchema } from "../types/changelog.model";
 
 const md = new MarkdownIt();
 

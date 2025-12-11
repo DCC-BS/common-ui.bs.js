@@ -434,7 +434,7 @@ const showToast = (
                 <template #header>
                     <h2 class="text-2xl font-semibold">Theme & Color Mode</h2>
                 </template>
-                
+
                 <div class="space-y-6">
                     <!-- Color Mode Controls -->
                     <div>
@@ -450,10 +450,10 @@ const showToast = (
                     <div>
                         <h3 class="text-lg font-medium mb-3">Color Mode Elements</h3>
                         <div class="flex gap-4 items-center">
-                            <UColorModeAvatar 
+                            <UColorModeAvatar
                                 :light-src="'https://via.placeholder.com/40/3b82f6/ffffff'"
                                 :dark-src="'https://via.placeholder.com/40/1f2937/ffffff'"
-                                alt="Theme Avatar" 
+                                alt="Theme Avatar"
                             />
                             <UColorModeImage
                                 :light-src="'https://via.placeholder.com/60x40/3b82f6/ffffff'"
@@ -471,7 +471,7 @@ const showToast = (
                 <template #header>
                     <h2 class="text-2xl font-semibold">Additional Components</h2>
                 </template>
-                
+
                 <div class="space-y-6">
                     <!-- Command Palette -->
                     <div>

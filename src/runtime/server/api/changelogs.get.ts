@@ -5,7 +5,7 @@ import { defineEventHandler, getQuery } from "h3";
 import { compare } from "semver";
 import { z } from "zod";
 import { useRuntimeConfig } from "#imports";
-import type { Changelog } from "../../models/changelog.model";
+import type { Changelog } from "../../types/changelog.model";
 
 const QuerySchema = z.object({
     lastRead: z.string().optional(),

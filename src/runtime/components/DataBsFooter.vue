@@ -14,21 +14,29 @@ function onHover() {
 <template>
     <!-- Application Footer -->
     <div class="px-6 py-3">
-        <div class="flex items-center justify-between gap-4 text-xs text-gray-500">
+        <div
+            class="flex items-center justify-between gap-4 text-xs text-gray-500"
+        >
             <!-- Brand Section -->
             <div class="flex items-center gap-2">
-                <a href="https://www.bs.ch/ki" target="_blank" :class="animation" @mouseenter="onHover"
-                    rel="noopener noreferrer">
-                    <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" width="48">
+                <a
+                    href="https://www.bs.ch/ki"
+                    target="_blank"
+                    :class="animation"
+                    @mouseenter="onHover"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        alt="Datenwissenschaften und Künstliche Intelligenz"
+                        :src="image"
+                        width="48"
+                    />
                 </a>
 
                 <div class="hidden sm:block">
                     <div>Datenwissenschaften und KI</div>
-                    <div>
-                        Developed with ♥ by DCC - Data Competence Center
-                    </div>
+                    <div>Developed with ♥ by DCC - Data Competence Center</div>
                 </div>
-
             </div>
             <slot />
         </div>

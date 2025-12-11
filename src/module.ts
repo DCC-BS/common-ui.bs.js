@@ -1,5 +1,6 @@
 import {
     addComponentsDir,
+    addImportsDir,
     addServerHandler,
     createResolver,
     defineNuxtModule,
@@ -47,6 +48,8 @@ export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
             global: true,
             pathPrefix: false,
         });
+
+        addImportsDir(resolver.resolve("./runtime/composables"));
 
         addServerHandler({
             route: "/api/changelogs",
