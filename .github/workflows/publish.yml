@@ -10,7 +10,7 @@ on:
 
 jobs:
     publish:
-        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@f66aa104d53b85e0ec43aa3f191b7d35af01ad74
+        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@f29d4709baf834161dbeb6ce459b84600978d72c
         secrets: inherit
         with:
             version_type: ${{ inputs.version_type }}
