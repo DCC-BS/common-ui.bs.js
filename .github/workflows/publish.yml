@@ -8,12 +8,9 @@ on:
                 options: [patch, minor, major]
                 default: patch
 
-permissions:
-    id-token: write
-
 jobs:
     publish:
-        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@513a07e80bae4b435a414d7ba54f35c5551eb975
+        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@f66aa104d53b85e0ec43aa3f191b7d35af01ad74
         secrets: inherit
         with:
             version_type: ${{ inputs.version_type }}
