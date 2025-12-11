@@ -10,7 +10,7 @@ on:
 
 jobs:
     publish:
-        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@v4
+        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@513a07e80bae4b435a414d7ba54f35c5551eb975
         secrets: inherit
         with:
             version_type: ${{ inputs.version_type }}
@@ -18,4 +18,3 @@ jobs:
             install_command: bun install
             build_command: bun run generate
             prepack_command: bun run prepack
-            publish_command: bun publish --access public
