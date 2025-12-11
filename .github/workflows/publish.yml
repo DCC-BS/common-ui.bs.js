@@ -10,7 +10,7 @@ on:
 
 jobs:
     publish:
-        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@f29d4709baf834161dbeb6ce459b84600978d72c
+        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@c4ad051c205ad9eb83e4993d379e26ca8ca19fae
         with:
             version_type: ${{ inputs.version_type }}
             install_command: bun install
