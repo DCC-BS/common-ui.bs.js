@@ -1,19 +1,38 @@
 # common-ui.bs.js
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/DCC-BS/common-ui.bs.js)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/DCC-BS/common-ui.bs.js/publish.yml)
+A comprehensive Nuxt module providing reusable UI components, composables, and utilities built with the official [Kanton Basel-Stadt design system](https://github.com/kanton-basel-stadt/designsystem). This package streamlines development of Basel-Stadt applications by offering a consistent, accessible, and well-documented component library.
 
-Common Nuxt components and UI utilities using the official [Kanton Basel-Stadt design system](https://github.com/kanton-basel-stadt/designsystem) colors and styling.
+[![NPM Version](https://img.shields.io/npm/v/%40dcc-bs%2Fcommon-ui.bs.js)](https://www.npmjs.com/package/@dcc-bs/common-ui.bs.js)
+[![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
+[![NPM Version](https://img.shields.io/npm/v/%40dcc-bs%2Fcommon-ui.bs.js)](https://www.npmjs.com/package/@dcc-bs/common-ui.bs.js)
+
+**What's included:**
+- **Pre-built Components**: Navigation bars, split views, disclaimers, status indicators, and more
+- **Useful Composables**: User feedback system, error handling utilities
+- **i18n Integration**: Built-in internationalization support
+- **Design System**: Full integration with Kanton Basel-Stadt color palette and styling
+- **Accessibility**: Components built with accessibility in mind
+- **Zero Configuration**: Auto-imports components and configures everything for you
 
 ## Quick Setup
 
 **This package can only be used as a Nuxt module.**
 
-1. Install the module to your Nuxt application with:
+1. Install the module to your Nuxt application with your preferred package manager:
+
 ```sh
-bun add git+https://github.com/DCC-BS/common-ui.bs.js.git#v1.1.0
+# bun
+bun add @dcc-bs/common-ui.bs.js
+
+# npm
+npm install @dcc-bs/common-ui.bs.js
+
+# pnpm
+pnpm add @dcc-bs/common-ui.bs.js
+
+# yarn
+yarn add @dcc-bs/common-ui.bs.js
 ```
-replace `v1.1.0` with the latest version tag: ![GitHub package.json version](https://img.shields.io/github/package-json/v/DCC-BS/common-ui.bs.js)
 
 2. Add the module to your `nuxt.config.ts`:
 ```typescript
@@ -394,6 +413,136 @@ The component can be easily integrated into navigation bars or status displays:
     </template>
   </NavigationBar>
 </template>
+```
+
+## Composables
+
+### useUserFeedback
+
+The `useUserFeedback` composable provides a unified interface for displaying toast notifications and error messages to users. It integrates with Nuxt UI's toast system and supports internationalization for API errors.
+
+#### Features
+
+- Toast notifications with customizable types (error, success, info, warning)
+- Automatic color and icon selection based on feedback type
+- Support for API error handling with i18n integration
+- Built on top of Nuxt UI's toast system
+
+#### Return Values
+
+The composable returns an object with the following functions:
+
+- **showToast(message, type, options)**: Display a toast notification
+  - `message` (string, required): The message to display
+  - `type` (FeedbackType, optional): Type of feedback - `"error"`, `"success"`, `"info"`, or `"warning"`. Default is `"error"`
+  - `options` (Partial<Toast>, optional): Additional toast options (title, duration, etc.)
+
+- **showError(error)**: Display an error message
+  - `error` (Error | ApiError, required): An Error object or ApiError object with error details
+
+#### Types
+
+```typescript
+type FeedbackType = "error" | "success" | "info" | "warning";
+
+// see also https://github.com/DCC-BS/communication.bs.js
+type ApiError = {
+  $type: "ApiError";
+  errorId: string;
+  debugMessage?: string;
+  status: number;
+};
+```
+
+#### Requirements
+
+This composable requires:
+- Nuxt UI module configured
+- Nuxt i18n module configured (for API error translations)
+- Translation keys in format `api_error.{errorId}` for API errors
+
+#### Example Usage
+
+```vue
+<script setup lang="ts">
+const { showToast, showError } = useUserFeedback();
+
+
+// Show a success toast
+function onSaveSuccess() {
+  showToast("Data saved successfully!", "success");
+}
+
+// Show an error toast with custom duration
+function onValidationError() {
+  showToast("Please fill in all required fields", "error", {
+    duration: 5000
+  });
+}
+
+// Show a warning toast
+function onWarning() {
+  showToast("This action cannot be undone", "warning");
+}
+
+// Show an info toast
+function onInfo() {
+  showToast("Your changes are being processed", "info");
+}
+
+// Custom toast options
+function showCustomToast() {
+  showToast("Operation completed", "success", {
+    title: "Success",
+    duration: 10000,
+    actions: [{
+      label: "Undo",
+      click: () => console.log("Undo clicked")
+    }]
+  });
+}
+</script>
+
+<template>
+  <div>
+    <button @click="onSaveSuccess">Save</button>
+    <button @click="fetchData">Fetch Data</button>
+  </div>
+</template>
+```
+
+#### API Error Handling
+
+When using `showError` with an API error that has the `$type: "ApiError"` property, the composable will automatically look up the translation key based on the `errorId`:
+
+```ts
+import { apiFetch, isApiError } from "@DCC-BS/communication.bs.js";
+
+const { showError } = useUserFeedback();
+
+// Handle API errors
+async function fetchData() {
+    const response = await apiFetch<Data>("/api/data");
+    
+    if(isApiError(response)) {
+      showError(response);
+      return;
+    }
+    
+    // Process the successful response
+}
+```
+
+Make sure to define your API error translations in your i18n configuration:
+
+```json
+{
+  "api_error": {
+    "not_found": "The requested resource was not found",
+    "unauthorized": "You are not authorized to perform this action",
+    "server_error": "An unexpected server error occurred"
+  }
+}
 ```
 
 ## Design System
