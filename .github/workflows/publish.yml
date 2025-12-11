@@ -8,6 +8,10 @@ on:
                 options: [patch, minor, major]
                 default: patch
 
+permissions:
+    id-token: write # Required for OIDC
+    contents: read
+
 jobs:
     publish:
         uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@1028318219e5f9bc456bd6a5c92b7e1179ce6ef9
