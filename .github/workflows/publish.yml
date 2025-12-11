@@ -8,6 +8,9 @@ on:
                 options: [patch, minor, major]
                 default: patch
 
+permissions:
+    id-token: write
+
 jobs:
     publish:
         uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@513a07e80bae4b435a414d7ba54f35c5551eb975
