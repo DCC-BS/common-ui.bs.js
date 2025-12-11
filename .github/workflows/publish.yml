@@ -11,7 +11,6 @@ on:
 jobs:
     publish:
         uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@f29d4709baf834161dbeb6ce459b84600978d72c
-        secrets: inherit
         with:
             version_type: ${{ inputs.version_type }}
             install_command: bun install
