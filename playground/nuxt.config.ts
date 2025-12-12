@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         },
     },
     typescript: {
-        typeCheck: true,
+        typeCheck: false, // Disabled due to vite-plugin-checker v0.12.0 incompatibility with Node.js v25
         strict: true,
     },
     i18n: {
