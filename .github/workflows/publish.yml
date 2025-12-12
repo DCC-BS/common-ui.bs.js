@@ -14,9 +14,10 @@ permissions:
 
 jobs:
     publish:
-        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@1028318219e5f9bc456bd6a5c92b7e1179ce6ef9
+        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@0ba9957724fb5ccb1c84e5cc8b40036e3fb68241
         with:
             version_type: ${{ inputs.version_type }}
             install_command: bun install
             build_command: bun run generate
             prepack_command: bun run prepack
+            publish_command: npm publish --dry-run
