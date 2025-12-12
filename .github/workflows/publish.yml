@@ -14,7 +14,7 @@ permissions:
 
 jobs:
     publish:
-        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@0ba9957724fb5ccb1c84e5cc8b40036e3fb68241
+        uses: DCC-BS/ci-workflows/.github/workflows/npm-publish.yml@v5
         with:
             version_type: ${{ inputs.version_type }}
             install_command: bun install
