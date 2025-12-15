@@ -7,19 +7,12 @@ import {
 } from "@nuxt/kit";
 import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
 
-export interface ModuleOptions {
-    changelogsPath: string;
-}
-
-export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
+export default defineNuxtModule<ModuleRuntimeHooks>({
     meta: {
         name: "common-ui.bs.js",
         configKey: "common-ui.bs.js",
     },
     // Default configuration options of the Nuxt module
-    defaults: {
-        changelogsPath: "server/changelogs",
-    },
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
 
@@ -38,10 +31,6 @@ export default defineNuxtModule<ModuleRuntimeHooks & ModuleOptions>({
                 ],
             });
         });
-
-        _nuxt.options.runtimeConfig["common-ui.bs.js"] = {
-            changelogsPath: _options.changelogsPath,
-        };
 
         addComponentsDir({
             path: resolver.resolve("./runtime/components"),

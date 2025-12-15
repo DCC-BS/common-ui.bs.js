@@ -1,18 +1,11 @@
-import fs from "node:fs";
-import path from "node:path";
 import matter from "gray-matter";
 import { defineEventHandler, getQuery } from "h3";
 import { compare } from "semver";
 import { z } from "zod";
-import { useRuntimeConfig } from "#imports";
 import type { Changelog } from "../../types/changelog.model";
 
 const QuerySchema = z.object({
     lastRead: z.string().optional(),
-});
-
-const moduleConfigSchema = z.object({
-    changelogsPath: z.string(),
 });
 
 const MetaSchema = z.object({
@@ -22,16 +15,14 @@ const MetaSchema = z.object({
 });
 
 export default defineEventHandler(async (event) => {
-    const config = useRuntimeConfig();
+    const storage = useStorage("assets:server:changelogs");
 
     const query = getQuery(event);
     const options = QuerySchema.parse(query);
 
-    const moduleConfig = moduleConfigSchema.parse(config["common-ui.bs.js"]);
+    const allFiles = await storage.getKeys();
 
-    const changelogPath = moduleConfig.changelogsPath;
-    const dirPath = path.resolve(process.cwd(), changelogPath);
-    const allFiles = await fs.promises.readdir(dirPath);
+    console.log(allFiles);
 
     allFiles.sort((a, b) =>
         compare(b.replace(".md", ""), a.replace(".md", "")),
@@ -40,10 +31,9 @@ export default defineEventHandler(async (event) => {
     const changelogs = [] as Changelog[];
 
     for (const fileName of allFiles) {
-        const filePath = path.join(dirPath, fileName);
-        const fileContent = await fs.promises.readFile(filePath, "utf-8");
+        const fileContent = await storage.getItem(fileName);
 
-        const { content, data } = matter(fileContent);
+        const { content, data } = matter(fileContent as string);
 
         const meta = MetaSchema.parse(data);
 
