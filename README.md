@@ -70,14 +70,14 @@ export default defineNuxtConfig({
     '@dcc-bs/common-ui.bs.js'
   ],
   "common-ui.bs.js": {
-    path: "server/changelogs", // Path to changelog files directory
+    changelogsPath: "server/changelogs", // Path to changelog files directory
   },
 })
 ```
 
 ### Configuration Properties
 
-- **path** (string, optional): Path to the directory containing changelog files. This path is resolved relative to your project root. The changelog files should be markdown files with YAML frontmatter containing `title`, `version`, and `published_at` fields.
+- **changelogsPath** (string, optional): Path to the directory containing changelog files. This path is resolved relative to your project root. The changelog files should be markdown files with YAML frontmatter containing `title`, `version`, and `published_at` fields.
 
 #### Example Changelog Directory Structure
 
