@@ -1,5 +1,6 @@
 import matter from "gray-matter";
 import { defineEventHandler, getQuery } from "h3";
+import { useStorage } from "nitropack/runtime/storage";
 import { compare } from "semver";
 import { z } from "zod";
 import type { Changelog } from "../../types/changelog.model";
@@ -21,8 +22,6 @@ export default defineEventHandler(async (event) => {
     const options = QuerySchema.parse(query);
 
     const allFiles = await storage.getKeys();
-
-    console.log(allFiles);
 
     allFiles.sort((a, b) =>
         compare(b.replace(".md", ""), a.replace(".md", "")),
