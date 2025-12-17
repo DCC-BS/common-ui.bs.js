@@ -1,13 +1,15 @@
 <script lang="ts" setup>
-
+const disclaimerContent = `<h2>Disclaimer</h2>
+<p>This is a test disclaimer content for the test-app.</p>
+<p>Please read and understand the terms before using the application.</p>`;
 </script>
 
 <template>
     <Changelogs />
-    <Disclaimer app-name="Test App"></Disclaimer>
+    <Disclaimer  confirmation-text="I have read and understood the instructions and confirm that I will use Test App exclusively in compliance with the stated guidelines." app-name="Test App"></Disclaimer>
 
     <NavigationBar>
-        <template #right>
+        <template #rightPostItems>
             <OnlineStatus show-text/>
         </template>
     </NavigationBar>

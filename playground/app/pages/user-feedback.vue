@@ -9,8 +9,6 @@ function showFeedback() {
     showToast(message.value, type.value, { duration: 3000 });
 }
 
-
-
 </script>
 
 <template>

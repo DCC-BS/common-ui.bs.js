@@ -99,19 +99,29 @@ The `SplitView` component allows you to create a resizable split view layout. It
 
 The `DisclaimerLlm` component displays a disclamer modal which the user must accept before using the application. It is typically used for applications that involve AI or machine learning models.
 
+#### Props
+
+- `appName` (string, required): The name of your application.
+- `contentHTML` (string, optional): Custom HTML content for the disclaimer. If not provided, uses the default disclaimer content.
+- `postfixHTML` (string, optional): Additional HTML content to append after the main disclaimer. Default is an empty string.
+- `confirmationText` (string, optional): Custom text for the confirmation checkbox. If not set, defaults to a standard German confirmation text.
+- `disclaimerVersion` (string, optional): Version string for the disclaimer (e.g., "1.0.0"). When the version changes, users will need to accept the disclaimer again. Default is "1.0.0".
+
 #### Example Usage
 
 ```vue
 <template>
   <Disclaimer
     appName="My App"
+    contentHTML="<h2>Custom Disclaimer</h2><p>Your custom disclaimer content here.</p>"
     postfixHTML="<p>Some additional information about the disclaimer.</p>"
     confirmationText="I accept the terms and conditions."
+    disclaimerVersion="2.0.0"
     />
 </template>
 ```
-The `postfixHTML` is optional when not set it will default to an empty string.
-The `confirmationText` is also optional, if not set it will default to the default disclaimer text.
+
+The disclaimer acceptance is stored in localStorage along with the version number. When you update the `disclaimerVersion` prop, users who previously accepted an older version will see the disclaimer modal again.
 
 You can also use the `DisclaimerButton` component to trigger the disclaimer modal again after it has been accepted:
 
@@ -223,6 +233,13 @@ function handleRedo() {
 
 The `Changelogs` component displays a modal with application changelog information. It automatically fetches changelog data from the server and shows unread entries to users. The component tracks the last read version in localStorage and only shows new changelogs.
 
+#### Behavior
+
+- **First-time visitors**: No changelog modal will be shown, but the latest version number is stored in localStorage
+- **Returning visitors**: On component mount, if there is a newer version available compared to the version stored in localStorage, all newer changelogs are displayed in the modal
+- **Version tracking**: After viewing changelogs (or on first visit), the latest version number is automatically updated in localStorage
+- **No stored version**: If no version is stored in localStorage, it is treated as a first visit and nothing is shown
+
 #### Features
 
 - Automatically fetches changelog data from `/changelogs`
@@ -240,7 +257,7 @@ Changelog files should be stored in `server/assets/changelogs` directory as makd
 ---
 title: "Version 1.1.0"
 version: "1.1.0"
-published_at: "2024-01-15T10:00:00Z"
+published_at: "2024-01-15"
 ---
 
 ## New Features
@@ -262,13 +279,13 @@ published_at: "2024-01-15T10:00:00Z"
 </template>
 ```
 
-For testing purposes, you can clear the changelog cache:
+For testing purposes, you can set the changelog to an older version by clearing the stored version in localStorage:
 
 ```vue
 <script setup>
 function clearChangelogCache() {
-  localStorage.removeItem("changelogs-last-read");
-  location.reload();
+    localStorage.setItem("changelogs-last-read", "0.0.0");
+    location.reload();
 }
 </script>
 

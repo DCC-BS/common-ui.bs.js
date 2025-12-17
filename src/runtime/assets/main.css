@@ -2,3 +2,7 @@
 @import "./kantonbs/index.css";
 @import "./markdown.css";
 @source "../components";
+
+:root {
+    color-scheme: light;
+}

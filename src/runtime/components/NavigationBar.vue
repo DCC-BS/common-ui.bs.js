@@ -1,45 +1,29 @@
 <script lang="ts" setup>
-import type { DropdownMenuItem } from "@nuxt/ui";
-import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import DisclaimerButton from "./DisclaimerButton.vue";
+import LanguageSelect from "./LanguageSelect.vue";
 
-const { t, locale, locales, setLocale } = useI18n();
-
-const availableLocales = computed(() => {
-    return locales.value.filter((i) => i.code !== locale.value);
-});
-
-const currentLocale = computed(() => {
-    return locale.value?.toUpperCase() ?? "EN";
-});
-
-// Navigation menu items
-const items = computed<DropdownMenuItem[]>(() =>
-    availableLocales.value.map((locale) => ({
-        label: locale.code.toUpperCase(),
-        onSelect: async () => setLocale(locale.code),
-    })),
-);
+const { t } = useI18n();
 </script>
 
 <template>
     <div class="flex justify-between gap-2 p-2 w-full z-50">
-        <div class="text-xl font-bold mt-4 ml-4">
-            {{ t("navigation.app") }}
-        </div>
+        <slot name="left">
+            <div class="text-xl font-bold mt-4 ml-4">
+                {{ t("navigation.app") }}
+            </div>
+        </slot>
 
         <slot name="center" />
 
-        <div class="flex items-center gap-2">
-            <DisclaimerButton variant="ghost" />
+        <slot name="right">
+            <div class="flex items-center gap-2">
+                <slot name="rightPreItems" />
+                <DisclaimerButton variant="ghost" />
+                <LanguageSelect />
 
-            <UDropdownMenu :items="items" variant="ghost">
-                <UButton variant="ghost" :label="currentLocale" color="neutral">
-                </UButton>
-            </UDropdownMenu>
-
-            <slot name="right" />
-        </div>
+                <slot name="rightPostItems" />
+            </div>
+        </slot>
     </div>
 </template>

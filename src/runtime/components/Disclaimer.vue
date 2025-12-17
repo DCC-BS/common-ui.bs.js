@@ -7,30 +7,27 @@ const DISCLAIMER_VERSION = "1.0.0";
 
 interface InputProps {
     appName: string;
-    postfixHTML?: string;
+    contentHtml?: string;
+    postfixHtml?: string;
     confirmationText?: string;
+    disclaimerVersion?: string;
 }
 
-const props = withDefaults(defineProps<InputProps>(), {
-    postfixHTML: "",
-});
+const props = defineProps<InputProps>();
 
 const isReady = ref(false);
-const confirmationText = ref(props.confirmationText);
 const disclaimerAcceptedVersion = useLocalStorage<string>(
     "disclaimerAccepted",
     "",
 );
+const disclaimerVersion = ref(props.disclaimerVersion || DISCLAIMER_VERSION);
+
 const disclaimerAccepted = computed(() => {
-    return disclaimerAcceptedVersion.value === DISCLAIMER_VERSION;
+    return disclaimerAcceptedVersion.value === disclaimerVersion.value;
 });
 const disclaimerAcceptedChecked = ref(false);
 
 onMounted(() => {
-    if (!confirmationText.value) {
-        confirmationText.value = `Ich habe die Hinweise gelesen und verstanden und bestätige, dass ich ${props.appName} ausschliesslich unter Einhaltung der genannten Richtlinien verwende.`;
-    }
-
     isReady.value = true;
 });
 
@@ -84,13 +81,18 @@ function handleScroll() {
 </script>
 
 <template>
-    <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
+    <div
+        class="disclaimer-modal"
+        v-if="isReady && !disclaimerAccepted"
+        color-scheme="light"
+    >
         <div ref="modalContainer" class="modal-container">
             <DisclaimerView
                 v-model="disclaimerAcceptedChecked"
                 :appName="props.appName"
-                :postfixHTML="props.postfixHTML"
-                :confirmationText="confirmationText!"
+                :contentHtml="props.contentHtml"
+                :postfixHtml="props.postfixHtml"
+                :confirmationText="props.confirmationText"
                 :showConfirmation="true"
             />
         </div>
@@ -140,6 +142,7 @@ function handleScroll() {
     max-width: 900px;
     padding: 2rem;
     overflow-y: auto;
+    color: black;
     background-color: white;
     border: 1px solid #eee;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
