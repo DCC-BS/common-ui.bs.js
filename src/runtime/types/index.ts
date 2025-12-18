@@ -1,1 +1,1 @@
-export { ChangelogSchema, type Changelog } from "./changelog.model";
+export { type Changelog, ChangelogSchema } from "./changelog.model";
