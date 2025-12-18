@@ -58,7 +58,7 @@ watch(disclaimerAccepted, (newValue) => {
 
 watch(disclaimerAcceptedChecked, (newValue) => {
     if (newValue) {
-        disclaimerAcceptedVersion.value = DISCLAIMER_VERSION;
+        disclaimerAcceptedVersion.value = disclaimerVersion.value;
     }
 });
 
@@ -81,39 +81,17 @@ function handleScroll() {
 </script>
 
 <template>
-    <div
-        class="disclaimer-modal"
-        v-if="isReady && !disclaimerAccepted"
-        color-scheme="light"
-    >
+    <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
         <div ref="modalContainer" class="modal-container">
-            <DisclaimerView
-                v-model="disclaimerAcceptedChecked"
-                :appName="props.appName"
-                :contentHtml="props.contentHtml"
-                :postfixHtml="props.postfixHtml"
-                :confirmationText="props.confirmationText"
-                :showConfirmation="true"
-            />
+            <DisclaimerView v-model="disclaimerAcceptedChecked" :appName="props.appName"
+                :contentHtml="props.contentHtml" :postfixHtml="props.postfixHtml"
+                :confirmationText="props.confirmationText" :showConfirmation="true" />
         </div>
 
         <!-- Scroll Down Button -->
-        <button
-            v-if="showScrollButton"
-            @click="scrollDown"
-            class="scroll-down-button"
-            aria-label="Scroll down"
-        >
-            <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
+        <button v-if="showScrollButton" @click="scrollDown" class="scroll-down-button" aria-label="Scroll down">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6,9 12,15 18,9"></polyline>
             </svg>
         </button>
@@ -185,6 +163,7 @@ function handleScroll() {
 }
 
 @keyframes bounce {
+
     0%,
     20%,
     50%,
