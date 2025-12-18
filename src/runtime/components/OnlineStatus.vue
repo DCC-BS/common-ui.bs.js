@@ -9,11 +9,15 @@ const { t } = useI18n();
 interface Props {
     showText?: boolean;
     pollInterval?: number;
+    isOnlineCheckFunction?: () => Promise<boolean>;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     showText: false,
     pollInterval: 30000,
+    isOnlineCheckFunction: async () => {
+        return await checkIsOnline();
+    },
 });
 
 onMounted(() => {
@@ -25,7 +29,7 @@ onMounted(() => {
 });
 
 async function fetchOnlineStatus() {
-    isOnline.value = await checkIsOnline();
+    isOnline.value = await props.isOnlineCheckFunction();
 }
 </script>
 

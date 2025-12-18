@@ -7,30 +7,27 @@ const DISCLAIMER_VERSION = "1.0.0";
 
 interface InputProps {
     appName: string;
-    postfixHTML?: string;
+    contentHtml?: string;
+    postfixHtml?: string;
     confirmationText?: string;
+    disclaimerVersion?: string;
 }
 
-const props = withDefaults(defineProps<InputProps>(), {
-    postfixHTML: "",
-});
+const props = defineProps<InputProps>();
 
 const isReady = ref(false);
-const confirmationText = ref(props.confirmationText);
 const disclaimerAcceptedVersion = useLocalStorage<string>(
     "disclaimerAccepted",
     "",
 );
+const disclaimerVersion = ref(props.disclaimerVersion || DISCLAIMER_VERSION);
+
 const disclaimerAccepted = computed(() => {
-    return disclaimerAcceptedVersion.value === DISCLAIMER_VERSION;
+    return disclaimerAcceptedVersion.value === disclaimerVersion.value;
 });
 const disclaimerAcceptedChecked = ref(false);
 
 onMounted(() => {
-    if (!confirmationText.value) {
-        confirmationText.value = `Ich habe die Hinweise gelesen und verstanden und bestätige, dass ich ${props.appName} ausschliesslich unter Einhaltung der genannten Richtlinien verwende.`;
-    }
-
     isReady.value = true;
 });
 
@@ -61,7 +58,7 @@ watch(disclaimerAccepted, (newValue) => {
 
 watch(disclaimerAcceptedChecked, (newValue) => {
     if (newValue) {
-        disclaimerAcceptedVersion.value = DISCLAIMER_VERSION;
+        disclaimerAcceptedVersion.value = disclaimerVersion.value;
     }
 });
 
@@ -86,32 +83,15 @@ function handleScroll() {
 <template>
     <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
         <div ref="modalContainer" class="modal-container">
-            <DisclaimerView
-                v-model="disclaimerAcceptedChecked"
-                :appName="props.appName"
-                :postfixHTML="props.postfixHTML"
-                :confirmationText="confirmationText!"
-                :showConfirmation="true"
-            />
+            <DisclaimerView v-model="disclaimerAcceptedChecked" :appName="props.appName"
+                :contentHtml="props.contentHtml" :postfixHtml="props.postfixHtml"
+                :confirmationText="props.confirmationText" :showConfirmation="true" />
         </div>
 
         <!-- Scroll Down Button -->
-        <button
-            v-if="showScrollButton"
-            @click="scrollDown"
-            class="scroll-down-button"
-            aria-label="Scroll down"
-        >
-            <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
+        <button v-if="showScrollButton" @click="scrollDown" class="scroll-down-button" aria-label="Scroll down">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6,9 12,15 18,9"></polyline>
             </svg>
         </button>
@@ -140,6 +120,7 @@ function handleScroll() {
     max-width: 900px;
     padding: 2rem;
     overflow-y: auto;
+    color: black;
     background-color: white;
     border: 1px solid #eee;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -182,6 +163,7 @@ function handleScroll() {
 }
 
 @keyframes bounce {
+
     0%,
     20%,
     50%,
