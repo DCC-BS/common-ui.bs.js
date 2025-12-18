@@ -11,24 +11,14 @@ const { t } = useI18n();
 
 <template>
     <div class="flex">
-        <UTooltip :text="t('common-ui.undo_tooltip')" :kbds="['ctrl', 'x']">
-            <UButton
-                variant="link"
-                color="neutral"
-                icon="i-lucide-undo"
-                @click="$emit('undo')"
-                :disabled="!props.canUndo"
-            />
+        <UTooltip :text="t('common-ui.undo_tooltip')" :kbds="['ctrl', 'Z']">
+            <UButton variant="link" color="neutral" icon="i-lucide-undo" @click="$emit('undo')"
+                :disabled="!props.canUndo" />
         </UTooltip>
 
         <UTooltip :text="t('common-ui.redo_tooltip')" :kbds="['ctrl', 'Y']">
-            <UButton
-                variant="link"
-                color="neutral"
-                icon="i-lucide-redo"
-                @click="$emit('redo')"
-                :disabled="!props.canRedo"
-            />
+            <UButton variant="link" color="neutral" icon="i-lucide-redo" @click="$emit('redo')"
+                :disabled="!props.canRedo" />
         </UTooltip>
     </div>
 </template>

@@ -89,38 +89,52 @@ const resizerInnerStyle = computed(() => {
     return twMerge(styles, props.resizerInnerStyle);
 });
 
-const startResize = (e: MouseEvent) => {
+let containerRef: HTMLElement | null = null;
+
+function startResize(e: MouseEvent) {
     e.preventDefault();
+
+    // Capture the container reference at the start
+    if (e.target && e.target instanceof HTMLElement) {
+        containerRef = e.target.closest(".split-view") as HTMLElement;
+    }
+
+    if (!containerRef) return;
+
     window.addEventListener("mousemove", resize);
     window.addEventListener("mouseup", stopResize);
     resizerIsSelected.value = true;
-};
+}
 
-const resize = (e: MouseEvent) => {
-    if (!e.target || !(e.target instanceof HTMLElement)) return;
+function resize(e: MouseEvent) {
+    if (!containerRef) return;
 
-    const container = e.target.closest(".split-view") as HTMLElement;
+    // Get the container's position relative to the viewport
+    const rect = containerRef.getBoundingClientRect();
 
     if (props.isHorizontal) {
-        const newHeight =
-            ((e.clientY - container.offsetTop) / container.offsetHeight) * 100;
+        // Calculate mouse position relative to container
+        const mouseY = e.clientY - rect.top;
+        const newHeight = (mouseY / rect.height) * 100;
         const h = Math.min(Math.max(newHeight, 1), 99);
         aPaneCssStyle.value = { height: `${h}%` };
         bPaneCssStyle.value = { height: `${100 - h}%` };
     } else {
-        const newWidth =
-            ((e.clientX - container.offsetLeft) / container.offsetWidth) * 100;
+        // Calculate mouse position relative to container
+        const mouseX = e.clientX - rect.left;
+        const newWidth = (mouseX / rect.width) * 100;
         const w = Math.min(Math.max(newWidth, 1), 99);
         aPaneCssStyle.value = { width: `${w}%` };
         bPaneCssStyle.value = { width: `${100 - w}%` };
     }
-};
+}
 
-const stopResize = () => {
+function stopResize() {
     window.removeEventListener("mousemove", resize);
     window.removeEventListener("mouseup", stopResize);
     resizerIsSelected.value = false;
-};
+    containerRef = null;
+}
 
 onUnmounted(() => {
     window.removeEventListener("mousemove", resize);
