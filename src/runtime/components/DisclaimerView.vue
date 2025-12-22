@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
-import defaultDisclaimerContent from "../assets/disclaimer/default-disclaimer-content.html?raw";
+import { useI18n } from "vue-i18n";
 
 interface InputProps {
     appName: string;
@@ -12,15 +12,17 @@ interface InputProps {
 
 const props = defineProps<InputProps>();
 
+const { t } = useI18n({ warnHtmlMessage: false });
+
 const disclaimerAccepted = defineModel<boolean>();
 const contentHtml = computed(() =>
-    props.contentHtml ? props.contentHtml : defaultDisclaimerContent,
+    props.contentHtml ? props.contentHtml : t("common-ui.disclaimer.content"),
 );
 
 const confirmationText = computed(() =>
     props.confirmationText
         ? props.confirmationText
-        : `Ich habe die Hinweise gelesen und verstanden und bestätige, dass ich ${props.appName} ausschliesslich unter Einhaltung der genannten Richtlinien verwende.`,
+        : t("common-ui.disclaimer.confirmation_text", { appName: props.appName }),
 );
 </script>
 
@@ -34,12 +36,7 @@ const confirmationText = computed(() =>
 
         <div class="confirmation" v-if="props.showConfirmation">
             <div class="confirmation-checkbox">
-                <input
-                    type="checkbox"
-                    id="confirmation-checkbox"
-                    required
-                    v-model="disclaimerAccepted"
-                />
+                <input type="checkbox" id="confirmation-checkbox" required v-model="disclaimerAccepted" />
                 <label for="confirmation-checkbox">
                     {{ confirmationText }}
                 </label>
@@ -54,6 +51,7 @@ const confirmationText = computed(() =>
     margin: auto;
     padding: 1rem;
     color: black;
+    background-color: white;
 }
 
 .disclaimer-content p {

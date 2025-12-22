@@ -9,8 +9,8 @@ import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
 
 export default defineNuxtModule<ModuleRuntimeHooks>({
     meta: {
-        name: "common-ui.bs.js",
-        configKey: "common-ui.bs.js",
+        name: "commonUiBs",
+        configKey: "commonUiBs",
     },
     // Default configuration options of the Nuxt module
     setup(_options, _nuxt) {
@@ -31,6 +31,15 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
                 ],
             });
         });
+
+        _nuxt.options.i18n = {
+            ...(_nuxt.options.i18n ?? {}),
+            compilation: {
+                strictMessage: false,
+                escapeHtml: false,
+                ...(_nuxt.options.i18n?.compilation ?? {}),
+            },
+        }
 
         addComponentsDir({
             path: resolver.resolve("./runtime/components"),
