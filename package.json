@@ -71,7 +71,7 @@
     },
     "peerDependencies": {
         "@nuxt/icon": "^2.1.0",
-        "@nuxt/ui": "4.2.1",
+        "@nuxt/ui": "4.3.0",
         "motion-v": "^1.7.0",
         "nuxt": "^4.0.0",
         "typescript": "^5",
