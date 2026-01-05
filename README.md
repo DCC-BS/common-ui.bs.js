@@ -17,3 +17,12 @@ A comprehensive Nuxt module providing reusable UI components, composables, and u
 ## Documentation
 
 For installation and detailed usage instructions, visit the [Documentation Site](https://dcc-bs.github.io/documentation/user-interface).
+
+## License
+
+[MIT](LICENSE) © Data Competence Center Basel-Stadt
+
+<a href="https://www.bs.ch/schwerpunkte/daten/databs/schwerpunkte/datenwissenschaften-und-ki"><img src="https://github.com/DCC-BS/.github/blob/main/_imgs/databs_log.png?raw=true" alt="DCC Logo" width="200" /></a>
+
+Datenwissenschaften und KI  
+Developed with ❤️ by DCC - Data Competence Center
