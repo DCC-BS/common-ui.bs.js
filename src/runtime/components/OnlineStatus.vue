@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { checkIsOnline } from "../utils/onlineStatus";
 
@@ -20,7 +20,8 @@ const props = withDefaults(defineProps<Props>(), {
     },
 });
 
-onMounted(() => {
+onMounted(async () => {
+    await nextTick();
     fetchOnlineStatus();
 
     setInterval(() => {
