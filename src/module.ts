@@ -62,5 +62,13 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
             method: "get",
             handler: resolver.resolve("./runtime/server/api/changelogs.get"),
         });
+
+        _nuxt.options.vite.server = _nuxt.options.vite.server || {};
+        _nuxt.options.vite.server.fs = _nuxt.options.vite.server.fs || {};
+        _nuxt.options.vite.server.fs.allow =
+            _nuxt.options.vite.server.fs.allow || [];
+        _nuxt.options.vite.server.fs.allow.push(
+            resolver.resolve("./runtime/assets"),
+        );
     },
 });
