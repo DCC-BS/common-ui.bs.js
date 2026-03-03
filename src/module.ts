@@ -7,6 +7,9 @@ import {
 } from "@nuxt/kit";
 import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
 
+// ui: {
+
+// },
 export default defineNuxtModule<ModuleRuntimeHooks>({
     meta: {
         name: "common-ui.bs.js",
@@ -15,6 +18,20 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
     // Default configuration options of the Nuxt module
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
+
+        _nuxt.options.appConfig = {
+            ...(_nuxt.options.appConfig || {}),
+            ui: {
+                colors: {
+                    primary: "purple",
+                    secondary: "teal",
+                    success: "green",
+                    info: "blue",
+                    warning: "yellow",
+                    error: "red",
+                },
+            },
+        };
 
         _nuxt.hook("i18n:registerModule", (register) => {
             register({
