@@ -67,6 +67,8 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
         _nuxt.options.vite.server.fs = _nuxt.options.vite.server.fs || {};
         _nuxt.options.vite.server.fs.allow =
             _nuxt.options.vite.server.fs.allow || [];
-        _nuxt.options.vite.server.fs.allow.push(resolver.resolve("./runtime"));
+        _nuxt.options.vite.server.fs.allow.push(
+            resolver.resolve("./runtime/assets"),
+        );
     },
 });
