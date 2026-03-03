@@ -17,7 +17,7 @@ const currentLocale = computed(() => {
 const items = computed<DropdownMenuItem[]>(() =>
     availableLocales.value.map((locale) => ({
         label: locale.code.toUpperCase(),
-        onSelect: async () => setLocale(locale.code),
+        onSelect: async () => setLocale(locale.code as "de" | "en"),
     })),
 );
 </script>

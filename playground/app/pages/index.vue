@@ -1,6 +1,3 @@
-<script lang="ts" setup>
-</script>
-
 <template>
     <Changelogs />
     <Disclaimer
@@ -18,6 +15,8 @@
             <SplitContainer>
                 <template #header>
                     <h2 class="text-lg font-bold">This is a split container</h2>
+                    <UButton variant="link" color="primary">primary test</UButton>
+                    <UButton variant="link" color="secondary">secondary test</UButton>
                 </template>
 
                 <template #left>
