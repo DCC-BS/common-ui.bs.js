@@ -6,6 +6,7 @@ import {
     defineNuxtModule,
 } from "@nuxt/kit";
 import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
+import { defu } from "defu";
 
 // ui: {
 
@@ -19,8 +20,7 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
 
-        _nuxt.options.appConfig = {
-            ...(_nuxt.options.appConfig || {}),
+        _nuxt.options.appConfig = defu(_nuxt.options.appConfig, {
             ui: {
                 colors: {
                     primary: "purple",
@@ -31,7 +31,7 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
                     error: "red",
                 },
             },
-        };
+        });
 
         _nuxt.hook("i18n:registerModule", (register) => {
             register({
