@@ -13,11 +13,11 @@ interface InputProps {
 const props = defineProps<InputProps>();
 
 const disclaimerAccepted = defineModel<boolean>();
-const contentHtml = computed(() =>
+const contentHtmlText = computed(() =>
     props.contentHtml ? props.contentHtml : defaultDisclaimerContent,
 );
 
-const confirmationText = computed(() =>
+const confirmation = computed(() =>
     props.confirmationText
         ? props.confirmationText
         : `Ich habe die Hinweise gelesen und verstanden und bestätige, dass ich ${props.appName} ausschliesslich unter Einhaltung der genannten Richtlinien verwende.`,
@@ -26,7 +26,7 @@ const confirmationText = computed(() =>
 
 <template>
     <div class="disclaimer-content">
-        <div v-html="contentHtml"></div>
+        <div v-html="contentHtmlText"></div>
 
         <div v-if="props.postfixHtml" class="postfix">
             <span v-html="props.postfixHtml"></span>
@@ -41,7 +41,7 @@ const confirmationText = computed(() =>
                     v-model="disclaimerAccepted"
                 />
                 <label for="confirmation-checkbox">
-                    {{ confirmationText }}
+                    {{ confirmation }}
                 </label>
             </div>
         </div>

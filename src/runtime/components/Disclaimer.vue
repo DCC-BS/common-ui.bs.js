@@ -20,10 +20,10 @@ const disclaimerAcceptedVersion = useLocalStorage<string>(
     "disclaimerAccepted",
     "",
 );
-const disclaimerVersion = ref(props.disclaimerVersion || DISCLAIMER_VERSION);
+const version = ref(props.disclaimerVersion || DISCLAIMER_VERSION);
 
 const disclaimerAccepted = computed(() => {
-    return disclaimerAcceptedVersion.value === disclaimerVersion.value;
+    return disclaimerAcceptedVersion.value === version.value;
 });
 const disclaimerAcceptedChecked = ref(false);
 
@@ -58,7 +58,7 @@ watch(disclaimerAccepted, (newValue) => {
 
 watch(disclaimerAcceptedChecked, (newValue) => {
     if (newValue) {
-        disclaimerAcceptedVersion.value = disclaimerVersion.value;
+        disclaimerAcceptedVersion.value = version.value;
     }
 });
 
@@ -83,15 +83,35 @@ function handleScroll() {
 <template>
     <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
         <div ref="modalContainer" class="modal-container">
-            <DisclaimerView v-model="disclaimerAcceptedChecked" :appName="props.appName"
-                :contentHtml="props.contentHtml" :postfixHtml="props.postfixHtml"
-                :confirmationText="props.confirmationText" :showConfirmation="true" />
+            <DisclaimerView
+                v-model="disclaimerAcceptedChecked"
+                :appName="props.appName"
+                :contentHtml="props.contentHtml"
+                :postfixHtml="props.postfixHtml"
+                :confirmationText="props.confirmationText"
+                :showConfirmation="true"
+            />
         </div>
 
         <!-- Scroll Down Button -->
-        <button v-if="showScrollButton" @click="scrollDown" class="scroll-down-button" aria-label="Scroll down">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+        <button
+            v-if="showScrollButton"
+            type="button"
+            @click="scrollDown"
+            class="scroll-down-button"
+            aria-label="Scroll down"
+        >
+            <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <title>scroll down</title>
                 <polyline points="6,9 12,15 18,9"></polyline>
             </svg>
         </button>
@@ -163,7 +183,6 @@ function handleScroll() {
 }
 
 @keyframes bounce {
-
     0%,
     20%,
     50%,
