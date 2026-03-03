@@ -1,32 +1,32 @@
 @layer base {
     :root {
-        --color-primary-50: rgba(theme(colors.purple-50));
-        --color-primary-100: rgba(theme(colors.purple-100));
-        --color-primary-200: rgba(theme(colors.purple-200));
-        --color-primary-300: rgba(theme(colors.purple-300));
-        --color-primary-400: rgba(theme(colors.purple-400));
-        --color-primary-500: rgba(theme(colors.purple-500));
-        --color-primary-600: rgba(theme(colors.purple-600));
-        --color-primary-700: rgba(theme(colors.purple-700));
-        --color-primary-800: rgba(theme(colors.purple-800));
-        --color-primary-900: rgba(theme(colors.purple-900));
+        --color-primary-50: var(--color-purple-50);
+        --color-primary-100: var(--color-purple-100);
+        --color-primary-200: var(--color-purple-200);
+        --color-primary-300: var(--color-purple-300);
+        --color-primary-400: var(--color-purple-400);
+        --color-primary-500: var(--color-purple-500);
+        --color-primary-600: var(--color-purple-600);
+        --color-primary-700: var(--color-purple-700);
+        --color-primary-800: var(--color-purple-800);
+        --color-primary-900: var(--color-purple-900);
 
-        --color-secondary-50: rgba(theme(colors.teal-50));
-        --color-secondary-100: rgba(theme(colors.teal-100));
-        --color-secondary-200: rgba(theme(colors.teal-200));
-        --color-secondary-300: rgba(theme(colors.teal-300));
-        --color-secondary-400: rgba(theme(colors.teal-400));
-        --color-secondary-500: rgba(theme(colors.teal-500));
-        --color-secondary-600: rgba(theme(colors.teal-600));
-        --color-secondary-700: rgba(theme(colors.teal-700));
-        --color-secondary-800: rgba(theme(colors.teal-800));
-        --color-secondary-900: rgba(theme(colors.teal-900));
+        --color-secondary-50: var(--color-teal-50);
+        --color-secondary-100: var(--color-teal-100);
+        --color-secondary-200: var(--color-teal-200);
+        --color-secondary-300: var(--color-teal-300);
+        --color-secondary-400: var(--color-teal-400);
+        --color-secondary-500: var(--color-teal-500);
+        --color-secondary-600: var(--color-teal-600);
+        --color-secondary-700: var(--color-teal-700);
+        --color-secondary-800: var(--color-teal-800);
+        --color-secondary-900: var(--color-teal-900);
 
-        --ui-primary: theme(colors.purple-600);
-        --ui-secondary: theme(colors.teal-600);
-        --ui-success: theme(colors.green-600);
-        --ui-info: theme(colors.blue-600);
-        --ui-warning: theme(colors.yellow-600);
-        --ui-error: theme(colors.red-700);
+        --ui-primary: var(--color-purple-600);
+        --ui-secondary: var(--color-teal-600);
+        --ui-success: var(--color-green-600);
+        --ui-info: var(--color-blue-600);
+        --ui-warning: var(--color-yellow-600);
+        --ui-error: var(--color-red-700);
     }
 }
