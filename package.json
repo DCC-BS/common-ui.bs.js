@@ -79,11 +79,12 @@
     "dependencies": {
         "@nuxt/kit": "4.4.2",
         "@nuxtjs/i18n": "10.2.3",
+        "defu": "^6.1.4",
         "gray-matter": "^4.0.3",
         "markdown-it": "14.1.1",
         "semver": "7.7.4",
         "tailwind-merge": "3.5.0",
-        "undici": "7.24.3",
-        "typescript": "5.9.3"
+        "typescript": "5.9.3",
+        "undici": "7.24.3"
     }
 }
