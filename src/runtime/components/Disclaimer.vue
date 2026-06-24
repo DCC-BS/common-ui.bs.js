@@ -85,11 +85,11 @@ function handleScroll() {
         <div ref="modalContainer" class="modal-container">
             <DisclaimerView
                 v-model="disclaimerAcceptedChecked"
-                :appName="props.appName"
-                :contentHtml="props.contentHtml"
-                :postfixHtml="props.postfixHtml"
-                :confirmationText="props.confirmationText"
-                :showConfirmation="true"
+                :app-name="props.appName"
+                :content-html="props.contentHtml"
+                :postfix-html="props.postfixHtml"
+                :confirmation-text="props.confirmationText"
+                :show-confirmation="true"
             />
         </div>
 

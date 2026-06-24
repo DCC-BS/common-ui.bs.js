@@ -37,7 +37,7 @@
     "linter": {
         "enabled": true,
         "rules": {
-            "recommended": true,
+            "preset": "recommended",
             "style": {
                 "noParameterAssign": "error",
                 "useAsConstAssertion": "error",
@@ -66,6 +66,16 @@
                     "correctness": {
                         "noUnusedVariables": "off",
                         "noUnusedImports": "off"
+                    }
+                }
+            }
+        },
+        {
+            "includes": ["playground/app/pages/**/*.vue"],
+            "linter": {
+                "rules": {
+                    "style": {
+                        "useVueMultiWordComponentNames": "off"
                     }
                 }
             }
