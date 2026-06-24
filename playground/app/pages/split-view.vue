@@ -1,6 +1,6 @@
 <template>
     <div class="h-[800px]">
-        <SplitView :isHorizontal="false">
+        <SplitView :is-horizontal="false">
             <template #a>
                 <div>Pane A Content</div>
             </template>

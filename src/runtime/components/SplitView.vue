@@ -147,6 +147,7 @@ onUnmounted(() => {
         <div :class="aPaneStyle" :style="aPaneCssStyle">
             <slot name="a" />
         </div>
+        <!-- biome-ignore lint/a11y/noStaticElementInteractions: pointer-only drag handle for resizing panes -->
         <div :class="resizerStyle" @mousedown="startResize">
             <div :class="resizerInnerStyle" />
         </div>
