@@ -14,6 +14,22 @@ A comprehensive Nuxt module providing reusable UI components, composables, and u
 - **Accessibility**: Components built with accessibility in mind
 - **Zero Configuration**: Auto-imports components and configures everything for you
 
+## Configuration
+
+The following environment variables control startup popups. Set them in your `.env` file to disable the corresponding feature:
+
+| Env Var | Default | Description |
+| --- | --- | --- |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG` | `false` | When set to `true`, disables the changelog popup on app start. |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER` | `false` | When set to `true`, disables the disclaimer popup on app start. |
+
+Example `.env`:
+
+```env
+NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG=true
+NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER=true
+```
+
 ## Documentation
 
 For installation and detailed usage instructions, visit the [Documentation Site](https://dcc-bs.github.io/documentation/user-interface).

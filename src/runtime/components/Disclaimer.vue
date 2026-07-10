@@ -15,6 +15,10 @@ interface InputProps {
 
 const props = defineProps<InputProps>();
 
+const config = useRuntimeConfig().public.commonUi;
+const disableDisclaimer =
+    config.disableDisclaimer === true || config.disableDisclaimer === "true";
+
 const isReady = ref(false);
 const disclaimerAcceptedVersion = useLocalStorage<string>(
     "disclaimerAccepted",
@@ -81,7 +85,7 @@ function handleScroll() {
 </script>
 
 <template>
-    <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted">
+    <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted && !disableDisclaimer">
         <div ref="modalContainer" class="modal-container">
             <DisclaimerView
                 v-model="disclaimerAcceptedChecked"
