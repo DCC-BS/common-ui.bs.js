@@ -13,7 +13,15 @@ const isOpen = ref<boolean>(false);
 
 const { t } = useI18n();
 
+const config = useRuntimeConfig().public.commonUi;
+const disableChangelog =
+    config.disableChangelog === true || config.disableChangelog === "true";
+
 onMounted(async () => {
+    if (disableChangelog) {
+        return;
+    }
+
     const lastRead = localStorage.getItem("changelogs-last-read") || "";
 
     try {
