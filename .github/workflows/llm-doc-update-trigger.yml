@@ -8,8 +8,8 @@ jobs:
     uses: DCC-BS/ci-workflows/.github/workflows/llm-doc-update-conditional.yml@v9
     with:
       doc_repo: "DCC-BS/documentation"
-      doc_path: "markdown/nuxt-layers"
-      openai_model: GLM-5.1
+      doc_path: "markdown/user-interface"
+      openai_model: GLM-5.2
       openai_base_url: https://api.z.ai/api/coding/paas/v4
       pr_number: ${{ github.event.issue.number }}
       client_id: ${{ vars.DOC_CLIENT_ID }}
