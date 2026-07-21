@@ -55,7 +55,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Onboarding ref="onboarding" :onboading-builder="builder" />
+    <Onboarding ref="onboarding" :builder="builder" />
 
     <div>
         <h1>Onboading</h1>

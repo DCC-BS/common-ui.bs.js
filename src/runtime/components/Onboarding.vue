@@ -7,7 +7,7 @@ import type { OnboadingStepBuilder } from "../types/onboarding";
 
 interface InputProps {
     // biome-ignore lint/suspicious/noExplicitAny: phase typing is enforced at the builder construction site, not the component boundary
-    onboadingBuilder: OnboadingStepBuilder<any>,
+    builder: OnboadingStepBuilder<any>,
 }
 
 const props = defineProps<InputProps>();
@@ -19,7 +19,7 @@ const tourCompleted = useCookie("tour-completed", { default: () => false });
 const driverObj = ref<Driver | undefined>();
 
 function createNewDriver() {
-    return props.onboadingBuilder.buildDriver({
+    return props.builder.buildDriver({
             // User-initiated exit (close/done) — mark completed, then proceed.
             // Programmatic destroy() skips this hook, so restart stays un-recorded.
             onDestroyStarted: (_el, _step, opts) => {
