@@ -76,7 +76,9 @@ export function useOnboardingBuilder(config?: Config) {
             }
 
             if (phase === currentPhase?.name) {
-                throw new Error(`Phase "${phase}" is already the current phase`);
+                throw new Error(
+                    `Phase "${phase}" is already the current phase`,
+                );
             }
 
             // if the switch is an initial switch before any steps.
