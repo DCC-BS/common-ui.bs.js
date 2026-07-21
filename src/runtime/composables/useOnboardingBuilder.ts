@@ -1,4 +1,4 @@
-import type { Config, DriveStep } from "driver.js";
+import type { Config, DriverHook, DriveStep } from "driver.js";
 import {
     Initial,
     type OnboadingStepBuilder,
@@ -10,6 +10,15 @@ import {
     type tOrFunc,
 } from "../types/onboarding";
 import { useDriverFactory } from "./useDriveFactory";
+
+function extendDriverHook(oldHook: DriverHook | undefined, newHook: DriverHook): DriverHook {
+    return (element, step, options) => {
+        if (oldHook) {
+            oldHook(element, step, options);
+        }
+        newHook(element, step, options);
+    }
+}
 
 export function useOnboardingBuilder(config?: Config) {
     const { createDriver } = useDriverFactory();
@@ -43,17 +52,20 @@ export function useOnboardingBuilder(config?: Config) {
                     const oldPhase = state.oldPhase;
                     step.popover = {
                         ...step.popover,
-                        onPrevClick: async (_, __, { driver }) => {
-                            if (currentPhase?.onExit) {
-                                await currentPhase?.onExit();
-                            }
+                        onPrevClick: extendDriverHook(
+                            step.popover?.onPrevClick,
+                            async (_, __, { driver }) => {
+                                if (currentPhase?.onExit) {
+                                    await currentPhase?.onExit();
+                                }
 
-                            if (oldPhase?.onEnter) {
-                                await oldPhase.onEnter();
-                            }
+                                if (oldPhase?.onEnter) {
+                                    await oldPhase.onEnter();
+                                }
 
-                            driver.movePrevious();
-                        },
+                                driver.movePrevious();
+                            },
+                        ),
                     };
                 }
             }
@@ -85,36 +97,33 @@ export function useOnboardingBuilder(config?: Config) {
             if (steps.length === 0 && newPhase && newPhase.onEnter) {
                 const onEnter = newPhase.onEnter;
 
-                const parentOnHighlightStarted =
-                    additionalConfig.onHighlightStarted;
+                additionalConfig.onHighlightStarted = extendDriverHook(
+                    additionalConfig.onHighlightStarted,
+                    async (_, __, opts) => {
+                        if (!opts.state.previousStep) {
+                            await onEnter();
+                        }
+                    },
+                );
 
-                additionalConfig.onHighlightStarted = async (
-                    element,
-                    step,
-                    opts,
-                ) => {
-                    if (parentOnHighlightStarted) {
-                        parentOnHighlightStarted(element, step, opts);
-                    }
 
-                    if (!opts.state.previousStep) {
-                        await onEnter();
-                    }
-                };
             } else if (currentStep && newPhase && newPhase !== currentPhase) {
                 currentStep.popover = {
                     ...currentStep.popover,
-                    onNextClick: async (_, __, { driver }) => {
-                        if (currentPhase?.onExit) {
-                            await currentPhase.onExit();
-                        }
+                    onNextClick: extendDriverHook(
+                        currentStep.popover?.onNextClick,
+                        async (_, __, { driver }) => {
+                            if (currentPhase?.onExit) {
+                                await currentPhase.onExit();
+                            }
 
-                        if (newPhase.onEnter) {
-                            await newPhase.onEnter();
-                        }
+                            if (newPhase.onEnter) {
+                                await newPhase.onEnter();
+                            }
 
-                        driver.moveNext();
-                    },
+                            driver.moveNext();
+                        },
+                    ),
                 };
             }
 
@@ -143,6 +152,22 @@ export function useOnboardingBuilder(config?: Config) {
                 }
                 return step;
             });
+
+            const lastStep = driveSteps.at(-1);
+            if (lastStep) {
+                lastStep.popover = {
+                    ...lastStep.popover,
+                    onNextClick: extendDriverHook(
+                        lastStep.popover?.onNextClick,
+                        async (_, __, { driver }) => {
+                            if (currentPhase?.onExit) {
+                                await currentPhase.onExit();
+                            }
+                            driver.moveNext();
+                        },
+                    ),
+                };
+            }
 
             return createDriver(driveSteps, { ...additionalConfig, ...config });
         }
