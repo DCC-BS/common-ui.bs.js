@@ -133,14 +133,15 @@ export function useOnboardingBuilder(config?: Config) {
             }
 
             const driveSteps = steps.map((x) => {
-                return {
-                    ...x,
-                    popover: {
+                const step = { ...x } as DriveStep;
+                if (x.popover) {
+                    step.popover = {
                         ...x.popover,
-                        title: unwrap(x.popover?.title),
-                        description: unwrap(x.popover?.description),
-                    },
-                } as DriveStep;
+                        title: unwrap(x.popover.title),
+                        description: unwrap(x.popover.description),
+                    };
+                }
+                return step;
             });
 
             return createDriver(driveSteps, { ...additionalConfig, ...config });
