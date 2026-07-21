@@ -1,6 +1,7 @@
 // --- Driver factory ----------------------------------------------------------
 
 import { type Config, type DriveStep, driver } from "driver.js";
+import { useI18n } from "vue-i18n";
 
 // Lucide icon path bodies (stable artwork, inlined to avoid bundling the whole
 // @iconify-json/lucide collection for three icons). Icons in this project render
