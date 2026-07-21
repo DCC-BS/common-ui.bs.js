@@ -11,13 +11,16 @@ import {
 } from "../types/onboarding";
 import { useDriverFactory } from "./useDriveFactory";
 
-function extendDriverHook(oldHook: DriverHook | undefined, newHook: DriverHook): DriverHook {
+function extendDriverHook(
+    oldHook: DriverHook | undefined,
+    newHook: DriverHook,
+): DriverHook {
     return (element, step, options) => {
         if (oldHook) {
             oldHook(element, step, options);
         }
         newHook(element, step, options);
-    }
+    };
 }
 
 export function useOnboardingBuilder(config?: Config) {
@@ -105,8 +108,6 @@ export function useOnboardingBuilder(config?: Config) {
                         }
                     },
                 );
-
-
             } else if (currentStep && newPhase && newPhase !== currentPhase) {
                 currentStep.popover = {
                     ...currentStep.popover,

@@ -1,4 +1,3 @@
-import type { MergeTypes } from "@nuxt/ui";
 import type { Config, Driver, DriveStep, Popover } from "driver.js";
 
 export type OnboardingPhase<Phases> = {
@@ -21,15 +20,17 @@ export type StepPopoverOverride = Omit<Popover, "title" | "description"> & {
     description?: tOrFunc<string>;
 };
 
-export type OnboardingStep = Omit<DriveStep, "popover"> & { popover?: StepPopoverOverride };
+export type OnboardingStep = Omit<DriveStep, "popover"> & {
+    popover?: StepPopoverOverride;
+};
 
 export interface State {
     name: "Initial" | "PhaseSwitched" | "StepsAdded";
-};
+}
 
 export class Initial {
     name = "Initial" as const;
-};
+}
 
 export class PhaseSwitched<Phases> implements State {
     name = "PhaseSwitched" as const;
