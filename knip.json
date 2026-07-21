@@ -1,6 +1,0 @@
-{
-    "$schema": "https://unpkg.com/knip@5/schema.json",
-    "entry": ["src/module.ts", "src/runtime/**/index.ts"],
-    "project": ["src/**"],
-    "ignoreDependencies": ["vue-tsc", "@vitejs/plugin-vue", "@tailwindcss/vite"]
-}
