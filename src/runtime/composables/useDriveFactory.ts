@@ -15,7 +15,7 @@ const LUCIDE_PATHS = {
 } as const;
 
 function lucideIconSvg(name: keyof typeof LUCIDE_PATHS): string {
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.2em;margin-right:0.25rem">${LUCIDE_PATHS[name]}</svg>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-0.2em;">${LUCIDE_PATHS[name]}</svg>`;
 }
 
 export function useDriverFactory() {
@@ -38,7 +38,7 @@ export function useDriverFactory() {
                     lucideIconSvg("arrow-big-left"),
                 );
                 popover.nextButton.insertAdjacentHTML(
-                    "afterbegin",
+                    "beforeend",
                     lucideIconSvg(
                         opts.driver.isLastStep() ? "check" : "arrow-big-right",
                     ),

@@ -90,7 +90,7 @@ defineExpose({
 
 <template>
     <!-- Renderless: drives the driver.js onboarding overlay, no DOM of its own -->
-    <span hidden aria-hidden="true" />
+    <span hidden aria-hidden="true" class="bg-pink-500/75" />
 </template>
 
 <style>
@@ -100,18 +100,28 @@ defineExpose({
     max-width: 450px;
 }
 
-.tm-tour-popover .driver-popover-next-btn {
+.driver-popover-navigation-btns button {
     background-color: var(--ui-primary);
     color: var(--color-white);
+    border-radius: var(--radius-md);
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.25rem;
 }
 
-.tm-tour-popover .driver-popover-prev-btn {
-    background-color: var(--ui-primary);
+.driver-popover-navigation-btns button:hover {
+    background-color: color-mix(in oklab, var(--ui-primary) 75%, transparent);
     color: var(--color-white);
 }
 
 .tm-tour-popover .driver-popover-done-btn {
     background-color: var(--ui-success);
     color: var(--color-white);
+    border-radius: var(--radius-md);
+}
+
+.tm-tour-popover .driver-popover-done-btn:hover {
+    background-color: color-mix(in oklab, var(--ui-success) 75%, transparent);
 }
 </style>
