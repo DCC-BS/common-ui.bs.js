@@ -104,6 +104,7 @@ defineExpose({
     background-color: var(--ui-primary);
     color: var(--color-white);
     border-radius: var(--radius-md);
+    /* biome-ignore lint/complexity/noImportantStyles: needed to override driver.js inline styles */
     display: flex !important;
     justify-content: space-between;
     align-items: center;
