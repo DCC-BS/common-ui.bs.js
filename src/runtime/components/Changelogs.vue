@@ -3,6 +3,7 @@ import type { ChangelogVersionProps } from "@nuxt/ui";
 import MarkdownIt from "markdown-it";
 import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { useRuntimeConfig } from "#app";
 import { type Changelog, ChangelogSchema } from "../types/changelog.model";
 
 const md = new MarkdownIt();
@@ -13,7 +14,9 @@ const isOpen = ref<boolean>(false);
 
 const { t } = useI18n();
 
-const config = useRuntimeConfig().public.commonUi;
+const config = useRuntimeConfig().public.commonUi as {
+    disableChangelog: boolean | string;
+};
 const disableChangelog =
     config.disableChangelog === true || config.disableChangelog === "true";
 

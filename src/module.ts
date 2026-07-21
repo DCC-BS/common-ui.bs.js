@@ -17,13 +17,12 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
 
-        _nuxt.options.runtimeConfig = defu(_nuxt.options.runtimeConfig, {
-            public: {
-                commonUi: {
-                    disableChangelog: false,
-                    disableDisclaimer: false,
-                },
-            },
+        const commonUi = _nuxt.options.runtimeConfig.public.commonUi as
+            | Record<string, unknown>
+            | undefined;
+        _nuxt.options.runtimeConfig.public.commonUi = defu(commonUi, {
+            disableChangelog: false,
+            disableDisclaimer: false,
         });
 
         _nuxt.options.appConfig = defu(

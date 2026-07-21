@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Driver } from "driver.js";
+import { useI18n } from "vue-i18n";
 import { useCookie } from "#app";
 import "driver.js/dist/driver.css";
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";

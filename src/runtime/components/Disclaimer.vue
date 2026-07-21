@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { useRuntimeConfig } from "#app";
 import { useLocalStorage } from "../composables/useLocalStorage";
 import DisclaimerView from "./DisclaimerView.vue";
 
@@ -15,7 +16,9 @@ interface InputProps {
 
 const props = defineProps<InputProps>();
 
-const config = useRuntimeConfig().public.commonUi;
+const config = useRuntimeConfig().public.commonUi as {
+    disableDisclaimer: boolean | string;
+};
 const disableDisclaimer =
     config.disableDisclaimer === true || config.disableDisclaimer === "true";
 
