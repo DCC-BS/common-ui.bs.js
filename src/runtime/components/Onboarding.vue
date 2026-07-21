@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import type { Driver } from "driver.js";
 import { useCookie } from "#app";
-import { type Driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import { ref, nextTick, watch, onMounted, onUnmounted } from "vue";
+import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import type { OnboadingStepBuilder } from "../types/onboarding";
 
 interface InputProps {
+    // biome-ignore lint/suspicious/noExplicitAny: phase typing is enforced at the builder construction site, not the component boundary
     onboadingBuilder: OnboadingStepBuilder<any>,
 }
 
@@ -20,6 +21,11 @@ const driverObj = ref<Driver | undefined>();
 function start(): void {
     driverObj.value = props.onboadingBuilder.buildDriver();
     driverObj.value?.drive();
+}
+
+function destroy(): void {
+    driverObj.value?.destroy();
+    driverObj.value = undefined;
 }
 
 watch(() => locale.value, () => {
@@ -64,10 +70,10 @@ onUnmounted(() => {
     }
 });
 
-
 defineExpose({
     start,
-})
+    destroy
+});
 </script>
 
 <template>
@@ -76,8 +82,6 @@ defineExpose({
 </template>
 
 <style>
-@reference "../assets/main.css";
-
 /* driver.js popover theming for TextMate.
    Non-scoped because driver.js renders the popover outside this component. */
 .driver-popover.tm-tour-popover {
@@ -85,17 +89,17 @@ defineExpose({
 }
 
 .tm-tour-popover .driver-popover-next-btn {
-    background-color: var(--color-primary);
+    background-color: var(--ui-primary);
     color: var(--color-white);
 }
 
 .tm-tour-popover .driver-popover-prev-btn {
-    background-color: var(--color-primary);
+    background-color: var(--ui-primary);
     color: var(--color-white);
 }
 
 .tm-tour-popover .driver-popover-done-btn {
-    background-color: var(--color-success);
+    background-color: var(--ui-success);
     color: var(--color-white);
 }
 </style>

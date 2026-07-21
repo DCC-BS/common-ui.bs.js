@@ -1,6 +1,15 @@
-import type { Config, Driver, DriveStep } from "driver.js";
+import type { Config, DriveStep } from "driver.js";
+import {
+    Initial,
+    type OnboadingStepBuilder,
+    type OnboardingPhase,
+    type OnboardingStep,
+    PhaseSwitched,
+    type State,
+    StepsAdded,
+    type tOrFunc,
+} from "../types/onboarding";
 import { useDriverFactory } from "./useDriveFactory";
-import { Initial, PhaseSwitched, StepsAdded, type OnboadingStepBuilder, type OnboardingPhase, type OnboardingStep, type State, type tOrFunc } from "../types/onboarding";
 
 export function useOnboardingBuilder(config?: Config) {
     const { createDriver } = useDriverFactory();
@@ -66,7 +75,8 @@ export function useOnboardingBuilder(config?: Config) {
             if (steps.length === 0 && newPhase && newPhase.onEnter) {
                 const onEnter = newPhase.onEnter;
 
-                const parentOnHighlightStarted = additionalConfig.onHighlightStarted;
+                const parentOnHighlightStarted =
+                    additionalConfig.onHighlightStarted;
 
                 additionalConfig.onHighlightStarted = async (
                     element,
@@ -74,7 +84,7 @@ export function useOnboardingBuilder(config?: Config) {
                     opts,
                 ) => {
                     if (parentOnHighlightStarted) {
-                        parentOnHighlightStarted(element, step, opts)
+                        parentOnHighlightStarted(element, step, opts);
                     }
 
                     if (!opts.state.previousStep) {
@@ -103,24 +113,24 @@ export function useOnboardingBuilder(config?: Config) {
         }
 
         function buildDriver() {
-            function unwrap<T>(x?: tOrFunc<T>) : T | undefined {
+            function unwrap<T>(x?: tOrFunc<T>): T | undefined {
                 if (typeof x === "function") {
-                    const xFunc = x as (() => T);
+                    const xFunc = x as () => T;
                     return xFunc();
                 }
 
                 return x;
             }
 
-            const driveSteps = steps.map(x => {
+            const driveSteps = steps.map((x) => {
                 return {
                     ...x,
                     popover: {
                         ...x.popover,
                         title: unwrap(x.popover?.title),
                         description: unwrap(x.popover?.description),
-                    }
-                } as DriveStep
+                    },
+                } as DriveStep;
             });
 
             return createDriver(driveSteps, additionalConfig);

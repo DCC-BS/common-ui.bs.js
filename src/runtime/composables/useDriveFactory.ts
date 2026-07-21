@@ -25,10 +25,10 @@ export function useDriverFactory() {
     function createDriver(steps: DriveStep[], additionalOptions: Config = {}) {
         return driver({
             showProgress: true,
-            progressText: t("tour.progress"),
-            nextBtnText: t("tour.next"),
-            prevBtnText: t("tour.prev"),
-            doneBtnText: t("tour.finish"),
+            progressText: t("common-ui.tour.progress"),
+            nextBtnText: t("common-ui.tour.next"),
+            prevBtnText: t("common-ui.tour.prev"),
+            doneBtnText: t("common-ui.tour.finish"),
             popoverClass: "tm-tour-popover",
             steps: steps,
             // Inject Lucide icons into the footer buttons and stamp a stable

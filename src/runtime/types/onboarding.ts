@@ -1,3 +1,5 @@
+import type { Driver, DriveStep } from "driver.js";
+
 export type OnboardingPhase<Phases> = {
     name: Phases;
     onEnter?: () => Promise<void>;
@@ -13,12 +15,14 @@ export type OnboadingStepBuilder<Phases> = {
 
 export type tOrFunc<T> = T | (() => T);
 
-export type OnboardingStep = DriveStep | {
-    popover?: {
-        title?: tOrFunc<string>,
-        description?: tOrFunc<string>
-    }
-};
+export type OnboardingStep =
+    | DriveStep
+    | {
+          popover?: {
+              title?: tOrFunc<string>;
+              description?: tOrFunc<string>;
+          };
+      };
 
 export interface State {
     name: "Initial" | "PhaseSwitched" | "StepsAdded";

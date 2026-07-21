@@ -13,6 +13,13 @@
             "offline_title": "Offline",
             "online_description": "Alle Dienste sind verfügbar",
             "offline_description": "Einige Dienste sind nicht verfügbar, Funktionen können eingeschränkt sein"
+        },
+        "tour": {
+            "skip": "Überspringen",
+            "next": "Weiter",
+            "prev": "Zurück",
+            "finish": "Beenden",
+            "progress": "Schritt \\{\\{current\\}\\} von \\{\\{total\\}\\}"
         }
     }
 }
