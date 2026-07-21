@@ -18,8 +18,20 @@ const { locale } = useI18n();
 const tourCompleted = useCookie("tour-completed", { default: () => false });
 const driverObj = ref<Driver | undefined>();
 
+function createNewDriver() {
+    return props.onboadingBuilder.buildDriver({
+            // User-initiated exit (close/done) — mark completed, then proceed.
+            // Programmatic destroy() skips this hook, so restart stays un-recorded.
+            onDestroyStarted: (_el, _step, opts) => {
+                tourCompleted.value = true;
+                opts.driver.destroy();
+        },
+    });
+}
+
 function start(): void {
-    driverObj.value = props.onboadingBuilder.buildDriver();
+    driverObj.value?.destroy();
+    driverObj.value = createNewDriver();
     driverObj.value?.drive();
 }
 
@@ -30,7 +42,7 @@ function destroy(): void {
 
 watch(() => locale.value, () => {
     driverObj.value?.destroy();
-    driverObj.value = props.onboadingBuilder.buildDriver();
+    driverObj.value = createNewDriver();
 });
 
 // Waits for the disclaimer modal to be accepted before auto-starting. While

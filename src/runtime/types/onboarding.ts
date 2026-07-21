@@ -1,4 +1,4 @@
-import type { Driver, DriveStep } from "driver.js";
+import type { Config, Driver, DriveStep } from "driver.js";
 
 export type OnboardingPhase<Phases> = {
     name: Phases;
@@ -10,7 +10,7 @@ export type OnboadingStepBuilder<Phases> = {
     addSteps: (steps: OnboardingStep[]) => OnboadingStepBuilder<Phases>;
     switchPhase: (phase: Phases) => OnboadingStepBuilder<Phases>;
     currentPhase: undefined | OnboardingPhase<Phases>;
-    buildDriver: () => Driver;
+    buildDriver: (config?: Config) => Driver;
 };
 
 export type tOrFunc<T> = T | (() => T);

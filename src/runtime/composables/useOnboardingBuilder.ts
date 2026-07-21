@@ -71,6 +71,14 @@ export function useOnboardingBuilder(config?: Config) {
             const currentStep = steps.at(-1);
             const newPhase = phaseMap.get(phase);
 
+            if (!newPhase) {
+                throw new Error(`Phase "${phase}" not found`);
+            }
+
+            if (phase === currentPhase?.name) {
+                throw new Error(`Phase "${phase}" is already the current phase`);
+            }
+
             // if the switch is an initial switch before any steps.
             if (steps.length === 0 && newPhase && newPhase.onEnter) {
                 const onEnter = newPhase.onEnter;
@@ -112,7 +120,7 @@ export function useOnboardingBuilder(config?: Config) {
             return onboadingStepBuilder(phaseMap, steps, newPhase, newState);
         }
 
-        function buildDriver() {
+        function buildDriver(config?: Config) {
             function unwrap<T>(x?: tOrFunc<T>): T | undefined {
                 if (typeof x === "function") {
                     const xFunc = x as () => T;
@@ -133,7 +141,7 @@ export function useOnboardingBuilder(config?: Config) {
                 } as DriveStep;
             });
 
-            return createDriver(driveSteps, additionalConfig);
+            return createDriver(driveSteps, { ...additionalConfig, ...config });
         }
 
         return {

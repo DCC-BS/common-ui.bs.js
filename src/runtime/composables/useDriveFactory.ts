@@ -20,7 +20,6 @@ function lucideIconSvg(name: keyof typeof LUCIDE_PATHS): string {
 
 export function useDriverFactory() {
     const { t } = useI18n();
-    const tourCompleted = ref(false);
 
     function createDriver(steps: DriveStep[], additionalOptions: Config = {}) {
         return driver({
@@ -47,18 +46,11 @@ export function useDriverFactory() {
                 // Close button doubles as "skip tour".
                 popover.closeButton.setAttribute("data-testid", "tour-skip");
             },
-            // User-initiated exit (close/done) — mark completed, then proceed.
-            // Programmatic destroy() skips this hook, so restart stays un-recorded.
-            onDestroyStarted: (_el, _step, opts) => {
-                tourCompleted.value = true;
-                opts.driver.destroy();
-            },
             ...additionalOptions,
         });
     }
 
     return {
         createDriver,
-        tourCompleted,
     };
 }
