@@ -89,7 +89,7 @@
                 </template>
             </SplitContainer>
         </div>
-        <DataBsFooter>
+        <DataBsFooter size="sm">
             <UButton icon="i-lucide-message-square">Feedback</UButton>
         </DataBsFooter>
     </div>
