@@ -83,7 +83,7 @@
         "driver.js": "^1.6.0",
         "gray-matter": "^4.0.3",
         "markdown-it": "14.2.0",
-        "semver": "7.8.4",
+        "semver": "7.8.5",
         "tailwind-merge": "3.6.0",
         "typescript": "5.9.3"
     }
