@@ -22,8 +22,10 @@ enters the app. Mount one `<FirstRunOrchestrator>` (typically in `app.vue`) and
 it renders the highest-priority pending flow, one at a time, recomputing after
 each completion. Priority: Disclaimer (30) > Changelogs (20) > Onboarding (10).
 
-```vue
-<!-- app.vue -->
+<script setup lang="ts">
+const builder = useOnboardingBuilder()
+</script>
+
 <template>
   <UApp>
     <FirstRunOrchestrator
