@@ -1,6 +1,7 @@
 import {
     addComponentsDir,
     addImportsDir,
+    addPlugin,
     addServerHandler,
     createResolver,
     defineNuxtModule,
@@ -23,6 +24,11 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
         _nuxt.options.runtimeConfig.public.commonUi = defu(commonUi, {
             disableChangelog: false,
             disableDisclaimer: false,
+            disableOnboarding: false,
+            disclaimer: {
+                appName: "",
+                version: "1.0.0",
+            },
         });
 
         _nuxt.options.appConfig = defu(
@@ -64,6 +70,8 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
         });
 
         addImportsDir(resolver.resolve("./runtime/composables"));
+
+        addPlugin(resolver.resolve("./runtime/plugins/migrate-first-run-keys"));
 
         addServerHandler({
             route: "/api/changelogs",

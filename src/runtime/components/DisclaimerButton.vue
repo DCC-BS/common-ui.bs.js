@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useLocalStorage } from "../composables/useLocalStorage";
+import { useCookie } from "#app";
 
 interface InputProps {
     variant?: "outline" | "ghost";
@@ -9,9 +9,12 @@ const props = withDefaults(defineProps<InputProps>(), {
     variant: "outline",
 });
 
-const disclaimerAccepted = useLocalStorage<string>("disclaimerAccepted", "");
+const disclaimerAccepted = useCookie<string>("disclaimer-accepted", {
+    default: () => "",
+});
 
 function openDisclaimer() {
+    // Reset the completion cookie so the orchestrator re-arms the Disclaimer flow.
     disclaimerAccepted.value = "";
 }
 </script>
