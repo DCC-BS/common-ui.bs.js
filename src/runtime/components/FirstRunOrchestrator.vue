@@ -86,7 +86,9 @@ const flows = computed<FlowDescriptor[]>(() => [
     {
         id: "changelogs",
         priority: FIRST_RUN_PRIORITY.changelogs,
-        pending: changelogsPending.value,
+        pending: isFlowDisabled(config.disableChangelog)
+            ? false
+            : changelogsPending.value,
         component: Changelogs,
         flowProps: { releases: releases.value },
     },
