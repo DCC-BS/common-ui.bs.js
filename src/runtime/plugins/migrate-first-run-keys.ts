@@ -1,4 +1,5 @@
 import { defineNuxtPlugin, useCookie } from "#app";
+import { FIRST_RUN_COOKIE_MAX_AGE } from "../types/first-run";
 
 /**
  * One-time client migration of the old localStorage-based first-run flags to
@@ -13,7 +14,10 @@ export default defineNuxtPlugin(() => {
     if (!import.meta.client) return;
 
     const SENTINEL_KEY = "first-run-migrated";
-    const migrated = useCookie<string>(SENTINEL_KEY, { default: () => "" });
+    const migrated = useCookie<string>(SENTINEL_KEY, {
+        default: () => "",
+        maxAge: FIRST_RUN_COOKIE_MAX_AGE,
+    });
     if (migrated.value === "1") return;
 
     // Disclaimer: old key was JSON-encoded (`"1.0.0"` with quotes).
@@ -24,6 +28,7 @@ export default defineNuxtPlugin(() => {
             if (typeof decoded === "string" && decoded !== "") {
                 const cookie = useCookie<string>("disclaimer-accepted", {
                     default: () => "",
+                    maxAge: FIRST_RUN_COOKIE_MAX_AGE,
                 });
                 if (cookie.value === "") {
                     cookie.value = decoded;
@@ -40,6 +45,7 @@ export default defineNuxtPlugin(() => {
     if (oldChangelogs !== null && oldChangelogs !== "") {
         const cookie = useCookie<string>("changelogs-last-read", {
             default: () => "",
+            maxAge: FIRST_RUN_COOKIE_MAX_AGE,
         });
         if (cookie.value === "") {
             cookie.value = oldChangelogs;

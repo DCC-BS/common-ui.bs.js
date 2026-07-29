@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useCookie } from "#app";
+import { FIRST_RUN_COOKIE_MAX_AGE } from "../types/first-run";
 
 const { t } = useI18n();
 
 const tourCompleted = useCookie<boolean>("tour-completed", {
     default: () => false,
+    maxAge: FIRST_RUN_COOKIE_MAX_AGE,
 });
 
 function restartTour() {

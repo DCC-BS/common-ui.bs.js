@@ -1,6 +1,7 @@
 import { onMounted, ref, watch } from "vue";
 import { useCookie } from "#app";
 import { type Changelog, ChangelogSchema } from "../types/changelog.model";
+import { FIRST_RUN_COOKIE_MAX_AGE } from "../types/first-run";
 
 /**
  * Determines whether the Changelogs flow is pending for the current user and,
@@ -23,6 +24,7 @@ import { type Changelog, ChangelogSchema } from "../types/changelog.model";
 export function useChangelogsPending() {
     const lastRead = useCookie<string>("changelogs-last-read", {
         default: () => "",
+        maxAge: FIRST_RUN_COOKIE_MAX_AGE,
     });
     const releases = ref<Changelog[]>([]);
     const pending = ref<boolean | undefined>(

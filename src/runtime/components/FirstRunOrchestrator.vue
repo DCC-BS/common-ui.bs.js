@@ -5,6 +5,7 @@ import { useChangelogsPending } from "../composables/useChangelogsPending";
 import {
     type CommonUiRuntimeConfig,
     type DisclaimerConfig,
+    FIRST_RUN_COOKIE_MAX_AGE,
     FIRST_RUN_PRIORITY,
     type FirstRunFinishedPayload,
     type FirstRunFlowId,
@@ -39,9 +40,11 @@ const disclaimerConfig = computed<DisclaimerConfig>(() => ({
 // Completion cookies — the orchestrator owns all writes (children only emit).
 const disclaimerAccepted = useCookie<string>("disclaimer-accepted", {
     default: () => "",
+    maxAge: FIRST_RUN_COOKIE_MAX_AGE,
 });
 const tourCompleted = useCookie<boolean>("tour-completed", {
     default: () => false,
+    maxAge: FIRST_RUN_COOKIE_MAX_AGE,
 });
 
 // Changelogs pending is async (client fetch). `pending` is:

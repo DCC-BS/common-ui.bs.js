@@ -5,6 +5,7 @@ export {
     isFlowDisabled,
 } from "./config";
 export {
+    FIRST_RUN_COOKIE_MAX_AGE,
     FIRST_RUN_PRIORITY,
     type FirstRunFinishedPayload,
     type FirstRunFlowId,

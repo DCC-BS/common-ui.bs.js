@@ -11,6 +11,13 @@ export const FIRST_RUN_PRIORITY = {
     onboarding: 10,
 } as const;
 
+/**
+ * Persistent lifetime (1 year, in seconds) for first-run completion cookies.
+ * Completion state must survive browser restarts (it did under the old
+ * localStorage), so every `useCookie` for these keys sets this `maxAge`.
+ */
+export const FIRST_RUN_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
 /** IDs of the built-in first-run flows. Custom flows may use any string. */
 export type FirstRunFlowId =
     | "disclaimer"
