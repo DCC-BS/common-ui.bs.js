@@ -1,58 +1,35 @@
 <script lang="ts" setup>
 import type { ChangelogVersionProps } from "@nuxt/ui";
 import MarkdownIt from "markdown-it";
-import { computed, onMounted, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { useRuntimeConfig } from "#app";
-import { type Changelog, ChangelogSchema } from "../types/changelog.model";
+import type { Changelog } from "../types/changelog.model";
+import type { FirstRunFinishedPayload } from "../types/first-run";
 
 const md = new MarkdownIt();
 
-const data = ref<Changelog[]>();
-const error = ref<Error>();
-const isOpen = ref<boolean>(false);
+interface InputProps {
+    releases: Changelog[];
+}
+
+const props = defineProps<InputProps>();
+const emit = defineEmits<{ finished: [FirstRunFinishedPayload] }>();
 
 const { t } = useI18n();
 
-const config = useRuntimeConfig().public.commonUi as {
-    disableChangelog: boolean | string;
-};
-const disableChangelog =
-    config.disableChangelog === true || config.disableChangelog === "true";
+// Open on mount — the orchestrator only mounts this component when Changelogs
+// is the active flow, so it should be visible immediately.
+const isOpen = ref<boolean>(true);
 
-onMounted(async () => {
-    if (disableChangelog) {
-        return;
-    }
-
-    const lastRead = localStorage.getItem("changelogs-last-read") || "";
-
-    try {
-        const fetchData = await $fetch<Changelog[]>(
-            `/api/changelogs?lastRead=${lastRead}`,
-            {
-                method: "GET",
-            },
-        );
-
-        data.value = ChangelogSchema.array().parse(fetchData);
-    } catch (e) {
-        error.value = e as Error;
-    } finally {
-        isOpen.value = !!lastRead && (data.value?.length ?? 0) > 0;
-    }
-
-    if (data.value && data.value.length > 0 && data.value[0]) {
-        localStorage.setItem(
-            "changelogs-last-read",
-            String(data.value[0].version),
-        );
+watch(isOpen, (open) => {
+    if (!open) {
+        emit("finished", { completed: true });
     }
 });
 
 const versions = computed<ChangelogVersionProps[]>(
     () =>
-        data.value?.map(
+        props.releases.map(
             (release) =>
                 ({
                     title: release.title,
@@ -73,12 +50,6 @@ const versions = computed<ChangelogVersionProps[]>(
     >
         <template #body>
             <div class="p-2 overflow-y-auto">
-                <div v-if="error">
-                    <p class="text-red-500">
-                        Error loading changelogs: {{ error.message }}
-                    </p>
-                </div>
-
                 <UChangelogVersions :versions="versions" :indicator="false">
                     <template #date="{ version }">
                         <span v-if="version.date">{{

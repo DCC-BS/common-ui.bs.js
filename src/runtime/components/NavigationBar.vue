@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { useI18n } from "vue-i18n";
+import ChangelogsButton from "./ChangelogsButton.vue";
 import DisclaimerButton from "./DisclaimerButton.vue";
 import LanguageSelect from "./LanguageSelect.vue";
+import OnboardingRestartButton from "./OnboardingRestartButton.vue";
 
 const { t } = useI18n();
 </script>
@@ -20,6 +22,8 @@ const { t } = useI18n();
             <div class="flex items-center gap-2">
                 <slot name="rightPreItems" />
                 <DisclaimerButton variant="ghost" />
+                <ChangelogsButton />
+                <OnboardingRestartButton />
                 <LanguageSelect />
 
                 <slot name="rightPostItems" />

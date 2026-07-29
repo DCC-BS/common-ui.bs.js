@@ -1,41 +1,26 @@
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
-import { useRuntimeConfig } from "#app";
-import { useLocalStorage } from "../composables/useLocalStorage";
+import { onUnmounted, ref, watch } from "vue";
+import type { FirstRunFinishedPayload } from "../types/first-run";
 import DisclaimerView from "./DisclaimerView.vue";
-
-const DISCLAIMER_VERSION = "1.0.0";
 
 interface InputProps {
     appName: string;
     contentHtml?: string;
     postfixHtml?: string;
     confirmationText?: string;
-    disclaimerVersion?: string;
 }
 
 const props = defineProps<InputProps>();
+const emit = defineEmits<{ finished: [FirstRunFinishedPayload] }>();
 
-const config = useRuntimeConfig().public.commonUi as {
-    disableDisclaimer: boolean | string;
-};
-const disableDisclaimer =
-    config.disableDisclaimer === true || config.disableDisclaimer === "true";
+// Local acceptance state bound to the DisclaimerView checkbox. The orchestrator
+// owns the completion cookie; this component only signals completion via emit.
+const accepted = ref(false);
 
-const isReady = ref(false);
-const disclaimerAcceptedVersion = useLocalStorage<string>(
-    "disclaimerAccepted",
-    "",
-);
-const version = ref(props.disclaimerVersion || DISCLAIMER_VERSION);
-
-const disclaimerAccepted = computed(() => {
-    return disclaimerAcceptedVersion.value === version.value;
-});
-const disclaimerAcceptedChecked = ref(false);
-
-onMounted(() => {
-    isReady.value = true;
+watch(accepted, (value) => {
+    if (value) {
+        emit("finished", { completed: true });
+    }
 });
 
 onUnmounted(() => {
@@ -57,18 +42,6 @@ watch(
     { immediate: true },
 );
 
-watch(disclaimerAccepted, (newValue) => {
-    if (newValue !== disclaimerAcceptedChecked.value) {
-        disclaimerAcceptedChecked.value = newValue;
-    }
-});
-
-watch(disclaimerAcceptedChecked, (newValue) => {
-    if (newValue) {
-        disclaimerAcceptedVersion.value = version.value;
-    }
-});
-
 function scrollDown() {
     if (modalContainer.value) {
         modalContainer.value.scrollBy({
@@ -88,10 +61,10 @@ function handleScroll() {
 </script>
 
 <template>
-    <div class="disclaimer-modal" v-if="isReady && !disclaimerAccepted && !disableDisclaimer">
+    <div class="disclaimer-modal">
         <div ref="modalContainer" class="modal-container">
             <DisclaimerView
-                v-model="disclaimerAcceptedChecked"
+                v-model="accepted"
                 :app-name="props.appName"
                 :content-html="props.contentHtml"
                 :postfix-html="props.postfixHtml"

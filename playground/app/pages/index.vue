@@ -1,12 +1,7 @@
 <template>
-    <Changelogs />
-    <Disclaimer
-        confirmation-text="I have read and understood the instructions and confirm that I will use Test App exclusively in compliance with the stated guidelines."
-        app-name="Test App"></Disclaimer>
-
     <NavigationBar>
         <template #rightPostItems>
-            <OnlineStatus show-text />
+            <OnlineStatus />
         </template>
     </NavigationBar>
 

@@ -1,11 +1,15 @@
 export { default as Changelogs } from "./Changelogs.vue";
+export { default as ChangelogsButton } from "./ChangelogsButton.vue";
 export { default as DataBsBanner } from "./DataBsBanner.vue";
 export { default as DataBsFooter } from "./DataBsFooter.vue";
 export { default as Disclaimer } from "./Disclaimer.vue";
 export { default as DisclaimerButton } from "./DisclaimerButton.vue";
 export { default as DisclaimerPage } from "./DisclaimerPage.vue";
 export { default as DisclaimerView } from "./DisclaimerView.vue";
+export { default as FirstRunOrchestrator } from "./FirstRunOrchestrator.vue";
 export { default as NavigationBar } from "./NavigationBar.vue";
+export { default as Onboarding } from "./Onboarding.vue";
+export { default as OnboardingRestartButton } from "./OnboardingRestartButton.vue";
 export { default as OnlineStatus } from "./OnlineStatus.vue";
 export { default as SplitContainer } from "./SplitContainer.vue";
 export { default as SplitView } from "./SplitView.vue";

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { Driver } from "driver.js";
 import { useI18n } from "vue-i18n";
-import { useCookie } from "#app";
 import "driver.js/dist/driver.css";
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import type { FirstRunFinishedPayload } from "../types/first-run";
 import type { OnboadingStepBuilder } from "../types/onboarding";
 
 interface InputProps {
@@ -12,20 +12,19 @@ interface InputProps {
 }
 
 const props = defineProps<InputProps>();
+const emit = defineEmits<{ finished: [FirstRunFinishedPayload] }>();
 
 const { locale } = useI18n();
 
-// Tour persistence — SSR-readable so first-time users skip the tour after hydration.
-const tourCompleted = useCookie("tour-completed", { default: () => false });
 const driverObj = ref<Driver | undefined>();
 
 function createNewDriver() {
     return props.builder.buildDriver({
-            // User-initiated exit (close/done) — mark completed, then proceed.
-            // Programmatic destroy() skips this hook, so restart stays un-recorded.
-            onDestroyStarted: (_el, _step, opts) => {
-                tourCompleted.value = true;
-                opts.driver.destroy();
+        // User-initiated exit (close/done) — signal completion to the orchestrator,
+        // which records the completion cookie and unmounts this component.
+        onDestroyStarted: (_el, _step, opts) => {
+            opts.driver.destroy();
+            emit("finished", { completed: true });
         },
     });
 }
@@ -46,47 +45,21 @@ watch(() => locale.value, () => {
     driverObj.value = createNewDriver();
 });
 
-// Waits for the disclaimer modal to be accepted before auto-starting. While
-// driver.js is active it sets `pointer-events: none` on every descendant
-// except the highlighted element, which would make the disclaimer modal
-// unclickable — so the tour must not start until the disclaimer is gone.
-let readyObserver: MutationObserver | undefined;
-
-function beginTourWhenReady(): void {
-    if (tourCompleted.value) return;
-    const modal = document.querySelector(".disclaimer-modal");
-    if (!modal) {
-        start();
-        return;
-    }
-    readyObserver = new MutationObserver(() => {
-        if (!modal.isConnected) {
-            readyObserver?.disconnect();
-            readyObserver = undefined;
-            start();
-        }
-    });
-    readyObserver.observe(document.body, { childList: true, subtree: true });
-}
-
+// Auto-start on mount. The orchestrator only mounts this component when
+// Onboarding is the active flow, so being mounted === "run the tour now".
 onMounted(async () => {
     await nextTick();
-    beginTourWhenReady();
+    start();
 });
 
 onUnmounted(() => {
-    readyObserver?.disconnect();
-    readyObserver = undefined;
     if (driverObj.value) {
         driverObj.value.destroy();
         driverObj.value = undefined;
     }
 });
 
-defineExpose({
-    start,
-    destroy
-});
+defineExpose({ start, destroy });
 </script>
 
 <template>

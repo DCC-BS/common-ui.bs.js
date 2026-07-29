@@ -19,6 +19,7 @@
             "next": "Next",
             "prev": "Back",
             "finish": "Finish",
+            "restart": "Restart tour",
             "progress": "Step \\{\\{current\\}\\} of \\{\\{total\\}\\}"
         }
     }
