@@ -9,9 +9,7 @@
             "close": "Close"
         },
         "health_status": {
-            "online_title": "Online",
-            "offline_title": "Offline",
-            "online_description": "All services are available",
+            "offline_title": "System disruption",
             "offline_description": "Some services are unavailable, features may be limited"
         },
         "tour": {
@@ -19,7 +17,7 @@
             "next": "Next",
             "prev": "Back",
             "finish": "Finish",
-            "restart": "Restart tour",
+            "restart": "Help",
             "progress": "Step \\{\\{current\\}\\} of \\{\\{total\\}\\}"
         }
     }

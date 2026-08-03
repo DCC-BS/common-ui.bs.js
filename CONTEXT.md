@@ -3,6 +3,13 @@
 Shared Nuxt UI module: chrome, first-run surfaces, and presentational components
 for consumer apps.
 
+**App status indicator** (or `<SystemStatus>`):
+The component that surfaces system-health degradation. Renders only when the
+readiness check fails — invisible during the initial check and when the system
+is healthy. Shows a triangle-alert icon plus a short label, with the longer
+failure description on hover.
+_Avoid_: online dot, status badge.
+
 ## Language
 
 **First-run flow** (or **flow**):
