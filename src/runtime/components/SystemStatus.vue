@@ -18,24 +18,36 @@ const props = withDefaults(defineProps<Props>(), {
     },
 });
 
-let timer: ReturnType<typeof setInterval> | undefined;
+let timer: ReturnType<typeof setTimeout> | undefined;
+let stopped = false;
 
 onMounted(async () => {
     await fetchOnlineStatus();
-
-    timer = setInterval(() => {
-        fetchOnlineStatus();
-    }, props.pollInterval);
+    if (stopped) return;
+    timer = setTimeout(poll, props.pollInterval);
 });
 
 onUnmounted(() => {
+    stopped = true;
     if (timer !== undefined) {
-        clearInterval(timer);
+        clearTimeout(timer);
     }
 });
 
+async function poll() {
+    await fetchOnlineStatus();
+    if (stopped) return;
+    timer = setTimeout(poll, props.pollInterval);
+}
+
 async function fetchOnlineStatus() {
-    isOnline.value = await props.isOnlineCheckFunction();
+    try {
+        isOnline.value = await props.isOnlineCheckFunction();
+    } catch {
+        // On rejection, leave isOnline at its current value so an
+        // already-shown disruption indicator stays visible (and a
+        // healthy state isn't flipped by a transient check failure).
+    }
 }
 </script>
 

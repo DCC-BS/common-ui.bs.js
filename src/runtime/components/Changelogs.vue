@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ChangelogVersionProps } from "@nuxt/ui";
 import MarkdownIt from "markdown-it";
-import { computed } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import type { Changelog } from "../types/changelog.model";
 import type { FirstRunFinishedPayload } from "../types/first-run";
@@ -22,6 +22,40 @@ const { t } = useI18n();
 // bottom Close button all route through here.
 function close() {
     emit("finished", { completed: true });
+}
+
+// Dialog focus management: move focus into the panel on open, keep Tab
+// cycling inside it, and restore focus to the trigger on close. There is no
+// dedicated opener element (the orchestrator mounts this flow from cookies),
+// so we capture whatever had focus at mount time as the restore target.
+const dialogEl = ref<HTMLElement>();
+let previouslyFocused: HTMLElement | null = null;
+
+onMounted(() => {
+    previouslyFocused = document.activeElement as HTMLElement | null;
+    nextTick(() => dialogEl.value?.focus());
+});
+
+onBeforeUnmount(() => {
+    previouslyFocused?.focus?.();
+});
+
+function handleTab(event: KeyboardEvent) {
+    const dialog = dialogEl.value;
+    if (!dialog) return;
+    const focusable = dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+        last.focus();
+        event.preventDefault();
+    } else if (!event.shiftKey && document.activeElement === last) {
+        first.focus();
+        event.preventDefault();
+    }
 }
 
 const versions = computed<ChangelogVersionProps[]>(
@@ -46,12 +80,14 @@ const versions = computed<ChangelogVersionProps[]>(
         @keydown.esc="close"
     >
         <div
+            ref="dialogEl"
             class="changelogs-panel"
             role="dialog"
             aria-modal="true"
             tabindex="-1"
             :aria-label="t('common-ui.changelogs.title')"
             @keydown.esc="close"
+            @keydown.tab="handleTab"
         >
             <div class="changelogs-close-x">
                 <UButton
