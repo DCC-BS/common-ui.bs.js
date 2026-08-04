@@ -6,12 +6,10 @@
         "redo_tooltip": "Wiederholen der letzten rückgängig gemachten Aktion",
         "changelogs": {
             "title": "Was ist neu",
-            "close": "Schließen"
+            "close": "Schliessen"
         },
         "health_status": {
-            "online_title": "Online",
-            "offline_title": "Offline",
-            "online_description": "Alle Dienste sind verfügbar",
+            "offline_title": "Systemstörung",
             "offline_description": "Einige Dienste sind nicht verfügbar, Funktionen können eingeschränkt sein"
         },
         "tour": {
@@ -19,7 +17,7 @@
             "next": "Weiter",
             "prev": "Zurück",
             "finish": "Beenden",
-            "restart": "Tour neu starten",
+            "restart": "Hilfe",
             "progress": "Schritt \\{\\{current\\}\\} von \\{\\{total\\}\\}"
         }
     }

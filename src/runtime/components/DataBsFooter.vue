@@ -22,13 +22,14 @@ function onHover() {
 <template>
     <!-- Application Footer -->
     <div class="px-6">
-        <div class="flex items-center justify-between gap-4 text-xs text-gray-500">
+        <div class="grid grid-cols-3 items-center justify-between gap-4 text-xs text-gray-500">
             <slot name="left">
                 <!-- Brand Section -->
                 <div class="flex items-center gap-2">
                     <a href="https://www.bs.ch/ki" target="_blank" :class="animation" @mouseenter="onHover"
                         rel="noopener noreferrer">
-                        <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image" :width="props.size === 'md' ? 48 : 32" />
+                        <img alt="Datenwissenschaften und Künstliche Intelligenz" :src="image"
+                            :width="props.size === 'md' ? 48 : 32" />
                     </a>
 
                     <div class="hidden sm:block text-md">
@@ -37,8 +38,15 @@ function onHover() {
                     </div>
                 </div>
             </slot>
-            <slot name="center" />
-            <slot name="right" />
+            <slot name="center">
+                <div class="flex flex-row items-center justify-center">
+                    <DisclaimerButton variant="ghost" />
+                    <ChangelogsButton />
+                </div>
+            </slot>
+            <slot name="right">
+                <div></div>
+            </slot>
         </div>
     </div>
 </template>

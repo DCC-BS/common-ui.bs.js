@@ -24,7 +24,7 @@ const items = computed<DropdownMenuItem[]>(() =>
 
 <template>
     <UDropdownMenu :items="items" variant="ghost">
-        <UButton variant="ghost" :label="currentLocale" color="neutral">
+        <UButton variant="ghost" :label="currentLocale" color="neutral" trailing-icon="i-lucide-chevron-down">
         </UButton>
     </UDropdownMenu>
 </template>

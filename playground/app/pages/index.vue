@@ -1,11 +1,24 @@
+<script setup lang="ts">
+import type { DropdownMenuItem } from '#ui/types';
+import { SettingsButton } from '../../../src/runtime/components';
+
+const settingsItems = [
+    {
+        label: "Test Settings",
+        icon: "i-lucide-shield-check"
+    }
+] as DropdownMenuItem[];
+
+</script>
+
 <template>
     <NavigationBar>
         <template #rightPostItems>
-            <OnlineStatus />
+            <SettingsButton :items="settingsItems" />
         </template>
     </NavigationBar>
 
-    <div class="min-h-[200px] md:h-[calc(100vh-140px)] flex flex-col">
+    <div class="min-h-[200px] md:h-[calc(100vh-120px)] flex flex-col">
         <div class="p-4 h-full">
             <SplitContainer>
                 <template #header>
@@ -18,7 +31,8 @@
                     <div class="relative h-full w-full p-4 min-h-[200px]">
                         <div class="overflow-y-auto h-full">
                             <h3 class="text-md font-semibold">Left Side</h3>
-                            <p>This is the left side content. asd asdasdas dasd asd asd asd asd as dasd asd asdasd
+                            <p>This is the left side content. asd asdasdas dasd asd asd asd asd as dasd asd
+                                asdasd
                                 asdasd asdasdasdasdasd </p>
                             <p>dasdasasdsd</p>
                             <p>dasdasasdsd</p>
@@ -79,7 +93,8 @@
                 <template #right>
                     <div class="relative h-full w-full p-4 min-h-[200px]">
                         <h3 class="text-md font-semibold">Right Side</h3>
-                        <p>This is the right side content. adasd asdas dadas das dasd asd asdasd as dasd asd </p>
+                        <p>This is the right side content. adasd asdas dadas das dasd asd asdasd as dasd asd
+                        </p>
                     </div>
                 </template>
             </SplitContainer>

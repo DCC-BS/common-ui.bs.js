@@ -18,23 +18,16 @@ function restartTour() {
 </script>
 
 <template>
-    <UTooltip class="flex md:hidden" :text="t('common-ui.tour.restart')">
-        <UButton
-            icon="i-lucide-graduation-cap"
-            variant="ghost"
-            color="neutral"
-            @click="restartTour"
-        >
-        </UButton>
-    </UTooltip>
+    <div data-tour="start-tour">
+        <UTooltip class="flex md:hidden" :text="t('common-ui.tour.restart')">
+            <UButton icon="i-lucide-graduation-cap" variant="ghost" color="neutral" @click="restartTour">
+            </UButton>
+        </UTooltip>
 
-    <UButton
-        class="hidden md:flex"
-        icon="i-lucide-graduation-cap"
-        variant="ghost"
-        color="neutral"
-        @click="restartTour"
-    >
-        {{ t("common-ui.tour.restart") }}
-    </UButton>
+        <UButton class="hidden md:flex" icon="i-lucide-graduation-cap" variant="ghost" color="neutral"
+            @click="restartTour">
+            {{ t("common-ui.tour.restart") }}
+        </UButton>
+
+    </div>
 </template>

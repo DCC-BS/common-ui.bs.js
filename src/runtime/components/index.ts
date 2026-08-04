@@ -1,3 +1,5 @@
+export type { AppSwitcherApp } from "./AppSwitcher.vue";
+export { default as AppSwitcher } from "./AppSwitcher.vue";
 export { default as Changelogs } from "./Changelogs.vue";
 export { default as ChangelogsButton } from "./ChangelogsButton.vue";
 export { default as DataBsBanner } from "./DataBsBanner.vue";
@@ -10,7 +12,8 @@ export { default as FirstRunOrchestrator } from "./FirstRunOrchestrator.vue";
 export { default as NavigationBar } from "./NavigationBar.vue";
 export { default as Onboarding } from "./Onboarding.vue";
 export { default as OnboardingRestartButton } from "./OnboardingRestartButton.vue";
-export { default as OnlineStatus } from "./OnlineStatus.vue";
+export { default as SettingsButton } from "./SettingsButton.vue";
 export { default as SplitContainer } from "./SplitContainer.vue";
 export { default as SplitView } from "./SplitView.vue";
+export { default as SystemStatus } from "./SystemStatus.vue";
 export { default as UndoRedoButtons } from "./UndoRedoButtons.vue";

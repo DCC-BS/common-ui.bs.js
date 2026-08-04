@@ -1,0 +1,52 @@
+[tools]
+bun = "1.3.14"
+node = "24.9.0"
+usage = "latest"
+
+# ── Setup ─────────────────────────────────────────────────────────────────────
+
+[tasks.install]
+description = "install npm packages"
+run = [
+    "bun install",
+    "bunx nuxi prepare",
+]
+
+[tasks."nuxt:prepare"]
+description = "generate Nuxt types"
+run = "bunx nuxi prepare"
+
+# ── Development ───────────────────────────────────────────────────────────────
+
+[tasks.dev]
+description = "start the development server"
+run = "bunx nuxt dev playground"
+
+
+# ── Build & Preview ───────────────────────────────────────────────────────────
+
+[tasks.prepack]
+run = "bunx nuxt-module-build build"
+
+# ── Type Checking & Linting ───────────────────────────────────────────────────
+
+[tasks.tsc]
+description = "run TypeScript type checking"
+run = "bunx vue-tsc --noEmit -p tsconfig.json"
+
+[tasks.lint]
+description = "format code with Biome"
+run = "bunx biome format --write"
+
+[tasks.check]
+description = "check and fix linting issues"
+run = "bunx biome check --fix"
+
+# ── Cleanup ───────────────────────────────────────────────────────────────────
+
+[tasks."cleanup:bun"]
+description = "cleanup cached files"
+run = [
+    "rm -rf ./node_modules",
+    "bun pm cache rm",
+]
