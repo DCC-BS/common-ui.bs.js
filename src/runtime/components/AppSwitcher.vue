@@ -70,9 +70,9 @@ function initials(name: string): string {
                         variant="ghost" class="flex-col h-auto py-3 px-2 gap-2 rounded-lg whitespace-normal">
                         <template #leading>
                             <span
-                                class="flex items-center justify-center w-10 h-10 rounded-lg bg-elevated/60 overflow-hidden">
+                                class="flex items-center justify-center w-10 h-10 rounded-lg bg-elevated/60 overflow-hidden ring-1 ring-gray-400">
                                 <img v-if="!app.icon && app.image" :src="app.image" :alt="app.alt ?? app.name"
-                                    class="w-6 h-6 object-contain" />
+                                    class="w-full h-full object-contain" />
                                 <UIcon v-else-if="app.icon" :name="app.icon" class="w-6 h-6" />
                                 <span v-else class="text-sm font-semibold text-muted">
                                     {{ initials(app.name) }}
