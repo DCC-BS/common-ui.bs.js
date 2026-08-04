@@ -146,10 +146,12 @@ function onFinished(id: FirstRunFlowId, _payload: FirstRunFinishedPayload) {
 </script>
 
 <template>
-    <component
-        v-if="activeFlow"
-        :is="activeFlow.component"
-        v-bind="activeFlow.flowProps"
-        @finished="onFinished(activeFlow?.id, $event)"
-    />
+    <ClientOnly>
+        <component
+            v-if="activeFlow"
+            :is="activeFlow.component"
+            v-bind="activeFlow.flowProps"
+            @finished="onFinished(activeFlow?.id, $event)"
+        />
+    </ClientOnly>
 </template>

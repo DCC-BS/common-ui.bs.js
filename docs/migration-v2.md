@@ -193,11 +193,12 @@ keys:
 The migration runs once per user, guarded by a `first-run-migrated` sentinel
 cookie.
 
-> **One-time UX note:** `localStorage` is not readable during SSR, so an
-> existing user's *first* visit after upgrade may briefly render a flow in the
-> SSR HTML that the migrated cookie then dismisses during hydration. This
-> affects only that single transitional visit; new users and all subsequent
-> visits render correctly server-side with no flash.
+> **UX note:** `localStorage` is not readable during SSR, and an existing user's
+> completion cookie may not reach the SSR layer in every deployment (reverse
+> proxy, cross-origin SSR). To guarantee no flash in all cases the orchestrator
+> renders its active flow inside `<ClientOnly>`, so nothing is streamed in the
+> SSR HTML that hydration would then dismiss. The migration runs exactly once
+> per user, guarded by the `first-run-migrated` sentinel cookie.
 
 ---
 

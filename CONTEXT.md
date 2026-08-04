@@ -25,7 +25,7 @@ _Avoid_: blocker, wall.
 **Pending**:
 A flow whose trigger condition is satisfied for the current user, making it a
 candidate to show. Computed from the three completion cookies plus the disable
-flags, during SSR.
+flags, reactively on the client.
 
 **Active flow**:
 The single pending flow currently rendered — the highest-priority pending one.
@@ -43,6 +43,7 @@ generic term across all flows).
 
 **First-run orchestrator** (or **orchestrator**):
 The component (`<FirstRunOrchestrator>`) that owns the priority queue, computes
-pending during SSR, and renders the active flow. The only place ordering logic
-lives.
+pending reactively, and renders the active flow inside `<ClientOnly>` (so the
+no-flash guarantee holds even when the completion cookie can't reach SSR). The
+only place ordering logic lives.
 _Avoid_: host, manager, coordinator.

@@ -14,8 +14,10 @@ Introduce a single `<FirstRunOrchestrator>` component that owns a priority queue
 of flows. Each flow declares `(id, priority, isPending)` and emits completion;
 the orchestrator renders only the highest-priority pending flow and re-evaluates
 on each completion. All pending/completion state moves to `useCookie` so the
-orchestrator can compute pending during SSR with no flash. Priority order is
-fixed: Disclaimer > Changelogs > Onboarding.
+orchestrator can compute pending reactively, and the active flow is rendered
+inside `<ClientOnly>` so the no-flash guarantee holds even when the completion
+cookie can't reach the SSR layer (reverse proxy, cross-origin SSR, etc.).
+Priority order is fixed: Disclaimer > Changelogs > Onboarding.
 
 ## Considered options
 

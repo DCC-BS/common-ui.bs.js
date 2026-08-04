@@ -28,6 +28,5 @@ function restartTour() {
             @click="restartTour">
             {{ t("common-ui.tour.restart") }}
         </UButton>
-
     </div>
 </template>

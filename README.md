@@ -8,7 +8,7 @@ A comprehensive Nuxt module providing reusable UI components, composables, and u
 
 **What's included:**
 - **Pre-built Components**: Navigation bars, split views, disclaimers, status indicators, and more
-- **First-run Orchestrator**: A single `<FirstRunOrchestrator>` component that coordinates the Disclaimer, Changelogs, and Onboarding flows by priority (one on screen at a time, computed during SSR)
+- **First-run Orchestrator**: A single `<FirstRunOrchestrator>` component that coordinates the Disclaimer, Changelogs, and Onboarding flows by priority (one on screen at a time, rendered client-side to prevent hydration flash)
 - **Useful Composables**: User feedback system, error handling utilities
 - **i18n Integration**: Built-in internationalization support
 - **Design System**: Full integration with Kanton Basel-Stadt color palette and styling
@@ -38,10 +38,13 @@ const builder = useOnboardingBuilder()
 ```
 
 Completion state is stored in cookies (`disclaimer-accepted`,
-`changelogs-last-read`, `tour-completed`) so pending can be computed during SSR
-with no flash. Re-trigger buttons (`<DisclaimerButton>`, `<ChangelogsButton>`,
-`<OnboardingRestartButton>`) reset the corresponding cookie. See
-[`docs/migration-v2.md`](./docs/migration-v2.md) for the full consumer guide.
+`changelogs-last-read`, `tour-completed`) so pending can be computed from the
+client's cookie jar. The active flow is rendered inside `<ClientOnly>`, which
+guarantees no flash even if the cookie can't reach the SSR layer (proxy
+stripping, cross-origin SSR, etc.). Re-trigger buttons (`<DisclaimerButton>`,
+`<ChangelogsButton>`, `<OnboardingRestartButton>`) reset the corresponding
+cookie. See [`docs/migration-v2.md`](./docs/migration-v2.md) for the full
+consumer guide.
 
 ## Configuration
 
