@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { useRuntimeConfig } from "#app";
+import { type CommonUiRuntimeConfig, isFlowDisabled } from "../types";
 import { checkIsOnline } from "../utils/onlineStatus";
 
 const isOnline = ref<boolean>();
@@ -18,10 +20,16 @@ const props = withDefaults(defineProps<Props>(), {
     },
 });
 
+const config = useRuntimeConfig().public.commonUi as CommonUiRuntimeConfig;
+
 let timer: ReturnType<typeof setTimeout> | undefined;
 let stopped = false;
 
 onMounted(async () => {
+    if (isFlowDisabled(config.disableSystemStatus)) {
+        return;
+    }
+
     await fetchOnlineStatus();
     if (stopped) return;
     timer = setTimeout(poll, props.pollInterval);
@@ -53,7 +61,7 @@ async function fetchOnlineStatus() {
 
 <template>
     <UTooltip
-        v-if="isOnline === false"
+        v-if="!isFlowDisabled(config.disableSystemStatus) && isOnline === false"
         :text="t('common-ui.health_status.offline_description')"
     >
         <div class="flex items-center gap-2 text-sm text-red-500">

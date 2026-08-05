@@ -55,6 +55,7 @@ The following environment variables control the first-run flows. Set them in you
 | `NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER` | `false` | When set to `true`, disables the Disclaimer flow. |
 | `NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG` | `false` | When set to `true`, disables the Changelogs flow. |
 | `NUXT_PUBLIC_COMMON_UI_DISABLE_ONBOARDING` | `false` | When set to `true`, disables the Onboarding flow. |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_SYSTEM_STATUS` | `false` | When set to `true`, disables the `<SystemStatus>` health indicator. |
 
 Example `.env`:
 
@@ -62,6 +63,7 @@ Example `.env`:
 NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG=true
 NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER=true
 NUXT_PUBLIC_COMMON_UI_DISABLE_ONBOARDING=true
+NUXT_PUBLIC_COMMON_UI_DISABLE_SYSTEM_STATUS=true
 ```
 
 Disclaimer content defaults can also be set in `nuxt.config.ts` under

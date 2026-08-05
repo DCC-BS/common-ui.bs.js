@@ -25,6 +25,7 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
             disableChangelog: false,
             disableDisclaimer: false,
             disableOnboarding: false,
+            disableSystemStatus: false,
             disclaimer: {
                 appName: "",
                 version: "1.0.0",

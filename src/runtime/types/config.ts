@@ -19,6 +19,7 @@ export interface CommonUiRuntimeConfig {
     disableChangelog: boolean | string;
     disableDisclaimer: boolean | string;
     disableOnboarding: boolean | string;
+    disableSystemStatus: boolean | string;
     disclaimer: DisclaimerConfig;
 }
 
