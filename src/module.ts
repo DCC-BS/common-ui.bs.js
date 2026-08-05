@@ -3,6 +3,7 @@ import {
     addImportsDir,
     addPlugin,
     addServerHandler,
+    addServerPlugin,
     createResolver,
     defineNuxtModule,
 } from "@nuxt/kit";
@@ -79,6 +80,10 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
             method: "get",
             handler: resolver.resolve("./runtime/server/api/changelogs.get"),
         });
+
+        addServerPlugin(
+            resolver.resolve("./runtime/server/plugins/log-disabled-features"),
+        );
 
         _nuxt.options.vite.server = _nuxt.options.vite.server || {};
         _nuxt.options.vite.server.fs = _nuxt.options.vite.server.fs || {};
