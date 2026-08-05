@@ -15,6 +15,18 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
         name: "common-ui.bs.js",
         configKey: "common-ui.bs.js",
     },
+    moduleDependencies: {
+        "@nuxtjs/i18n": {
+            defaults: {
+                strategy: "no-prefix",
+                detectBrowserLanguage: {
+                    useCookie: true,
+                    cookieKey: "i18n_redirected",
+                    redirectOn: "all",
+                },
+            },
+        },
+    },
     // Default configuration options of the Nuxt module
     setup(_options, _nuxt) {
         const resolver = createResolver(import.meta.url);
