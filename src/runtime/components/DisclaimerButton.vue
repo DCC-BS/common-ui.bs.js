@@ -2,14 +2,6 @@
 import { useCookie } from "#app";
 import { FIRST_RUN_COOKIE_MAX_AGE } from "../types/first-run";
 
-interface InputProps {
-    variant?: "outline" | "ghost";
-}
-
-const props = withDefaults(defineProps<InputProps>(), {
-    variant: "outline",
-});
-
 const disclaimerAccepted = useCookie<string>("disclaimer-accepted", {
     default: () => "",
     maxAge: FIRST_RUN_COOKIE_MAX_AGE,
