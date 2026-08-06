@@ -40,7 +40,7 @@ function onHover() {
             </slot>
             <slot name="center">
                 <div class="flex flex-row items-center justify-center">
-                    <DisclaimerButton variant="ghost" />
+                    <DisclaimerButton />
                     <ChangelogsButton />
                 </div>
             </slot>
