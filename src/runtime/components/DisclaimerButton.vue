@@ -18,6 +18,7 @@ function openDisclaimer() {
         icon="i-lucide-circle-alert"
         variant="ghost"
         color="neutral"
+        aria-label="Disclaimer"
         @click="openDisclaimer"
     >
         <span class="hidden md:inline">
