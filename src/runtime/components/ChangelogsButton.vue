@@ -9,6 +9,8 @@ const { t } = useI18n();
 
 const lastRead = useCookie<string>("changelogs-last-read", {
     default: () => "",
+    sameSite: import.meta.dev ? 'lax' : 'none',
+    secure: !import.meta.dev,
     maxAge: FIRST_RUN_COOKIE_MAX_AGE,
 });
 
