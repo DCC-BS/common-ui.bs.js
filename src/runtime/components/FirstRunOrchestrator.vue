@@ -42,14 +42,14 @@ const disclaimerAccepted = useCookie<string>("disclaimer-accepted", {
     default: () => "",
     sameSite: import.meta.dev ? 'lax' : 'none',
     secure: !import.meta.dev,
-    partitioned: false,
+    partitioned: !import.meta.dev,
     maxAge: FIRST_RUN_COOKIE_MAX_AGE,
 });
 const tourCompleted = useCookie<boolean>("tour-completed", {
     default: () => false,
     sameSite: import.meta.dev ? 'lax' : 'none',
     secure: !import.meta.dev,
-    partitioned: false,
+    partitioned: !import.meta.dev,
     maxAge: FIRST_RUN_COOKIE_MAX_AGE,
 });
 

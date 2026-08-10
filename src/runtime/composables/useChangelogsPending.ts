@@ -24,8 +24,9 @@ import { FIRST_RUN_COOKIE_MAX_AGE } from "../types/first-run";
 export function useChangelogsPending() {
     const lastRead = useCookie<string>("changelogs-last-read", {
         default: () => "",
-        sameSite: import.meta.dev ? 'lax' : 'none',
+        sameSite: import.meta.dev ? "lax" : "none",
         secure: !import.meta.dev,
+        partitioned: !import.meta.dev,
         maxAge: FIRST_RUN_COOKIE_MAX_AGE,
     });
     const releases = ref<Changelog[]>([]);
