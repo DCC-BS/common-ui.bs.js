@@ -4,6 +4,9 @@ import { FIRST_RUN_COOKIE_MAX_AGE } from "../types/first-run";
 
 const disclaimerAccepted = useCookie<string>("disclaimer-accepted", {
     default: () => "",
+    sameSite: import.meta.dev ? 'lax' : 'none',
+    secure: !import.meta.dev,
+    partitioned: !import.meta.dev,
     maxAge: FIRST_RUN_COOKIE_MAX_AGE,
 });
 

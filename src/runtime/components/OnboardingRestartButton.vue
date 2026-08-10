@@ -7,6 +7,9 @@ const { t } = useI18n();
 
 const tourCompleted = useCookie<boolean>("tour-completed", {
     default: () => false,
+    sameSite: import.meta.dev ? 'lax' : 'none',
+    secure: !import.meta.dev,
+    partitioned: !import.meta.dev,
     maxAge: FIRST_RUN_COOKIE_MAX_AGE,
 });
 

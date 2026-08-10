@@ -6,11 +6,20 @@ import OnboardingRestartButton from "./OnboardingRestartButton.vue";
 
 interface InputProps {
     otherApps?: AppSwitcherApp[]
+    showAppSwitcher?: boolean
+    showSystemStatus?: boolean
+    showLanguageSelect?: boolean
+    showOnboardingRestart?: boolean
 }
 
 const { t } = useI18n();
 
-const props = defineProps<InputProps>();
+const props = withDefaults(defineProps<InputProps>(), {
+    showAppSwitcher: true,
+    showSystemStatus: true,
+    showLanguageSelect: true,
+    showOnboardingRestart: true,
+});
 </script>
 
 <template>
@@ -26,10 +35,10 @@ const props = defineProps<InputProps>();
         <slot name="right">
             <div class="flex items-center gap-2">
                 <slot name="rightPreItems" />
-                <SystemStatus />
-                <LanguageSelect />
-                <OnboardingRestartButton />
-                <AppSwitcher v-if="props.otherApps" :apps="props.otherApps" />
+                <SystemStatus v-if="props.showSystemStatus" />
+                <LanguageSelect v-if="props.showLanguageSelect" />
+                <OnboardingRestartButton v-if="props.showOnboardingRestart" />
+                <AppSwitcher v-if="props.showAppSwitcher && props.otherApps" :apps="props.otherApps" />
                 <slot name="rightPostItems" />
             </div>
         </slot>
