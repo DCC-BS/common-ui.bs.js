@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRequestURL } from "#app";
+import { publicAssetsURL } from "#build/paths.mjs";
 
 /**
  * One entry in the app switcher grid.
@@ -52,16 +52,14 @@ const gridStyle = computed(() => ({
     gridTemplateColumns: `repeat(${props.columns}, minmax(0, 1fr))`,
 }));
 
-/** SSR-safe (request headers on the server, location on the client). */
-const origin = useRequestURL().origin;
-
 /**
- * Anchor `image` at the site root instead of the current route: "app-icons/x.svg"
- * would otherwise resolve against /transcription/<id>/ and 404 off "/".
- * Absolute inputs ("/x.svg", "https://…", "data:…") resolve to themselves.
+ * A complete URL ("https://…", "data:…") is used as-is; anything else is a path
+ * into public/ and is anchored at the app's asset root (`cdnURL || baseURL`).
+ * Without this, "app-icons/x.svg" resolves against the current route and 404s
+ * on every page but "/".
  */
 function imageSrc(image: string): string {
-    return new URL(image, origin).href;
+    return URL.canParse(image) ? image : publicAssetsURL(image);
 }
 
 function initials(name: string): string {
