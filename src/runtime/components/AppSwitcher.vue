@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { useRequestURL } from "#app";
 
 /**
  * One entry in the app switcher grid.
@@ -18,7 +19,10 @@ export interface AppSwitcherApp {
     to: string;
     /** Nuxt Icon name, e.g. "i-lucide-mail". Takes precedence over `image`. */
     icon?: string;
-    /** URL or public/ path to a raster image. Used only when `icon` is unset. */
+    /**
+     * URL or public/ path to a raster image. Used only when `icon` is unset.
+     * Relative paths are resolved against the app baseURL, not the current route.
+     */
     image?: string;
     /** Optional alt text for the image; defaults to `name`. */
     alt?: string;
@@ -48,6 +52,18 @@ const gridStyle = computed(() => ({
     gridTemplateColumns: `repeat(${props.columns}, minmax(0, 1fr))`,
 }));
 
+/** SSR-safe (request headers on the server, location on the client). */
+const origin = useRequestURL().origin;
+
+/**
+ * Anchor `image` at the site root instead of the current route: "app-icons/x.svg"
+ * would otherwise resolve against /transcription/<id>/ and 404 off "/".
+ * Absolute inputs ("/x.svg", "https://…", "data:…") resolve to themselves.
+ */
+function imageSrc(image: string): string {
+    return new URL(image, origin).href;
+}
+
 function initials(name: string): string {
     return (name?.trim()?.[0] ?? "?").toUpperCase();
 }
@@ -71,7 +87,7 @@ function initials(name: string): string {
                         <template #leading>
                             <span
                                 class="flex items-center justify-center w-10 h-10 rounded-lg bg-elevated/60 overflow-hidden ring-1 ring-gray-400">
-                                <img v-if="!app.icon && app.image" :src="app.image" :alt="app.alt ?? app.name"
+                                <img v-if="!app.icon && app.image" :src="imageSrc(app.image)" :alt="app.alt ?? app.name"
                                     class="w-full h-full object-contain" />
                                 <UIcon v-else-if="app.icon" :name="app.icon" class="w-6 h-6" />
                                 <span v-else class="text-sm font-semibold text-muted">
