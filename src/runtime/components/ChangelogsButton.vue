@@ -41,7 +41,7 @@ function showChangelogs() {
     <div class="flex md:hidden items-center">
         <UTooltip :text="t('common-ui.changelogs.title')">
             <UButton
-                icon="i-lucide-history"
+                icon="i-lucide-rotate-ccw"
                 variant="ghost"
                 color="neutral"
                 @click="showChangelogs"
@@ -60,7 +60,7 @@ function showChangelogs() {
 
     <div class="hidden md:flex items-center gap-2">
         <UButton
-            icon="i-lucide-history"
+            icon="i-lucide-rotate-ccw"
             variant="ghost"
             color="neutral"
             @click="showChangelogs"
