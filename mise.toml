@@ -25,7 +25,8 @@ run = "bunx nuxt dev playground"
 
 # ── Build & Preview ───────────────────────────────────────────────────────────
 
-[tasks.prepack]
+[tasks.build]
+alias = "prepack"
 run = "bunx nuxt-module-build build"
 
 # ── Type Checking & Linting ───────────────────────────────────────────────────

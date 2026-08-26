@@ -1,11 +1,11 @@
 /*
-* This plugin allows a clean migration form the old version to the new without the need of the users to remove old cookies themself.
-*
-* This plugin removes the two cookies for disclaimer and changelogs if there are more than one cookie with the same name.
-* This prevents a bug where the first cookie get read and the second one gets written
-* which prevents for example that the disclaimer state is ever written correctly.
-* Because cookies did not set the partition and SameSite parameters in the past this bug can appear for users which used an old version of this library.
-*/
+ * This plugin allows a clean migration form the old version to the new without the need of the users to remove old cookies themself.
+ *
+ * This plugin removes the two cookies for disclaimer and changelogs if there are more than one cookie with the same name.
+ * This prevents a bug where the first cookie get read and the second one gets written
+ * which prevents for example that the disclaimer state is ever written correctly.
+ * Because cookies did not set the partition and SameSite parameters in the past this bug can appear for users which used an old version of this library.
+ */
 
 import { defineNuxtPlugin } from "#app";
 
@@ -32,8 +32,8 @@ async function purgeDuplicates(cookeName: string, cookies: CookieList) {
                 path: cookie.path,
             });
         }
-    }}
-
+    }
+}
 
 export default defineNuxtPlugin(async () => {
     if (!import.meta.client) return;
