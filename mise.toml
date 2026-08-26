@@ -3,6 +3,9 @@ bun = "1.3.14"
 node = "24.9.0"
 usage = "latest"
 
+[hooks]
+postinstall = { task = "install" }
+
 # ── Setup ─────────────────────────────────────────────────────────────────────
 
 [tasks.install]
@@ -21,7 +24,6 @@ run = "bunx nuxi prepare"
 [tasks.dev]
 description = "start the development server"
 run = "bunx nuxt dev playground"
-
 
 # ── Build & Preview ───────────────────────────────────────────────────────────
 
@@ -42,6 +44,10 @@ run = "bunx biome format --write"
 [tasks.check]
 description = "check and fix linting issues"
 run = "bunx biome check --fix"
+
+[tasks.ci-check]
+description = "run type checking, linting"
+run = "bunx biome ci ."
 
 # ── Cleanup ───────────────────────────────────────────────────────────────────
 
