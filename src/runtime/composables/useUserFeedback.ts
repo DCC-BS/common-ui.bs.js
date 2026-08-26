@@ -27,15 +27,15 @@ function typeToColor(type: FeedbackType): NuxtColor {
 function typeToIcon(type: FeedbackType): string {
     switch (type) {
         case "error":
-            return "lucide-alert-circle";
+            return "i-lucide-circle-alert";
         case "success":
-            return "lucide-check-circle";
+            return "i-lucide-circle-check";
         case "info":
-            return "lucide-info";
+            return "i-lucide-info";
         case "warning":
-            return "lucide-alert-triangle";
+            return "i-lucide-triangle-alert";
         default:
-            return "lucide-info";
+            return "i-lucide-info";
     }
 }
 

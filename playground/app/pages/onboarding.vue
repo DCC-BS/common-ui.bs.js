@@ -1,63 +1,16 @@
 <script lang="ts" setup>
-import Onboarding from '../../../src/runtime/components/Onboarding.vue';
-
-const onboarding = ref<InstanceType<typeof Onboarding>>();
-
-const builder = useOnboardingBuilder()
-    .addPhases<"Phase1" | "Phase2">([
-        {
-            name: "Phase1",
-            onEnter: async () => {
-                console.log("enter phase 1");
-            },
-            onExit: async () => {
-                console.log("exit phase 1");
-            }
-        },
-        {
-            name: "Phase2",
-            onEnter: async () => {
-                console.log("enter phase 2")
-            },
-            onExit: async () => {
-                console.log("exit phase 2");
-            }
-        }
-    ])
-    .switchPhase("Phase1")
-    .addSteps([
-        {
-            popover: {
-                title: "Step 1",
-                description: "This is step 1",
-            }
-        },
-        {
-            popover: {
-                title: "Step 2",
-                description: "This is step 2",
-            }
-        },
-    ])
-    .switchPhase("Phase2")
-    .addSteps([
-        {
-            popover: {
-                title: "Step 3",
-                description: "This is step 3",
-            }
-        },
-    ]);
-
-onMounted(() => {
-    onboarding.value?.start();
-});
+import OnboardingRestartButton from "../../../src/runtime/components/OnboardingRestartButton.vue";
 </script>
 
 <template>
-    <Onboarding ref="onboarding" :builder="builder" />
-
-    <div>
-        <h1>Onboading</h1>
+    <div class="p-8 flex flex-col gap-4 items-start">
+        <h1 class="text-2xl font-bold">Onboarding</h1>
+        <p class="text-neutral-600">
+            The tour now runs globally via the
+            <code>&lt;FirstRunOrchestrator&gt;</code> in
+            <code>app.vue</code> — on first visit, after the Disclaimer (and
+            Changelogs, if any) are dismissed.
+        </p>
+        <OnboardingRestartButton />
     </div>
 </template>

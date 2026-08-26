@@ -8,31 +8,73 @@ A comprehensive Nuxt module providing reusable UI components, composables, and u
 
 **What's included:**
 - **Pre-built Components**: Navigation bars, split views, disclaimers, status indicators, and more
+- **First-run Orchestrator**: A single `<FirstRunOrchestrator>` component that coordinates the Disclaimer, Changelogs, and Onboarding flows by priority (one on screen at a time, rendered client-side to prevent hydration flash)
 - **Useful Composables**: User feedback system, error handling utilities
 - **i18n Integration**: Built-in internationalization support
 - **Design System**: Full integration with Kanton Basel-Stadt color palette and styling
 - **Accessibility**: Components built with accessibility in mind
 - **Zero Configuration**: Auto-imports components and configures everything for you
 
+## First-run flows
+
+Disclaimer, Changelogs, and Onboarding each compete for the screen when a user
+enters the app. Mount one `<FirstRunOrchestrator>` (typically in `app.vue`) and
+it renders the highest-priority pending flow, one at a time, recomputing after
+each completion. Priority: Disclaimer (30) > Changelogs (20) > Onboarding (10).
+
+<script setup lang="ts">
+const builder = useOnboardingBuilder()
+</script>
+
+<template>
+  <UApp>
+    <FirstRunOrchestrator
+      :onboarding-builder="builder"
+      :disclaimer="{ appName: 'My App' }"
+    />
+    <NuxtPage />
+  </UApp>
+</template>
+```
+
+Completion state is stored in cookies (`disclaimer-accepted`,
+`changelogs-last-read`, `tour-completed`) so pending can be computed from the
+client's cookie jar. The active flow is rendered inside `<ClientOnly>`, which
+guarantees no flash even if the cookie can't reach the SSR layer (proxy
+stripping, cross-origin SSR, etc.). Re-trigger buttons (`<DisclaimerButton>`,
+`<ChangelogsButton>`, `<OnboardingRestartButton>`) reset the corresponding
+cookie. See [`docs/migration-v2.md`](./docs/migration-v2.md) for the full
+consumer guide.
+
 ## Configuration
 
-The following environment variables control startup popups. Set them in your `.env` file to disable the corresponding feature:
+The following environment variables control the first-run flows. Set them in your `.env` file to disable the corresponding flow:
 
 | Env Var | Default | Description |
 | --- | --- | --- |
-| `NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG` | `false` | When set to `true`, disables the changelog popup on app start. |
-| `NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER` | `false` | When set to `true`, disables the disclaimer popup on app start. |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER` | `false` | When set to `true`, disables the Disclaimer flow. |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG` | `false` | When set to `true`, disables the Changelogs flow. |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_ONBOARDING` | `false` | When set to `true`, disables the Onboarding flow. |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_SYSTEM_STATUS` | `false` | When set to `true`, disables the `<SystemStatus>` health indicator. |
 
 Example `.env`:
 
 ```env
 NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG=true
 NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER=true
+NUXT_PUBLIC_COMMON_UI_DISABLE_ONBOARDING=true
+NUXT_PUBLIC_COMMON_UI_DISABLE_SYSTEM_STATUS=true
 ```
+
+Disclaimer content defaults can also be set in `nuxt.config.ts` under
+`runtimeConfig.public.commonUi.disclaimer.{appName, version, contentHtml, postfixHtml, confirmationText}`,
+and overridden per-mount via the orchestrator's `:disclaimer` prop.
 
 ## Documentation
 
 For installation and detailed usage instructions, visit the [Documentation Site](https://dcc-bs.github.io/documentation/user-interface).
+For version-to-version changes, see the [Changelog](./CHANGELOG.md) and the
+[v2 migration guide](./docs/migration-v2.md).
 
 ## License
 

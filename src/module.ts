@@ -1,12 +1,20 @@
 import {
     addComponentsDir,
     addImportsDir,
+    addPlugin,
     addServerHandler,
+    addServerPlugin,
     createResolver,
     defineNuxtModule,
 } from "@nuxt/kit";
 import type { ModuleRuntimeHooks } from "@nuxtjs/i18n";
 import { defu } from "defu";
+
+declare module "@nuxt/schema" {
+    interface NuxtHooks {
+        "icon:clientBundleIcons"(icons: Set<string>): void;
+    }
+}
 
 export default defineNuxtModule<ModuleRuntimeHooks>({
     meta: {
@@ -23,6 +31,12 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
         _nuxt.options.runtimeConfig.public.commonUi = defu(commonUi, {
             disableChangelog: false,
             disableDisclaimer: false,
+            disableOnboarding: false,
+            disableSystemStatus: false,
+            disclaimer: {
+                appName: "",
+                version: "1.0.0",
+            },
         });
 
         _nuxt.options.appConfig = defu(
@@ -73,6 +87,10 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
             handler: resolver.resolve("./runtime/server/api/changelogs.get"),
         });
 
+        addServerPlugin(
+            resolver.resolve("./runtime/server/plugins/log-disabled-features"),
+        );
+
         _nuxt.options.vite.server = _nuxt.options.vite.server || {};
         _nuxt.options.vite.server.fs = _nuxt.options.vite.server.fs || {};
         _nuxt.options.vite.server.fs.allow =
@@ -80,5 +98,19 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
         _nuxt.options.vite.server.fs.allow.push(
             resolver.resolve("./runtime/assets"),
         );
+
+        _nuxt.hook("icon:clientBundleIcons", (icons) => {
+            icons.add("lucide:graduation-cap");
+            icons.add("lucide:grip");
+            icons.add("lucide:rotate-ccw");
+            icons.add("lucide:settings");
+            icons.add("lucide:circle-alert");
+            icons.add("lucide:mail");
+            icons.add("lucide:undo");
+            icons.add("lucide:redo");
+            icons.add("lucide:x");
+            icons.add("lucide:chevron-down");
+            icons.add("lucide:triangle-alert");
+        });
     },
 });
