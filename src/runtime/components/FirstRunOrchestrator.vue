@@ -44,6 +44,7 @@ const disclaimerAccepted = useCookie<string>("disclaimer-accepted", {
     secure: !import.meta.dev,
     partitioned: !import.meta.dev,
     maxAge: FIRST_RUN_COOKIE_MAX_AGE,
+    priority: "high"
 });
 const tourCompleted = useCookie<boolean>("tour-completed", {
     default: () => false,
@@ -51,6 +52,7 @@ const tourCompleted = useCookie<boolean>("tour-completed", {
     secure: !import.meta.dev,
     partitioned: !import.meta.dev,
     maxAge: FIRST_RUN_COOKIE_MAX_AGE,
+    priority: "high"
 });
 
 // Changelogs pending is async (client fetch). `pending` is:

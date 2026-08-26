@@ -79,7 +79,7 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
 
         addImportsDir(resolver.resolve("./runtime/composables"));
 
-        addPlugin(resolver.resolve("./runtime/plugins/migrate-first-run-keys"));
+        addPlugin(resolver.resolve("./runtime/plugins/remove-old-cookies.ts"));
 
         addServerHandler({
             route: "/api/changelogs",
