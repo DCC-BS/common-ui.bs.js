@@ -41,4 +41,5 @@ export default defineNuxtPlugin(async () => {
     const cookies = await cookieStore.getAll();
     await purgeDuplicates("disclaimer-accepted", cookies);
     await purgeDuplicates("changelogs-last-read", cookies);
+    await purgeDuplicates("tour-completed", cookies);
 });
