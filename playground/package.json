@@ -2,7 +2,7 @@
     "name": "nuxt-app",
     "dependencies": {
         "@nuxt/icon": "2.2.3",
-        "@nuxt/ui": "4.8.1",
+        "@nuxt/ui": "4.11.0",
         "@nuxtjs/i18n": "10.6.0",
         "motion-v": "2.3.0",
         "nuxt": "4.5.1",
