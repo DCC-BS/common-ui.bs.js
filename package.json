@@ -87,6 +87,6 @@
         "gray-matter": "^4.0.3",
         "markdown-it": "14.3.2",
         "semver": "7.8.5",
-        "tailwind-merge": "3.6.0"
+        "tailwind-merge": "3.7.0"
     }
 }
