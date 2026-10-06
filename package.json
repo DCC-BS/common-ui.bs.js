@@ -86,7 +86,7 @@
         "driver.js": "^1.6.0",
         "gray-matter": "^4.0.3",
         "pdfjs-dist": "6.3.289",
-        "vue-pdf-embed": "^2.1.6"
+        "vue-pdf-embed": "^2.1.6",
         "markdown-it": "14.3.2",
         "semver": "7.8.5",
         "tailwind-merge": "3.7.0"

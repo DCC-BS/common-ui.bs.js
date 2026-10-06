@@ -40,7 +40,6 @@ const confirmation = computed(() =>
                     required
                     v-model="disclaimerAccepted"
                 />
-                <!-- biome-ignore lint/a11y/noLabelWithoutControl: associated via for/id; text is a dynamic Vue binding biome can't detect -->
                 <label for="confirmation-checkbox">
                     {{ confirmation }}
                 </label>
