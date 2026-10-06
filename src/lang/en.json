@@ -12,6 +12,10 @@
             "offline_title": "System disruption",
             "offline_description": "Some services are unavailable, features may be limited"
         },
+        "pdf_viewer": {
+            "page": "Page",
+            "debug_bboxes": "Debug: segment bboxes"
+        },
         "tour": {
             "skip": "Skip",
             "next": "Next",
