@@ -12,6 +12,10 @@
             "offline_title": "Systemstörung",
             "offline_description": "Einige Dienste sind nicht verfügbar, Funktionen können eingeschränkt sein"
         },
+        "pdf_viewer": {
+            "page": "Seite",
+            "debug_bboxes": "Debug: Segment-Bboxes"
+        },
         "tour": {
             "skip": "Überspringen",
             "next": "Weiter",

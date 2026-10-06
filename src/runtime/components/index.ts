@@ -12,6 +12,7 @@ export { default as FirstRunOrchestrator } from "./FirstRunOrchestrator.vue";
 export { default as NavigationBar } from "./NavigationBar.vue";
 export { default as Onboarding } from "./Onboarding.vue";
 export { default as OnboardingRestartButton } from "./OnboardingRestartButton.vue";
+export { default as PdfViewer } from "./PdfViewer.vue";
 export { default as SettingsButton } from "./SettingsButton.vue";
 export { default as SplitContainer } from "./SplitContainer.vue";
 export { default as SplitView } from "./SplitView.vue";

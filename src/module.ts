@@ -111,6 +111,9 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
             icons.add("lucide:x");
             icons.add("lucide:chevron-down");
             icons.add("lucide:triangle-alert");
+            icons.add("lucide:loader-circle");
+            icons.add("lucide:chevron-left");
+            icons.add("lucide:chevron-right");
         });
     },
 });
