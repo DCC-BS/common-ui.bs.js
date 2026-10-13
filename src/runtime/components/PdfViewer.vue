@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import "vue-pdf-embed/dist/styles/textLayer.css";
+import "vue-pdf-embed/dist/styles/annotationLayer.css";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import {
     computed,
@@ -35,6 +37,17 @@ const props = withDefaults(
         focusOnActive?: boolean;
         /** Show the debug-bboxes checkbox in the toolbar. */
         showDebugToggle?: boolean;
+        /**
+         * URL pdf.js reads its WASM decoders from (trailing slash), for the
+         * image encodings the browser has nothing of its own for (JBIG2,
+         * JPEG 2000). Serving them is what makes a scanned page paint —
+         * without it the page stays white while its images fail to decode.
+         */
+        wasmUrl?: string;
+        /** URL pdf.js reads the standard-font data from (trailing slash). */
+        standardFontDataUrl?: string;
+        /** URL pdf.js reads the CMaps from (trailing slash). */
+        cMapUrl?: string;
     }>(),
     {
         annotations: () => [],
@@ -42,15 +55,37 @@ const props = withDefaults(
         styleFor: undefined,
         focusOnActive: true,
         showDebugToggle: false,
+        wasmUrl: undefined,
+        standardFontDataUrl: undefined,
+        cMapUrl: undefined,
     },
 );
 
 const emit = defineEmits<{
     activate: [key: string];
     pagesLoaded: [numPages: number];
+    /** Right click on a mark's box, at the pointer, for a context menu. */
+    contextmenu: [key: string, x: number, y: number];
 }>();
 
 const debugBoxes = defineModel<boolean>("debugBoxes", { default: false });
+
+/**
+ * The loader's source, as pdf.js reads it.
+ *
+ * The URLs only flow through pdf.js's init parameters — a plain `fileUrl`
+ * string would lose them, and pdf.js falls back to decoding without its
+ * WASM decoders, which leaves scanned pages white. The object has to be a
+ * computed, not an inline literal: a fresh object identity on every render
+ * would have pdf.js destroy its in-flight document and start over, which
+ * shows nothing at all.
+ */
+const source = computed(() => ({
+    url: props.fileUrl,
+    wasmUrl: props.wasmUrl,
+    standardFontDataUrl: props.standardFontDataUrl,
+    cMapUrl: props.cMapUrl,
+}));
 
 const { t } = useI18n();
 const pageLabel = t("common-ui.pdf_viewer.page");
@@ -172,6 +207,21 @@ const FALLBACK_STYLE: AnnotationStyle = {
 function styleFor(annotation: PdfAnnotation): AnnotationStyle {
     const active = annotation.key === props.activeKey;
     return props.styleFor?.(annotation, active) ?? FALLBACK_STYLE;
+}
+
+/**
+ * The fill of one box, as the styles it takes.
+ *
+ * Gradients are background *images*; a gradient assigned to
+ * `background-color` is dropped whole and nothing shows. A fill that names
+ * one therefore goes to `background-image`, a colour to `background-color`,
+ * and both leave the other unset.
+ */
+function fillStyles(fill: string): Record<string, string> {
+    if (fill.includes("-gradient(")) {
+        return { backgroundColor: "transparent", backgroundImage: fill };
+    }
+    return { backgroundColor: fill };
 }
 
 // ---------------------------------------------------------------------------
@@ -457,9 +507,11 @@ defineExpose({ scrollToPage, focusAnnotation: focusAnnotationByKey });
 
 <template>
     <div class="flex flex-col h-full min-h-0 overflow-hidden">
-        <!-- Hidden loader: loads the document once, renders nothing -->
+        <!-- Hidden loader: loads the document once, renders nothing. The
+             decoder and font assets travel with the source, so pdf.js finds
+             them wherever the app hosts them. -->
         <PdfEmbed
-            :source="fileUrl"
+            :source="source"
             :page="loaderPages"
             class="hidden"
             @loaded="onLoaded"
@@ -516,14 +568,15 @@ defineExpose({ scrollToPage, focusAnnotation: focusAnnotationByKey });
                                 top: box.top,
                                 width: box.width,
                                 height: box.height,
-                                backgroundColor: styleFor(item.annotation).fill,
-                                boxShadow: `inset 0 0 0 1.5px ${styleFor(item.annotation).stroke}`,
-                                pointerEvents:
-                                    item.annotation.key === activeKey ? 'none' : 'auto',
+                                ...fillStyles(styleFor(item.annotation).fill),
+                                boxShadow: `inset 0 0 0 ${item.annotation.key === activeKey ? 4.5 : 1.5}px ${styleFor(item.annotation).stroke}`,
                             }"
                             :title="item.annotation.title ?? undefined"
                             :aria-label="item.annotation.title ?? item.annotation.key"
                             @click="emit('activate', item.annotation.key)"
+                            @contextmenu.prevent="
+                                emit('contextmenu', item.annotation.key, $event.clientX, $event.clientY)
+                            "
                         />
                     </template>
 
