@@ -55,7 +55,7 @@
         "playground"
     ],
     "devDependencies": {
-        "@biomejs/biome": "^2.5.3",
+        "@biomejs/biome": "2.5.15",
         "@nuxt/kit": "^4.5.0",
         "@nuxt/module-builder": "1.0.3",
         "@nuxtjs/i18n": "^10.5.0",
