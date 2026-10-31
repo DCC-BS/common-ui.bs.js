@@ -1,3 +1,5 @@
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import {
     addComponentsDir,
     addImportsDir,
@@ -78,6 +80,18 @@ export default defineNuxtModule<ModuleRuntimeHooks>({
         });
 
         addImportsDir(resolver.resolve("./runtime/composables"));
+
+        // PdfViewer's text and annotation layers need vue-pdf-embed's stylesheets. Importing them
+        // inside the SFC breaks the Nitro server build of consuming apps ("Could not resolve
+        // ./PdfViewer-styles-1.mjs-!~{018}~.js"), so register them as global CSS instead. The
+        // package only exports the styles folder, so resolve them next to its main entry.
+        const pdfEmbedDist = dirname(
+            createRequire(import.meta.url).resolve("vue-pdf-embed"),
+        );
+        _nuxt.options.css.push(
+            join(pdfEmbedDist, "styles/textLayer.css"),
+            join(pdfEmbedDist, "styles/annotationLayer.css"),
+        );
 
         addPlugin(resolver.resolve("./runtime/plugins/remove-old-cookies"));
 
