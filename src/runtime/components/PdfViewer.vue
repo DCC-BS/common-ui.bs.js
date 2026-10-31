@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import "vue-pdf-embed/dist/styles/textLayer.css";
-import "vue-pdf-embed/dist/styles/annotationLayer.css";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import {
     computed,
