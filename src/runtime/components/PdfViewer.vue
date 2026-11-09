@@ -202,7 +202,7 @@ const FALLBACK_STYLE: AnnotationStyle = {
     stroke: "var(--color-gray-400)",
 };
 
-function styleFor(annotation: PdfAnnotation): AnnotationStyle {
+function resolveAnnotationStyle(annotation: PdfAnnotation): AnnotationStyle {
     const active = annotation.key === props.activeKey;
     return props.styleFor?.(annotation, active) ?? FALLBACK_STYLE;
 }
@@ -566,8 +566,8 @@ defineExpose({ scrollToPage, focusAnnotation: focusAnnotationByKey });
                                 top: box.top,
                                 width: box.width,
                                 height: box.height,
-                                ...fillStyles(styleFor(item.annotation).fill),
-                                boxShadow: `inset 0 0 0 ${item.annotation.key === activeKey ? 4.5 : 1.5}px ${styleFor(item.annotation).stroke}`,
+                                ...fillStyles(resolveAnnotationStyle(item.annotation).fill),
+                                boxShadow: `inset 0 0 0 ${item.annotation.key === activeKey ? 4.5 : 1.5}px ${resolveAnnotationStyle(item.annotation).stroke}`,
                             }"
                             :title="item.annotation.title ?? undefined"
                             :aria-label="item.annotation.title ?? item.annotation.key"
