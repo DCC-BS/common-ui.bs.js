@@ -120,9 +120,9 @@ activates.
 
 ```ts
 const builder = useOnboardingBuilder()
-  .addPhases<"Intro">([{ name: "Intro", onEnter: async () => {} }])
-  .switchPhase("Intro")
-  .addSteps([{ popover: { title: "Welcome", description: "…" } }]);
+    .addPhases<"Intro">([{ name: "Intro", onEnter: async () => {} }])
+    .switchPhase("Intro")
+    .addSteps([{ popover: { title: "Welcome", description: "…" } }]);
 ```
 
 ### 4. Configure the Disclaimer
@@ -142,17 +142,17 @@ Two equivalent options:
 
 ```ts
 export default defineNuxtConfig({
-  runtimeConfig: {
-    public: {
-      commonUi: {
-        disclaimer: {
-          appName: "My App",
-          confirmationText: "…",
-          version: "1.0.0",
+    runtimeConfig: {
+        public: {
+            commonUi: {
+                disclaimer: {
+                    appName: "My App",
+                    confirmationText: "…",
+                    version: "1.0.0",
+                },
+            },
         },
-      },
     },
-  },
 });
 ```
 
@@ -184,11 +184,11 @@ after upgrade, the `migrate-first-run-keys` plugin (auto-registered by the
 module) copies the old values to the new cookies and deletes the `localStorage`
 keys:
 
-| Old (localStorage)                | New (cookie)            | Encoding change |
-| --------------------------------- | ----------------------- | --------------- |
-| `disclaimerAccepted` (`"1.0.0"`)  | `disclaimer-accepted`   | JSON-decoded → raw string |
-| `changelogs-last-read` (`0.0.0`)  | `changelogs-last-read`  | none (already raw) |
-| `tour-completed` (cookie)         | `tour-completed`        | unchanged |
+| Old (localStorage)               | New (cookie)           | Encoding change           |
+| -------------------------------- | ---------------------- | ------------------------- |
+| `disclaimerAccepted` (`"1.0.0"`) | `disclaimer-accepted`  | JSON-decoded → raw string |
+| `changelogs-last-read` (`0.0.0`) | `changelogs-last-read` | none (already raw)        |
+| `tour-completed` (cookie)        | `tour-completed`       | unchanged                 |
 
 The migration runs once per user, guarded by a `first-run-migrated` sentinel
 cookie.
@@ -206,10 +206,10 @@ cookie.
 
 A new flag joins the existing two:
 
-| Env Var | Default | Description |
-| --- | --- | --- |
-| `NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG` | `false` | Disables the Changelogs flow. |
-| `NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER` | `false` | Disables the Disclaimer flow. |
+| Env Var                                    | Default | Description                            |
+| ------------------------------------------ | ------- | -------------------------------------- |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_CHANGELOG`  | `false` | Disables the Changelogs flow.          |
+| `NUXT_PUBLIC_COMMON_UI_DISABLE_DISCLAIMER` | `false` | Disables the Disclaimer flow.          |
 | `NUXT_PUBLIC_COMMON_UI_DISABLE_ONBOARDING` | `false` | **New.** Disables the Onboarding flow. |
 
 ---
