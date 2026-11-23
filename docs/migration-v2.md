@@ -237,6 +237,7 @@ mount them individually:
 ## Troubleshooting
 
 **A flow isn't appearing.** Check, in order:
+
 1. Is `<FirstRunOrchestrator>` mounted (and not inside a `v-if` that's false)?
 2. Is the flow's disable flag set in `runtimeConfig` / env?
 3. For Onboarding — did you pass `:onboarding-builder`?
