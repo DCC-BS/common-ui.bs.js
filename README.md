@@ -7,6 +7,7 @@ A comprehensive Nuxt module providing reusable UI components, composables, and u
 [![NPM Version](https://img.shields.io/npm/v/%40dcc-bs%2Fcommon-ui.bs.js)](https://www.npmjs.com/package/@dcc-bs/common-ui.bs.js)
 
 **What's included:**
+
 - **Pre-built Components**: Navigation bars, split views, disclaimers, status indicators, and more
 - **First-run Orchestrator**: A single `<FirstRunOrchestrator>` component that coordinates the Disclaimer, Changelogs, and Onboarding flows by priority (one on screen at a time, rendered client-side to prevent hydration flash)
 - **Useful Composables**: User feedback system, error handling utilities
